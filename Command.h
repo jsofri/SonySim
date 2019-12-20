@@ -1,29 +1,22 @@
 //
-// Created by rony on 12/19/19.
+// Created by yehonatan on 19/12/2019.
 //
 
-#ifndef COMMAND_H
-#define COMMAND_H
+#ifndef ACPROJECT_COMMAND_H
+#define ACPROJECT_COMMAND_H
 
-using namespace std;
 
-/**
- * Command Class
- *
- * Note: Abstract class
+#include "SymbolTable.h"
+/*
+ * Abstract class for all command objects.
+ * contain a data member of index_counter - counts number of tokens in the tokens_array of tokens.
+ * execute() must be implemented by classes.
  */
 class Command {
-
-    public:
-    /**
-     * execute the command
-     */
-    virtual void execute() = 0;
-
-    /**
-     * destructor
-     */
-    ~Command() {}
+public:
+    //should return index_counter
+    virtual int execute(int) = 0;
+protected:
+    int index_counter = 0;
 };
-
-#endif //COMMAND_H
+#endif //ACPROJECT_COMMAND_H
