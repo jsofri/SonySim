@@ -23,15 +23,15 @@ class Lexer {
      */
     void makeTokens() {
         string line;
+        bool readingString = false;
         ifstream file(this -> filename);
 
-        while(getline(file, line)) {
+        while (getline(file, line)) {
             string token = "";
 
             for (char c : line) {
-                // finished reading a token?
-                // @@ strings are without quotes @@@@@
-                if (isSkippableChar(c) || readingString) {
+                // check if finished reading a token
+                if (isSkippableChar(c) && !readingString && !isVarAssignment()) {
 
                     // only approve legal tokens
                     if (isLegalToken(token)) {
@@ -41,18 +41,30 @@ class Lexer {
 
                     if (c == '\n') {
                         tokens.emplace_back("\n");
-                        break;
+                        token = "";
                     }
+                }
+                // if the current line is a variable assignment that looks like `var = ...`, then we will treat the
+                // whole expression after the `=` as a single token that will be parsed afterwards
+                else if (isVarAssignment()) {
+                    if (c == '\n') {
+                        tokens.push_back(token);
+                        tokens.emplace_back("\n");
+                        token = "";
+                    } else {
+                        token += c;
+                    }
+
                 } else {
                     if (c == '"'){
-                        if (!readingString) {
-                            
-                        } else {
-
+                        if (readingString) {
+                            tokens.push_back(token);
+                            token = "";
                         }
                         readingString = !readingString;
+                    } else {
+                        token += c;
                     }
-                    token += c;
                 }
             }
         }
@@ -87,6 +99,52 @@ class Lexer {
      bool isSkippableChar(char c) {
          return c == ' ' || c == ',' || c == '\n' || c == '\r' || c == '\t' || c == '(' || c == ')';
      }
+
+     /**
+      * Check if the current line is a variable assignment, i.e. if we detect `var = ...`
+      * @return
+      */
+     bool isVarAssignment() {
+         vector<string>::iterator it = tokens.end() - 1;
+         return *it == "=" && isVar(*(it-1));
+     }
+
+     /**
+      * Check if a string is a legal variable
+      * @param var the string to check
+      * @return true if the string is a legal variable
+      */
+     bool isVar(string var) {
+         int i = 0;
+         for (char c : var) {
+             if (i == 0 && !isLetter(c) && c != '_') {
+                 return false;
+             } else if (!isDigit(c) && !isLetter(c) && c != '_') {
+                 return false;
+             }
+
+             i++;
+         }
+         return true;
+     }
+
+     /**
+      * check if a char is a letter
+      * @param c the char
+      * @return true if the char is a letter
+      */
+     bool isLetter(char c) {
+         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+     }
+
+    /**
+     * check if a char is a digit
+     * @param c the char
+     * @return true if the char is a digit
+     */
+    bool isDigit(char c) {
+        return c >= '0' && c <= '9';
+    }
 
     /**
     * destructor

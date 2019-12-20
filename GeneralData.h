@@ -15,6 +15,7 @@
 #include <vector>
 #include <list>
 
+using namespace std;
 
 //defines for the VarData struct
 #define NO_ONE 0
