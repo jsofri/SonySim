@@ -1,22 +1,29 @@
-//
-// Created by yehonatan on 19/12/2019.
-//
+/**
+ * Abstract class for all command objects.
+ *
+ * @author Yehonatan Sofri
+ * @date 19.12.19
+ */
 
 #ifndef ACPROJECT_COMMAND_H
 #define ACPROJECT_COMMAND_H
 
+#include "GeneralData.h"
 
-#include "SymbolTable.h"
-/*
- * Abstract class for all command objects.
- * contain a data member of index_counter - counts number of tokens in the tokens_array of tokens.
- * execute() must be implemented by classes.
- */
 class Command {
 public:
-    //should return index_counter
-    virtual int execute(int) = 0;
+
+    /**
+     * interpret and execute, depending on the strings sequence in the vector.
+     *
+     * @param vector<string> &
+     * @param int index - index in the vector
+     * @return int - index counter in the vector
+     */
+    virtual int execute(int, vector<string> &) = 0;
 protected:
+
+    //count number of strings that were handled in the vector
     int index_counter = 0;
 };
 #endif //ACPROJECT_COMMAND_H
