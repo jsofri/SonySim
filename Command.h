@@ -26,4 +26,7 @@ protected:
     //count number of strings that were handled in the vector
     int index_counter = 0;
 };
+
+
+
 #endif //ACPROJECT_COMMAND_H

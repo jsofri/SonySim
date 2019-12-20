@@ -106,15 +106,15 @@ class Lexer {
       */
      bool isVarAssignment() {
          vector<string>::iterator it = tokens.end() - 1;
-         return *it == "=" && isVar(*(it-1));
+         return *it == "=" && isLegalVar(*(it-1));
      }
 
      /**
-      * Check if a string is a legal variable
+      * Check if a string is a legal variable name
       * @param var the string to check
-      * @return true if the string is a legal variable
+      * @return true if the string is a legal variable name
       */
-     bool isVar(string var) {
+     bool isLegalVar(string var) {
          int i = 0;
          for (char c : var) {
              if (i == 0 && !isLetter(c) && c != '_') {
@@ -127,6 +127,16 @@ class Lexer {
          }
          return true;
      }
+
+
+    /**
+     * Check if a string is a legal function name
+     * @param var the string to check
+     * @return true if the string is a legal function name
+     */
+    bool isLegalFunc(string func) {
+        return isLegalVar(func);
+    }
 
      /**
       * check if a char is a letter
