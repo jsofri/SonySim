@@ -83,18 +83,18 @@ CMakeFiles/ACProject.dir/VarCommand.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/VarCommand.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/VarCommand.cpp -o CMakeFiles/ACProject.dir/VarCommand.cpp.s
 
-CMakeFiles/ACProject.dir/Interpreter.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/Interpreter.cpp.o: ../Interpreter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ACProject.dir/Interpreter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Interpreter.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Interpreter.cpp
+CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.o: ../Expressions/Interpreter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/Interpreter.cpp
 
-CMakeFiles/ACProject.dir/Interpreter.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Interpreter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Interpreter.cpp > CMakeFiles/ACProject.dir/Interpreter.cpp.i
+CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/Interpreter.cpp > CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.i
 
-CMakeFiles/ACProject.dir/Interpreter.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Interpreter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Interpreter.cpp -o CMakeFiles/ACProject.dir/Interpreter.cpp.s
+CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/Interpreter.cpp -o CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.s
 
 CMakeFiles/ACProject.dir/SymbolTable.cpp.o: CMakeFiles/ACProject.dir/flags.make
 CMakeFiles/ACProject.dir/SymbolTable.cpp.o: ../SymbolTable.cpp
@@ -109,140 +109,140 @@ CMakeFiles/ACProject.dir/SymbolTable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/SymbolTable.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/SymbolTable.cpp -o CMakeFiles/ACProject.dir/SymbolTable.cpp.s
 
-CMakeFiles/ACProject.dir/Variable.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/Variable.cpp.o: ../Variable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ACProject.dir/Variable.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Variable.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Variable.cpp
+CMakeFiles/ACProject.dir/Expressions/Variable.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/Variable.cpp.o: ../Expressions/Variable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ACProject.dir/Expressions/Variable.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/Variable.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/Variable.cpp
 
-CMakeFiles/ACProject.dir/Variable.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Variable.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Variable.cpp > CMakeFiles/ACProject.dir/Variable.cpp.i
+CMakeFiles/ACProject.dir/Expressions/Variable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/Variable.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/Variable.cpp > CMakeFiles/ACProject.dir/Expressions/Variable.cpp.i
 
-CMakeFiles/ACProject.dir/Variable.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Variable.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Variable.cpp -o CMakeFiles/ACProject.dir/Variable.cpp.s
+CMakeFiles/ACProject.dir/Expressions/Variable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/Variable.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/Variable.cpp -o CMakeFiles/ACProject.dir/Expressions/Variable.cpp.s
 
-CMakeFiles/ACProject.dir/Mul.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/Mul.cpp.o: ../Mul.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ACProject.dir/Mul.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Mul.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Mul.cpp
+CMakeFiles/ACProject.dir/Expressions/Mul.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/Mul.cpp.o: ../Expressions/Mul.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ACProject.dir/Expressions/Mul.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/Mul.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/Mul.cpp
 
-CMakeFiles/ACProject.dir/Mul.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Mul.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Mul.cpp > CMakeFiles/ACProject.dir/Mul.cpp.i
+CMakeFiles/ACProject.dir/Expressions/Mul.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/Mul.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/Mul.cpp > CMakeFiles/ACProject.dir/Expressions/Mul.cpp.i
 
-CMakeFiles/ACProject.dir/Mul.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Mul.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Mul.cpp -o CMakeFiles/ACProject.dir/Mul.cpp.s
+CMakeFiles/ACProject.dir/Expressions/Mul.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/Mul.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/Mul.cpp -o CMakeFiles/ACProject.dir/Expressions/Mul.cpp.s
 
-CMakeFiles/ACProject.dir/UMinus.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/UMinus.cpp.o: ../UMinus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ACProject.dir/UMinus.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/UMinus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/UMinus.cpp
+CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.o: ../Expressions/UMinus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/UMinus.cpp
 
-CMakeFiles/ACProject.dir/UMinus.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/UMinus.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/UMinus.cpp > CMakeFiles/ACProject.dir/UMinus.cpp.i
+CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/UMinus.cpp > CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.i
 
-CMakeFiles/ACProject.dir/UMinus.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/UMinus.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/UMinus.cpp -o CMakeFiles/ACProject.dir/UMinus.cpp.s
+CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/UMinus.cpp -o CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.s
 
-CMakeFiles/ACProject.dir/UPlus.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/UPlus.cpp.o: ../UPlus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ACProject.dir/UPlus.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/UPlus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/UPlus.cpp
+CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.o: ../Expressions/UPlus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/UPlus.cpp
 
-CMakeFiles/ACProject.dir/UPlus.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/UPlus.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/UPlus.cpp > CMakeFiles/ACProject.dir/UPlus.cpp.i
+CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/UPlus.cpp > CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.i
 
-CMakeFiles/ACProject.dir/UPlus.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/UPlus.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/UPlus.cpp -o CMakeFiles/ACProject.dir/UPlus.cpp.s
+CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/UPlus.cpp -o CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.s
 
-CMakeFiles/ACProject.dir/Plus.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/Plus.cpp.o: ../Plus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ACProject.dir/Plus.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Plus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Plus.cpp
+CMakeFiles/ACProject.dir/Expressions/Plus.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/Plus.cpp.o: ../Expressions/Plus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ACProject.dir/Expressions/Plus.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/Plus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/Plus.cpp
 
-CMakeFiles/ACProject.dir/Plus.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Plus.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Plus.cpp > CMakeFiles/ACProject.dir/Plus.cpp.i
+CMakeFiles/ACProject.dir/Expressions/Plus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/Plus.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/Plus.cpp > CMakeFiles/ACProject.dir/Expressions/Plus.cpp.i
 
-CMakeFiles/ACProject.dir/Plus.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Plus.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Plus.cpp -o CMakeFiles/ACProject.dir/Plus.cpp.s
+CMakeFiles/ACProject.dir/Expressions/Plus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/Plus.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/Plus.cpp -o CMakeFiles/ACProject.dir/Expressions/Plus.cpp.s
 
-CMakeFiles/ACProject.dir/Minus.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/Minus.cpp.o: ../Minus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ACProject.dir/Minus.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Minus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Minus.cpp
+CMakeFiles/ACProject.dir/Expressions/Minus.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/Minus.cpp.o: ../Expressions/Minus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ACProject.dir/Expressions/Minus.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/Minus.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/Minus.cpp
 
-CMakeFiles/ACProject.dir/Minus.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Minus.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Minus.cpp > CMakeFiles/ACProject.dir/Minus.cpp.i
+CMakeFiles/ACProject.dir/Expressions/Minus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/Minus.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/Minus.cpp > CMakeFiles/ACProject.dir/Expressions/Minus.cpp.i
 
-CMakeFiles/ACProject.dir/Minus.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Minus.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Minus.cpp -o CMakeFiles/ACProject.dir/Minus.cpp.s
+CMakeFiles/ACProject.dir/Expressions/Minus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/Minus.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/Minus.cpp -o CMakeFiles/ACProject.dir/Expressions/Minus.cpp.s
 
-CMakeFiles/ACProject.dir/Div.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/Div.cpp.o: ../Div.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ACProject.dir/Div.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Div.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Div.cpp
+CMakeFiles/ACProject.dir/Expressions/Div.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/Div.cpp.o: ../Expressions/Div.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ACProject.dir/Expressions/Div.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/Div.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/Div.cpp
 
-CMakeFiles/ACProject.dir/Div.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Div.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Div.cpp > CMakeFiles/ACProject.dir/Div.cpp.i
+CMakeFiles/ACProject.dir/Expressions/Div.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/Div.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/Div.cpp > CMakeFiles/ACProject.dir/Expressions/Div.cpp.i
 
-CMakeFiles/ACProject.dir/Div.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Div.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Div.cpp -o CMakeFiles/ACProject.dir/Div.cpp.s
+CMakeFiles/ACProject.dir/Expressions/Div.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/Div.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/Div.cpp -o CMakeFiles/ACProject.dir/Expressions/Div.cpp.s
 
-CMakeFiles/ACProject.dir/Value.cpp.o: CMakeFiles/ACProject.dir/flags.make
-CMakeFiles/ACProject.dir/Value.cpp.o: ../Value.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ACProject.dir/Value.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Value.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Value.cpp
+CMakeFiles/ACProject.dir/Expressions/Value.cpp.o: CMakeFiles/ACProject.dir/flags.make
+CMakeFiles/ACProject.dir/Expressions/Value.cpp.o: ../Expressions/Value.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ACProject.dir/Expressions/Value.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ACProject.dir/Expressions/Value.cpp.o -c /home/yehonatan/CLionProjects/SonySim/Expressions/Value.cpp
 
-CMakeFiles/ACProject.dir/Value.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Value.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Value.cpp > CMakeFiles/ACProject.dir/Value.cpp.i
+CMakeFiles/ACProject.dir/Expressions/Value.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ACProject.dir/Expressions/Value.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yehonatan/CLionProjects/SonySim/Expressions/Value.cpp > CMakeFiles/ACProject.dir/Expressions/Value.cpp.i
 
-CMakeFiles/ACProject.dir/Value.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Value.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Value.cpp -o CMakeFiles/ACProject.dir/Value.cpp.s
+CMakeFiles/ACProject.dir/Expressions/Value.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ACProject.dir/Expressions/Value.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yehonatan/CLionProjects/SonySim/Expressions/Value.cpp -o CMakeFiles/ACProject.dir/Expressions/Value.cpp.s
 
 # Object files for target ACProject
 ACProject_OBJECTS = \
 "CMakeFiles/ACProject.dir/main.cpp.o" \
 "CMakeFiles/ACProject.dir/VarCommand.cpp.o" \
-"CMakeFiles/ACProject.dir/Interpreter.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.o" \
 "CMakeFiles/ACProject.dir/SymbolTable.cpp.o" \
-"CMakeFiles/ACProject.dir/Variable.cpp.o" \
-"CMakeFiles/ACProject.dir/Mul.cpp.o" \
-"CMakeFiles/ACProject.dir/UMinus.cpp.o" \
-"CMakeFiles/ACProject.dir/UPlus.cpp.o" \
-"CMakeFiles/ACProject.dir/Plus.cpp.o" \
-"CMakeFiles/ACProject.dir/Minus.cpp.o" \
-"CMakeFiles/ACProject.dir/Div.cpp.o" \
-"CMakeFiles/ACProject.dir/Value.cpp.o"
+"CMakeFiles/ACProject.dir/Expressions/Variable.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/Mul.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/Plus.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/Minus.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/Div.cpp.o" \
+"CMakeFiles/ACProject.dir/Expressions/Value.cpp.o"
 
 # External object files for target ACProject
 ACProject_EXTERNAL_OBJECTS =
 
 ACProject: CMakeFiles/ACProject.dir/main.cpp.o
 ACProject: CMakeFiles/ACProject.dir/VarCommand.cpp.o
-ACProject: CMakeFiles/ACProject.dir/Interpreter.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.o
 ACProject: CMakeFiles/ACProject.dir/SymbolTable.cpp.o
-ACProject: CMakeFiles/ACProject.dir/Variable.cpp.o
-ACProject: CMakeFiles/ACProject.dir/Mul.cpp.o
-ACProject: CMakeFiles/ACProject.dir/UMinus.cpp.o
-ACProject: CMakeFiles/ACProject.dir/UPlus.cpp.o
-ACProject: CMakeFiles/ACProject.dir/Plus.cpp.o
-ACProject: CMakeFiles/ACProject.dir/Minus.cpp.o
-ACProject: CMakeFiles/ACProject.dir/Div.cpp.o
-ACProject: CMakeFiles/ACProject.dir/Value.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/Variable.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/Mul.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/Plus.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/Minus.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/Div.cpp.o
+ACProject: CMakeFiles/ACProject.dir/Expressions/Value.cpp.o
 ACProject: CMakeFiles/ACProject.dir/build.make
 ACProject: CMakeFiles/ACProject.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yehonatan/CLionProjects/SonySim/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable ACProject"

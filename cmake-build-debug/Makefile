@@ -123,140 +123,248 @@ ACProject/fast:
 	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/build
 .PHONY : ACProject/fast
 
-Div.o: Div.cpp.o
+Expressions/Div.o: Expressions/Div.cpp.o
 
-.PHONY : Div.o
-
-# target to build an object file
-Div.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Div.cpp.o
-.PHONY : Div.cpp.o
-
-Div.i: Div.cpp.i
-
-.PHONY : Div.i
-
-# target to preprocess a source file
-Div.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Div.cpp.i
-.PHONY : Div.cpp.i
-
-Div.s: Div.cpp.s
-
-.PHONY : Div.s
-
-# target to generate assembly for a file
-Div.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Div.cpp.s
-.PHONY : Div.cpp.s
-
-Interpreter.o: Interpreter.cpp.o
-
-.PHONY : Interpreter.o
+.PHONY : Expressions/Div.o
 
 # target to build an object file
-Interpreter.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Interpreter.cpp.o
-.PHONY : Interpreter.cpp.o
+Expressions/Div.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Div.cpp.o
+.PHONY : Expressions/Div.cpp.o
 
-Interpreter.i: Interpreter.cpp.i
+Expressions/Div.i: Expressions/Div.cpp.i
 
-.PHONY : Interpreter.i
+.PHONY : Expressions/Div.i
 
 # target to preprocess a source file
-Interpreter.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Interpreter.cpp.i
-.PHONY : Interpreter.cpp.i
+Expressions/Div.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Div.cpp.i
+.PHONY : Expressions/Div.cpp.i
 
-Interpreter.s: Interpreter.cpp.s
+Expressions/Div.s: Expressions/Div.cpp.s
 
-.PHONY : Interpreter.s
+.PHONY : Expressions/Div.s
 
 # target to generate assembly for a file
-Interpreter.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Interpreter.cpp.s
-.PHONY : Interpreter.cpp.s
+Expressions/Div.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Div.cpp.s
+.PHONY : Expressions/Div.cpp.s
 
-Minus.o: Minus.cpp.o
+Expressions/Interpreter.o: Expressions/Interpreter.cpp.o
 
-.PHONY : Minus.o
+.PHONY : Expressions/Interpreter.o
 
 # target to build an object file
-Minus.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Minus.cpp.o
-.PHONY : Minus.cpp.o
+Expressions/Interpreter.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.o
+.PHONY : Expressions/Interpreter.cpp.o
 
-Minus.i: Minus.cpp.i
+Expressions/Interpreter.i: Expressions/Interpreter.cpp.i
 
-.PHONY : Minus.i
+.PHONY : Expressions/Interpreter.i
 
 # target to preprocess a source file
-Minus.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Minus.cpp.i
-.PHONY : Minus.cpp.i
+Expressions/Interpreter.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.i
+.PHONY : Expressions/Interpreter.cpp.i
 
-Minus.s: Minus.cpp.s
+Expressions/Interpreter.s: Expressions/Interpreter.cpp.s
 
-.PHONY : Minus.s
+.PHONY : Expressions/Interpreter.s
 
 # target to generate assembly for a file
-Minus.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Minus.cpp.s
-.PHONY : Minus.cpp.s
+Expressions/Interpreter.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Interpreter.cpp.s
+.PHONY : Expressions/Interpreter.cpp.s
 
-Mul.o: Mul.cpp.o
+Expressions/Minus.o: Expressions/Minus.cpp.o
 
-.PHONY : Mul.o
+.PHONY : Expressions/Minus.o
 
 # target to build an object file
-Mul.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Mul.cpp.o
-.PHONY : Mul.cpp.o
+Expressions/Minus.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Minus.cpp.o
+.PHONY : Expressions/Minus.cpp.o
 
-Mul.i: Mul.cpp.i
+Expressions/Minus.i: Expressions/Minus.cpp.i
 
-.PHONY : Mul.i
+.PHONY : Expressions/Minus.i
 
 # target to preprocess a source file
-Mul.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Mul.cpp.i
-.PHONY : Mul.cpp.i
+Expressions/Minus.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Minus.cpp.i
+.PHONY : Expressions/Minus.cpp.i
 
-Mul.s: Mul.cpp.s
+Expressions/Minus.s: Expressions/Minus.cpp.s
 
-.PHONY : Mul.s
+.PHONY : Expressions/Minus.s
 
 # target to generate assembly for a file
-Mul.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Mul.cpp.s
-.PHONY : Mul.cpp.s
+Expressions/Minus.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Minus.cpp.s
+.PHONY : Expressions/Minus.cpp.s
 
-Plus.o: Plus.cpp.o
+Expressions/Mul.o: Expressions/Mul.cpp.o
 
-.PHONY : Plus.o
+.PHONY : Expressions/Mul.o
 
 # target to build an object file
-Plus.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Plus.cpp.o
-.PHONY : Plus.cpp.o
+Expressions/Mul.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Mul.cpp.o
+.PHONY : Expressions/Mul.cpp.o
 
-Plus.i: Plus.cpp.i
+Expressions/Mul.i: Expressions/Mul.cpp.i
 
-.PHONY : Plus.i
+.PHONY : Expressions/Mul.i
 
 # target to preprocess a source file
-Plus.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Plus.cpp.i
-.PHONY : Plus.cpp.i
+Expressions/Mul.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Mul.cpp.i
+.PHONY : Expressions/Mul.cpp.i
 
-Plus.s: Plus.cpp.s
+Expressions/Mul.s: Expressions/Mul.cpp.s
 
-.PHONY : Plus.s
+.PHONY : Expressions/Mul.s
 
 # target to generate assembly for a file
-Plus.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Plus.cpp.s
-.PHONY : Plus.cpp.s
+Expressions/Mul.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Mul.cpp.s
+.PHONY : Expressions/Mul.cpp.s
+
+Expressions/Plus.o: Expressions/Plus.cpp.o
+
+.PHONY : Expressions/Plus.o
+
+# target to build an object file
+Expressions/Plus.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Plus.cpp.o
+.PHONY : Expressions/Plus.cpp.o
+
+Expressions/Plus.i: Expressions/Plus.cpp.i
+
+.PHONY : Expressions/Plus.i
+
+# target to preprocess a source file
+Expressions/Plus.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Plus.cpp.i
+.PHONY : Expressions/Plus.cpp.i
+
+Expressions/Plus.s: Expressions/Plus.cpp.s
+
+.PHONY : Expressions/Plus.s
+
+# target to generate assembly for a file
+Expressions/Plus.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Plus.cpp.s
+.PHONY : Expressions/Plus.cpp.s
+
+Expressions/UMinus.o: Expressions/UMinus.cpp.o
+
+.PHONY : Expressions/UMinus.o
+
+# target to build an object file
+Expressions/UMinus.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.o
+.PHONY : Expressions/UMinus.cpp.o
+
+Expressions/UMinus.i: Expressions/UMinus.cpp.i
+
+.PHONY : Expressions/UMinus.i
+
+# target to preprocess a source file
+Expressions/UMinus.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.i
+.PHONY : Expressions/UMinus.cpp.i
+
+Expressions/UMinus.s: Expressions/UMinus.cpp.s
+
+.PHONY : Expressions/UMinus.s
+
+# target to generate assembly for a file
+Expressions/UMinus.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/UMinus.cpp.s
+.PHONY : Expressions/UMinus.cpp.s
+
+Expressions/UPlus.o: Expressions/UPlus.cpp.o
+
+.PHONY : Expressions/UPlus.o
+
+# target to build an object file
+Expressions/UPlus.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.o
+.PHONY : Expressions/UPlus.cpp.o
+
+Expressions/UPlus.i: Expressions/UPlus.cpp.i
+
+.PHONY : Expressions/UPlus.i
+
+# target to preprocess a source file
+Expressions/UPlus.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.i
+.PHONY : Expressions/UPlus.cpp.i
+
+Expressions/UPlus.s: Expressions/UPlus.cpp.s
+
+.PHONY : Expressions/UPlus.s
+
+# target to generate assembly for a file
+Expressions/UPlus.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/UPlus.cpp.s
+.PHONY : Expressions/UPlus.cpp.s
+
+Expressions/Value.o: Expressions/Value.cpp.o
+
+.PHONY : Expressions/Value.o
+
+# target to build an object file
+Expressions/Value.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Value.cpp.o
+.PHONY : Expressions/Value.cpp.o
+
+Expressions/Value.i: Expressions/Value.cpp.i
+
+.PHONY : Expressions/Value.i
+
+# target to preprocess a source file
+Expressions/Value.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Value.cpp.i
+.PHONY : Expressions/Value.cpp.i
+
+Expressions/Value.s: Expressions/Value.cpp.s
+
+.PHONY : Expressions/Value.s
+
+# target to generate assembly for a file
+Expressions/Value.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Value.cpp.s
+.PHONY : Expressions/Value.cpp.s
+
+Expressions/Variable.o: Expressions/Variable.cpp.o
+
+.PHONY : Expressions/Variable.o
+
+# target to build an object file
+Expressions/Variable.cpp.o:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Variable.cpp.o
+.PHONY : Expressions/Variable.cpp.o
+
+Expressions/Variable.i: Expressions/Variable.cpp.i
+
+.PHONY : Expressions/Variable.i
+
+# target to preprocess a source file
+Expressions/Variable.cpp.i:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Variable.cpp.i
+.PHONY : Expressions/Variable.cpp.i
+
+Expressions/Variable.s: Expressions/Variable.cpp.s
+
+.PHONY : Expressions/Variable.s
+
+# target to generate assembly for a file
+Expressions/Variable.cpp.s:
+	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Expressions/Variable.cpp.s
+.PHONY : Expressions/Variable.cpp.s
 
 SymbolTable.o: SymbolTable.cpp.o
 
@@ -285,87 +393,6 @@ SymbolTable.cpp.s:
 	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/SymbolTable.cpp.s
 .PHONY : SymbolTable.cpp.s
 
-UMinus.o: UMinus.cpp.o
-
-.PHONY : UMinus.o
-
-# target to build an object file
-UMinus.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/UMinus.cpp.o
-.PHONY : UMinus.cpp.o
-
-UMinus.i: UMinus.cpp.i
-
-.PHONY : UMinus.i
-
-# target to preprocess a source file
-UMinus.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/UMinus.cpp.i
-.PHONY : UMinus.cpp.i
-
-UMinus.s: UMinus.cpp.s
-
-.PHONY : UMinus.s
-
-# target to generate assembly for a file
-UMinus.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/UMinus.cpp.s
-.PHONY : UMinus.cpp.s
-
-UPlus.o: UPlus.cpp.o
-
-.PHONY : UPlus.o
-
-# target to build an object file
-UPlus.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/UPlus.cpp.o
-.PHONY : UPlus.cpp.o
-
-UPlus.i: UPlus.cpp.i
-
-.PHONY : UPlus.i
-
-# target to preprocess a source file
-UPlus.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/UPlus.cpp.i
-.PHONY : UPlus.cpp.i
-
-UPlus.s: UPlus.cpp.s
-
-.PHONY : UPlus.s
-
-# target to generate assembly for a file
-UPlus.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/UPlus.cpp.s
-.PHONY : UPlus.cpp.s
-
-Value.o: Value.cpp.o
-
-.PHONY : Value.o
-
-# target to build an object file
-Value.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Value.cpp.o
-.PHONY : Value.cpp.o
-
-Value.i: Value.cpp.i
-
-.PHONY : Value.i
-
-# target to preprocess a source file
-Value.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Value.cpp.i
-.PHONY : Value.cpp.i
-
-Value.s: Value.cpp.s
-
-.PHONY : Value.s
-
-# target to generate assembly for a file
-Value.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Value.cpp.s
-.PHONY : Value.cpp.s
-
 VarCommand.o: VarCommand.cpp.o
 
 .PHONY : VarCommand.o
@@ -392,33 +419,6 @@ VarCommand.s: VarCommand.cpp.s
 VarCommand.cpp.s:
 	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/VarCommand.cpp.s
 .PHONY : VarCommand.cpp.s
-
-Variable.o: Variable.cpp.o
-
-.PHONY : Variable.o
-
-# target to build an object file
-Variable.cpp.o:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Variable.cpp.o
-.PHONY : Variable.cpp.o
-
-Variable.i: Variable.cpp.i
-
-.PHONY : Variable.i
-
-# target to preprocess a source file
-Variable.cpp.i:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Variable.cpp.i
-.PHONY : Variable.cpp.i
-
-Variable.s: Variable.cpp.s
-
-.PHONY : Variable.s
-
-# target to generate assembly for a file
-Variable.cpp.s:
-	$(MAKE) -f CMakeFiles/ACProject.dir/build.make CMakeFiles/ACProject.dir/Variable.cpp.s
-.PHONY : Variable.cpp.s
 
 main.o: main.cpp.o
 
@@ -456,39 +456,39 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... ACProject"
 	@echo "... edit_cache"
-	@echo "... Div.o"
-	@echo "... Div.i"
-	@echo "... Div.s"
-	@echo "... Interpreter.o"
-	@echo "... Interpreter.i"
-	@echo "... Interpreter.s"
-	@echo "... Minus.o"
-	@echo "... Minus.i"
-	@echo "... Minus.s"
-	@echo "... Mul.o"
-	@echo "... Mul.i"
-	@echo "... Mul.s"
-	@echo "... Plus.o"
-	@echo "... Plus.i"
-	@echo "... Plus.s"
+	@echo "... Expressions/Div.o"
+	@echo "... Expressions/Div.i"
+	@echo "... Expressions/Div.s"
+	@echo "... Expressions/Interpreter.o"
+	@echo "... Expressions/Interpreter.i"
+	@echo "... Expressions/Interpreter.s"
+	@echo "... Expressions/Minus.o"
+	@echo "... Expressions/Minus.i"
+	@echo "... Expressions/Minus.s"
+	@echo "... Expressions/Mul.o"
+	@echo "... Expressions/Mul.i"
+	@echo "... Expressions/Mul.s"
+	@echo "... Expressions/Plus.o"
+	@echo "... Expressions/Plus.i"
+	@echo "... Expressions/Plus.s"
+	@echo "... Expressions/UMinus.o"
+	@echo "... Expressions/UMinus.i"
+	@echo "... Expressions/UMinus.s"
+	@echo "... Expressions/UPlus.o"
+	@echo "... Expressions/UPlus.i"
+	@echo "... Expressions/UPlus.s"
+	@echo "... Expressions/Value.o"
+	@echo "... Expressions/Value.i"
+	@echo "... Expressions/Value.s"
+	@echo "... Expressions/Variable.o"
+	@echo "... Expressions/Variable.i"
+	@echo "... Expressions/Variable.s"
 	@echo "... SymbolTable.o"
 	@echo "... SymbolTable.i"
 	@echo "... SymbolTable.s"
-	@echo "... UMinus.o"
-	@echo "... UMinus.i"
-	@echo "... UMinus.s"
-	@echo "... UPlus.o"
-	@echo "... UPlus.i"
-	@echo "... UPlus.s"
-	@echo "... Value.o"
-	@echo "... Value.i"
-	@echo "... Value.s"
 	@echo "... VarCommand.o"
 	@echo "... VarCommand.i"
 	@echo "... VarCommand.s"
-	@echo "... Variable.o"
-	@echo "... Variable.i"
-	@echo "... Variable.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
