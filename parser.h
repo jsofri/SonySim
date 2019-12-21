@@ -5,12 +5,6 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <string>
-#include "GeneralData.h"
-#include "Command.h"
-
-using namespace std;
-
 class Parser {
     public:
 
@@ -18,222 +12,90 @@ class Parser {
      * Parse the tokens and execute commands
      * @param start the index to begin parsing
      */
-    void parse(int start) {
-        int end;
-        vector<string> tokensRow;
-
-        while (start < tokens.size()) {
-            if (tokens[start] == "\n") {
-                string cmdType;
-                // try to parse the row
-                try {
-                    cmdType = parseCommandType(tokensRow, start);
-                } catch (char* exception) {
-                    cerr << exception;
-                }
-
-                // try to execute the command
-                Command c = cmdMap[cmdType];
-                try {
-                    end = c.execute(index);
-                    start = end;
-                } catch (char* exception) {
-                    cerr << exception;
-                }
-
-            } else {
-                tokensRow.push_back(tokens[start]);
-                start++;
-            }
-        }
-    }
+    void parse(int);
 
     /**
      * Parse the tokens and execute commands.
      * Default index is 0.
      */
-    void parse() {
-        int start = 0;
-        parse(start);
-    }
+    void parse();
 
     /**
      * parse the command type (var, update, func, while, if etc.)
      * @param tokensRow a row of tokens
      * @return the command type
      */
-    string parseCommandType(vector<string> &row, int index) {
-        string type;
-        if (isWhile(row)) {
-            type = COM_WHILE;
-        } else if (isIF(row)) {
-            type = COM_IF;
-        } else if (isUpdate(row)) {
-            type = COM_UPDATE;
-        } else if (isPrint(row)) {
-            type = COM_PRINT;
-        } else if (isSleep(row)) {
-            type = COM_SLEEP;
-        } else if (isOpenServer(row)) {
-            type = COM_OPEN_SERVER;
-        } else if (isConnect(row)) {
-            type = COM_CONNECT;
-        } else if (isVar(row)) {
-            type = COM_VAR;
-        } else if (isFuncDef(row, index)) {
-            type = COM_FUNC_DEF;
-        } else if (isFuncCall(row)) {
-            type = COM_FUNC_CALL;
-        } else {
-            throw "Error: unknown command.";
-        }
-
-        return COM_WHILE;
-    }
+    string parseCommandType(vector<string> &, int);
 
     /**
      * Check if a while loop should run
      * @param row the token row
      * @return true if a while loop should run
      */
-    bool isWhile(vector<string> &row) {
-        auto it = row.begin();
-        string token = *it;
-        return token == "while";
-    }
+    bool isWhile(vector<string> &);
 
     /**
     * Check if an IF condition should run
     * @param row the token row
     * @return true if an IF condition should run
     */
-    bool isIF(vector<string> &row) {
-        auto it = row.begin();
-        string token = *it;
-        return token == "if";
-    }
+    bool isIF(vector<string> &);
 
     /**
     * Check if a Print command should run
     * @param row the token row
     * @return true if a Print command should run
     */
-    bool isPrint(vector<string> &row) {
-        auto it = row.begin();
-        string token = *it;
-        return token == "Print";
-    }
+    bool isPrint(vector<string> &);
 
     /**
     * Check if a Sleep command should run
     * @param row the token row
     * @return true if a Sleep command should run
     */
-    bool isSleep(vector<string> &row) {
-        auto it = row.begin();
-        string token = *it;
-        return token == "Sleep";
-    }
+    bool isSleep(vector<string> &);
 
     /**
     * Check if an `Open Data Server` command should run
     * @param row the token row
     * @return true if an `Open Data Server` command should run
     */
-    bool isOpenServer(vector<string> &row) {
-        auto it = row.begin();
-        string token = *it;
-        return token == "openDataServer";
-    }
+    bool isOpenServer(vector<string> &);
 
     /**
     * Check if a `Connect Control Client` command should run
     * @param row the token row
     * @return true if a `Connect Control Client` command should run
     */
-    bool isConnect(vector<string> &row) {
-        auto it = row.begin();
-        string token = *it;
-        return token == "connectControlClient";
-    }
+    bool isConnect(vector<string> &);
 
     /**
      * Check if a variable command should run
      * @param row the token row
      * @return true if a variable command should run
      */
-    bool isVar(vector<string> &row) {
-        string dummy;
-        Lexer lexer(dummy);
-
-        auto it = row.begin();
-        // match e.g. `var heading = ...`
-        if (*it == "var" && lexer.isLegalVar(*(it+1)) && *(it+2) == "=") {
-            return true;
-        }
-        // match e.g. `heading = ...`
-        else if (lexer.isLegalVar(*it) && *(it+1) == "=") {
-            return true;
-        }
-
-        return false;
-    }
+    bool isVar(vector<string> &);
 
     /**
      * Check if a function definition command should run
      * @param row the token row
      * @return true if a function definition command should run
      */
-    bool isFuncDef(vector<string> &row, int index) {
-        string dummy;
-        Lexer lexer(dummy);
-        string func = *row.begin();
-        if (lexer.isLegalFunc(func) && *(row.end() - 1) == "{") {
-            funcMap[func].first = index;
-            return true;
-        }
-
-        return false;
-    }
+    bool isFuncDef(vector<string> &, int ) ;
 
     /**
      * Check if a function call command should run
      * @param row the token row
      * @return true if a function call command should run
      */
-    bool isFuncCall(vector<string> &row) {
-        string dummy;
-        Lexer lexer(dummy);
-        string func = *row.begin();
-        // check if the function name is legal AND if it exists in the funcMap (i.e. if it was defined before)
-        return lexer.isLegalFunc(func) && funcMap.count(func);
-    }
+    bool isFuncCall(vector<string> &);
 
     /**
     * Check if an Update command should run
     * @param row the token row
     * @return true if an Update command should run
     */
-    bool isUpdate(vector<string> &row) {
-        bool arrowExists = false, simExists = false;
-        vector<string>::iterator it;
-
-        for (it = row.begin(); it != row.end(); ++it) {
-            // if the row has both an arrow and a `sim` function
-            if (arrowExists && simExists) {
-                return true;
-            }
-
-            string token = *it;
-            if (token == "->" || token == "<-") {
-                arrowExists = true;
-            } else if (token == "sim") {
-                simExists = true;
-            }
-        }
-
-        return false;
-    }
+    bool isUpdate(vector<string> &);
 
 };
 

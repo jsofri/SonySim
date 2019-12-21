@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]) {
     // make tokens
     lexer.makeTokens();
     // delete lexer
-    delete lexer;
+    delete lexer; // @Rony reduntant?
 
     Parser parser;
     parser.parse();

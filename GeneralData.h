@@ -27,6 +27,8 @@
 
 #include <fstream>
 
+#include "Command.h"
+
 using namespace std;
 
 //defines for the VarData struct
@@ -58,6 +60,17 @@ extern vector<string> tokens;
 
 // map that stores function names and their start & end indexes of definition in the lexer array
 extern unordered_map<string, pair<int, int>> funcMap;
+
+extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
+                                                {COM_WHILE, new CommandWhile()},
+                                                {COM_IF, new CommandIF()},
+                                                {COM_FUNC_DEF, new CommandFuncDef()},
+                                                {COM_FUNC_CALL, new CommandFuncCall()},
+                                                {COM_UPDATE, new CommandUpdate()},
+                                                {COM_PRINT, new CommandPrint()},
+                                                {COM_SLEEP, new CommandSleep()},
+                                                {COM_OPEN_SERVER, new CommandOpenServer()},
+                                                {COM_CONNECT, new CommandConnect()}};
 
 //symbol table of the program parsing process
 extern unordered_map<string, VarData> symbol_table;
