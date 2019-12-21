@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 
 #include <sys/socket.h>
 #include <unistd.h>
@@ -11,6 +12,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
+#include <list>
 #include <vector>
 #include <unordered_map>
 
@@ -18,8 +20,10 @@
 
 #include <fstream>
 
+#include "GeneralData.h"
 #include "lexer.h"
-#include "command.h"
+#include "Command.h"
+#include "parser.h"
 #include "parser.h"
 
 using namespace std;
@@ -35,11 +39,10 @@ int main(int argc, char const *argv[]) {
     // make tokens
     lexer.makeTokens();
     // get the token array
-    vector<string> tokens = lexer.getTokens();
     // delete lexer
     delete lexer;
 
-    Parser parser(tokens);
+    Parser parser();
     parser.parse();
 
 

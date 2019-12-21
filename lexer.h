@@ -9,7 +9,6 @@ using namespace std;
 
 class Lexer {
     string filename;
-    vector<string> tokens;
 
     public:
     /**
@@ -68,14 +67,6 @@ class Lexer {
                 }
             }
         }
-    }
-
-    /**
-     * returns the token array
-     * @return the token array
-     */
-    vector<string> getTokens(){
-        return this -> tokens;
     }
 
     /**

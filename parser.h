@@ -5,47 +5,15 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#define COM_VAR "var"
-#define COM_WHILE "while"
-#define COM_IF "if"
-#define COM_FUNC_DEF "funcDef"
-#define COM_FUNC_CALL "funcCall"
-#define COM_UPDATE "update"
-#define COM_PRINT "print"
-#define COM_SLEEP "sleep"
-#define COM_OPEN_SERVER "openServer"
-#define COM_CONNECT "connect"
-
 class Parser {
-    vector<string> tokens;
-    unordered_map<string, Command> cmdMap;
-    // map that stores function names and their index of definition in the lexer array
-    unordered_map<string, int> funcMap;
-
     public:
-    /**
-     * Constructor
-     */
-     Parser(vector<string> &tokens): tokens(tokens) {
-         // init the commands in the command map
-         cmdMap[COM_VAR] = new CommandVar();
-         cmdMap[COM_WHILE] = new CommandWhile();
-         cmdMap[COM_IF] = new CommandIF();
-         cmdMap[COM_FUNC_DEF] = new CommandFuncDef();
-         cmdMap[COM_FUNC_CALL] = new CommandFuncCall();
-         cmdMap[COM_UPDATE] = new CommandUpdate();
-         cmdMap[COM_PRINT] = new CommandPrint();
-         cmdMap[COM_SLEEP] = new CommandSleep();
-         cmdMap[COM_OPEN_SERVER] = new CommandOpenServer();
-         cmdMap[COM_CONNECT] = new CommandConnect();
-     }
-
 
     /**
      * Parse the tokens and execute commands
+     * @param start the index to begin parsing
      */
-    void parse() {
-        int start = 0, end;
+    void parse(int start) {
+        int end;
         vector<string> tokensRow;
 
         while (start < tokens.size()) {
@@ -72,6 +40,15 @@ class Parser {
                 start++;
             }
         }
+    }
+
+    /**
+     * Parse the tokens and execute commands.
+     * Default index is 0.
+     */
+    void parse() {
+        int start = 0;
+        parse(start);
     }
 
     /**
@@ -206,7 +183,7 @@ class Parser {
         Lexer lexer(dummy);
         string func = *row.begin();
         if (lexer.isLegalFunc(func) && *(row.end() - 1) == "{") {
-            funcMap[func] = index;
+            funcMap[func].first = index;
             return true;
         }
 
@@ -218,7 +195,7 @@ class Parser {
      * @param row the token row
      * @return true if a function call command should run
      */
-    bool isFuncCall(vector<string> &row, int index) {
+    bool isFuncCall(vector<string> &row) {
         string dummy;
         Lexer lexer(dummy);
         string func = *row.begin();
