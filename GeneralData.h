@@ -8,7 +8,24 @@
 #ifndef GENERALDATA_H
 #define GENERALDATA_H
 
-#include "Command.h"
+#include <iostream>
+
+#include <string>
+#include <cstring>
+
+#include <sys/socket.h>
+#include <unistd.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+#include <list>
+#include <vector>
+#include <unordered_map>
+
+#include <pthread.h>
+
+#include <fstream>
 
 using namespace std;
 
@@ -39,21 +56,10 @@ typedef struct VarData {
 // the lexer array of tokens
 extern vector<string> tokens;
 
-// init the commands in the command map
-extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
-                                                {COM_WHILE, new CommandWhile()},
-                                                {COM_IF, new CommandIF()},
-                                                {COM_FUNC_DEF, new CommandFuncDef()},
-                                                {COM_FUNC_CALL, new CommandFuncCall()},
-                                                {COM_UPDATE, new CommandUpdate()},
-                                                {COM_PRINT, new CommandPrint()},
-                                                {COM_SLEEP, new CommandSleep()},
-                                                {COM_OPEN_SERVER, new CommandOpenServer()},
-                                                {COM_CONNECT, new CommandConnect()}};
-
 // map that stores function names and their start & end indexes of definition in the lexer array
 extern unordered_map<string, pair<int, int>> funcMap;
 
 //symbol table of the program parsing process
 extern unordered_map<string, VarData> symbol_table;
+
 #endif //GENERALDATA_H

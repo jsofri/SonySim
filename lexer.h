@@ -4,6 +4,7 @@
 
 #ifndef LEXER_H
 #define LEXER_H
+#include "GeneralData.h"
 
 using namespace std;
 
@@ -12,10 +13,10 @@ class Lexer {
 
     public:
     /**
-     * constrcutor
+     * constrcuctor
      * @param filename file's name
      */
-    Lexer(string &filename): filename(filename) {}
+    explicit Lexer(string &filename): filename(filename) {}
 
     /**
      * split the code into tokens
@@ -26,7 +27,7 @@ class Lexer {
         ifstream file(this -> filename);
 
         while (getline(file, line)) {
-            string token = "";
+            string token;
 
             for (char c : line) {
                 // check if finished reading a token
@@ -96,7 +97,7 @@ class Lexer {
       * @return
       */
      bool isVarAssignment() {
-         vector<string>::iterator it = tokens.end() - 1;
+         auto it = tokens.end() - 1;
          return *it == "=" && isLegalVar(*(it-1));
      }
 
@@ -105,7 +106,7 @@ class Lexer {
       * @param var the string to check
       * @return true if the string is a legal variable name
       */
-     bool isLegalVar(string var) {
+     bool isLegalVar(string &var) {
          int i = 0;
          for (char c : var) {
              if (i == 0 && !isLetter(c) && c != '_') {
@@ -125,7 +126,7 @@ class Lexer {
      * @param var the string to check
      * @return true if the string is a legal function name
      */
-    bool isLegalFunc(string func) {
+    bool isLegalFunc(string &func) {
         return isLegalVar(func);
     }
 

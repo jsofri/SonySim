@@ -5,6 +5,12 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <string>
+#include "GeneralData.h"
+#include "Command.h"
+
+using namespace std;
+
 class Parser {
     public:
 
@@ -29,7 +35,7 @@ class Parser {
                 // try to execute the command
                 Command c = cmdMap[cmdType];
                 try {
-                    end = c.execute(index, tokens);
+                    end = c.execute(index);
                     start = end;
                 } catch (char* exception) {
                     cerr << exception;
