@@ -58,8 +58,11 @@ typedef struct VarData {
 // the lexer array of tokens
 extern vector<string> tokens;
 
-// map that stores function names and their start & end indexes of definition in the lexer array
-extern unordered_map<string, pair<int, int>> funcMap;
+// map that stores:
+// (1) function name
+// (2) start & end indexes of definition in the lexer token array
+// (3) map parameters names and values
+extern unordered_map<string, pair<pair<int, int>, vector<string>>> funcMap;
 
 extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
                                                 {COM_WHILE, new CommandWhile()},

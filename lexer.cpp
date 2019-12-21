@@ -1,9 +1,14 @@
 //
-// Created by rony on 12/21/19.
+// Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
 //
 
 #include "GeneralData.h"
 #include "lexer.h"
+
+/**
+ * constrcuctor
+ */
+Lexer :: Lexer() {}
 
 /**
  * constrcuctor

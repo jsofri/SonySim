@@ -18,7 +18,7 @@ class Command {
 
     public:
     /**
-     * interpret and execute, depending on the strings sequence in the vector.
+     * interpret and execute
      *
      * @param vector<string> & the tokens from lexer
      * @param int index - index in the vector
@@ -42,5 +42,11 @@ class CommandFuncDef: Command {
     int execute(int index);
 };
 
+/**
+ * Function Call Command
+ */
+class CommandFuncCall: Command {
+    int execute(int index);
+};
 
 #endif //COMMAND_H

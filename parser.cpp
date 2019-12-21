@@ -1,5 +1,5 @@
 //
-// Created by rony on 12/21/19.
+// Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
 //
 
 #include "GeneralData.h"
@@ -10,13 +10,13 @@
 /**
  * Parse the tokens and execute commands
  * @param start the index to begin parsing
+ * @param tokenArr the vector to use
  */
-void Parser :: parse(int start) {
-    int end;
+void Parser :: parse(int start, int end, vector<string> &tokenArr) {
     vector<string> tokensRow;
 
-    while (start < tokens.size()) {
-        if (tokens[start] == "\n") {
+    while (start < tokenArr.size()) {
+        if (tokenArr[start] == "\n") {
             string cmdType;
             // try to parse the row
             try {
@@ -43,11 +43,39 @@ void Parser :: parse(int start) {
 
 /**
  * Parse the tokens and execute commands.
- * Default index is 0.
  */
 void Parser :: parse() {
     int start = 0;
-    parse(start);
+    int end = (int) tokens.size();
+    parse(start, end, tokens);
+}
+
+/**
+ * Parse the tokens and execute commands.
+ * @param tokenArr token array
+ */
+void Parser :: parse(vector<string> tokenArr) {
+    int start = 0;
+    int end = (int) tokens.size();
+    parse(start, end, tokenArr);
+}
+
+/**
+ * Parse the tokens and execute commands.
+ * @param start the index to begin parsing
+ */
+void Parser :: parse(int start) {
+    int end = (int) tokens.size();
+    parse(start, end, tokens);
+}
+
+/**
+ * Parse the tokens and execute commands.
+ * @param start the index to begin parsing
+ * @param end the index to end parsing
+ */
+void Parser :: parse(int start, int end) {
+    parse(start, end, tokens);
 }
 
 /**
@@ -156,8 +184,7 @@ bool Parser :: isConnect(vector<string> &row) {
  * @return true if a variable command should run
  */
 bool Parser :: isVar(vector<string> &row) {
-    string dummy;
-    Lexer lexer(dummy);
+    Lexer lexer;
 
     auto it = row.begin();
     // match e.g. `var heading = ...`
@@ -182,7 +209,7 @@ bool Parser :: isFuncDef(vector<string> &row, int index) {
     Lexer lexer(dummy);
     string func = *row.begin();
     if (lexer.isLegalFunc(func) && *(row.end() - 1) == "{") {
-        funcMap[func].first = index;
+        funcMap[func].first.first = index + 1;
         return true;
     }
 
