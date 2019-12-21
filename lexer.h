@@ -1,5 +1,5 @@
 //
-// Created by rony on 12/19/19.
+// Created by Rony Utevsky and Yehonatan Sofri on 12/19/19.
 //
 
 #ifndef LEXER_H
@@ -9,6 +9,11 @@ class Lexer {
     string filename;
 
     public:
+
+    /**
+     * constrcuctor
+     */
+    Lexer();
 
     /**
      * constrcuctor

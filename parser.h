@@ -1,5 +1,5 @@
 //
-// Created by rony on 12/19/19.
+// Created by Rony Utevsky and Yehonatan Sofri on 12/19/19.
 //
 
 #ifndef PARSER_H
@@ -7,6 +7,27 @@
 
 class Parser {
     public:
+
+    /**
+     * Parse the tokens and execute commands
+     * @param start the index to begin parsing
+     * @param end the index to end parsing
+     * @param tokenArr the vector to use
+     */
+    void parse(int, int, vector<string> &);
+
+    /**
+     * Parse the tokens and execute commands.
+     * @param tokenArr token array
+     */
+    void parse(vector<string>);
+
+    /**
+     * Parse the tokens and execute commands
+     * @param start the index to begin parsing
+     * @param end the index to end parsing
+     */
+    void parse(int, int);
 
     /**
      * Parse the tokens and execute commands
