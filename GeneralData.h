@@ -5,15 +5,29 @@
  * @date 19.12.19
  */
 
-#ifndef ACPROJECT_GENERALDATA_H
-#define ACPROJECT_GENERALDATA_H
+#ifndef GENERALDATA_H
+#define GENERALDATA_H
 
-#include "stdio.h"
-#include <unordered_map>
-#include <cstring>
+#include <iostream>
+
 #include <string>
-#include <vector>
+#include <cstring>
+
+#include <sys/socket.h>
+#include <unistd.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
 #include <list>
+#include <vector>
+#include <unordered_map>
+
+#include <pthread.h>
+
+#include <fstream>
+
+#include "Command.h"
 
 using namespace std;
 
@@ -22,6 +36,17 @@ using namespace std;
 #define CLIENT 1
 #define SIMULATOR 2
 
+#define COM_VAR "var"
+#define COM_WHILE "while"
+#define COM_IF "if"
+#define COM_FUNC_DEF "funcDef"
+#define COM_FUNC_CALL "funcCall"
+#define COM_UPDATE "update"
+#define COM_PRINT "print"
+#define COM_SLEEP "sleep"
+#define COM_OPEN_SERVER "openServer"
+#define COM_CONNECT "connect"
+
 //data that is refers to a specific variable - is used in symbol_table
 typedef struct VarData {
     string reference;
@@ -29,6 +54,25 @@ typedef struct VarData {
     short updater;//0 = no one, 1 = client, 2 = simulator
 } VarNode;
 
+
+// the lexer array of tokens
+extern vector<string> tokens;
+
+// map that stores function names and their start & end indexes of definition in the lexer array
+extern unordered_map<string, pair<int, int>> funcMap;
+
+extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
+                                                {COM_WHILE, new CommandWhile()},
+                                                {COM_IF, new CommandIF()},
+                                                {COM_FUNC_DEF, new CommandFuncDef()},
+                                                {COM_FUNC_CALL, new CommandFuncCall()},
+                                                {COM_UPDATE, new CommandUpdate()},
+                                                {COM_PRINT, new CommandPrint()},
+                                                {COM_SLEEP, new CommandSleep()},
+                                                {COM_OPEN_SERVER, new CommandOpenServer()},
+                                                {COM_CONNECT, new CommandConnect()}};
+
 //symbol table of the program parsing process
 extern unordered_map<string, VarData> symbol_table;
-#endif //ACPROJECT_GENERALDATA_H
+
+#endif //GENERALDATA_H

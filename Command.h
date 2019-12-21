@@ -5,28 +5,42 @@
  * @date 19.12.19
  */
 
-#ifndef ACPROJECT_COMMAND_H
-#define ACPROJECT_COMMAND_H
+#ifndef COMMAND_H
+#define COMMAND_H
 
-#include "GeneralData.h"
-
+/**
+ * Base abstract class of Command object
+ */
 class Command {
-public:
+    protected:
+    //count number of strings that were handled in the vector
+    int indexCounter = 0;
 
+    public:
     /**
      * interpret and execute, depending on the strings sequence in the vector.
      *
-     * @param vector<string> &
+     * @param vector<string> & the tokens from lexer
      * @param int index - index in the vector
      * @return int - index counter in the vector
      */
-    virtual int execute(int, vector<string> &) = 0;
-protected:
+    virtual int execute(int) = 0;
+};
 
-    //count number of strings that were handled in the vector
-    int index_counter = 0;
+/**
+ * Print Command
+ */
+class CommandPrint: Command {
+    int execute(int index);
 };
 
 
+/**
+ * Function Definition Command
+ */
+class CommandFuncDef: Command {
+    int execute(int index);
+};
 
-#endif //ACPROJECT_COMMAND_H
+
+#endif //COMMAND_H
