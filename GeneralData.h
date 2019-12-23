@@ -28,6 +28,7 @@
 #include <fstream>
 
 #include "Command.h"
+#include "SymbolTable.h"
 
 using namespace std;
 
@@ -76,6 +77,6 @@ extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
                                                 {COM_CONNECT, new CommandConnect()}};
 
 //symbol table of the program parsing process
-extern unordered_map<string, VarData> symbol_table;
+extern SymbolTable symbol_table;
 
 #endif //GENERALDATA_H
