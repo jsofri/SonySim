@@ -2,8 +2,8 @@
 // Created by yehonatan on 19/12/2019.
 //
 
-#ifndef ACPROJECT_VARCOMMAND_H
-#define ACPROJECT_VARCOMMAND_H
+#ifndef VARCOMMAND_H
+#define VARCOMMAND_H
 
 #include "GeneralData.h"
 #include "Expression/Interpreter.h"
@@ -19,7 +19,6 @@ public:
     void setVarInfo(int);
     void setVariablesOfInterpreter(int, Interpreter*&);
     int isVar(string);
-    string concatAllStrings(int);
     void cleanData();
     void updateData();
     VarCommand();
@@ -30,4 +29,4 @@ private:
 };
 
 
-#endif //ACPROJECT_VARCOMMAND_H
+#endif //VARCOMMAND_H

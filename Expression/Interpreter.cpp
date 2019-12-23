@@ -1,6 +1,6 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ *
+ */
 
 #include "Interpreter.h"
 
@@ -28,7 +28,6 @@ void Interpreter::setVariables(const char* chars) {
 void Interpreter::SetVariable(string str) {
   int                  delimiter_position;
   double               value;
-  pair<string, double> key_value_pair;
   string               name;
   string               value_string;
 
@@ -58,12 +57,11 @@ void Interpreter::SetVariable(string str) {
 void Interpreter::setVariable(string name, double value) {
     pair<string, double> key_value_pair;
 
-    key_value_pair.first = name;
-    key_value_pair.second = value;
-
     if (!(this -> variables_.find(name) == this -> variables_.end())) {
         this -> variables_.erase (name);
     }
+
+    key_value_pair = make_pair(name, value);
 
     this -> variables_.insert(key_value_pair);
 }
@@ -250,7 +248,7 @@ bool Interpreter::IsOperator(string str) {
   string s;
 
   if (oprtor == ')') {
-    if (!(string_stack_.top()[0] == '(')) {
+    if (string_stack_.top()[0] != '(') {
 
       do {
         this->MoveOneFromStackToQueue();
@@ -270,7 +268,7 @@ bool Interpreter::IsOperator(string str) {
     s = string(1, oprtor);
     precedence = this -> GetPrecedence(s);
 
-    if (!(precedence > top)) {
+    if (precedence <= top) {
 
       do {
         this->MoveOneFromStackToQueue();

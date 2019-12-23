@@ -1,17 +1,23 @@
-//
-// Created by yehonatan on 19/12/2019.
-//
+/**
+ * @author Yehonatan Sofri
+ * @date 23.12.19
+ */
 
 #include "VarCommand.h"
 #include "Expression/Interpreter.h"
 
+/**
+ * reset all data of object
+ */
 void VarCommand::cleanData() {
     this -> var_info = {nullptr, 0, NO_ONE};
     this->indexCounter = 0;
 }
 
-//inserting the new value in the scope's map
-//if updater is client - updating the simulator
+/**
+ * inserting the new value in the scope's map
+ * if updater is client - updating the simulator
+ */
 void VarCommand::updateData() {
 
     symbol_table.insert(make_pair(this->var_name, this->var_info));
@@ -23,9 +29,12 @@ void VarCommand::updateData() {
     }
 }
 
-//get index in tokens_array of tokens
-//reset the object data, and set/ update a var in the map
-//returns number of cells in tokens_array to go ahead
+/**
+ * reset the object data, and set/ update a var in the map.
+ *
+ * @param index in vector of tokens
+ * @return number of cells in tokens_array to go ahead
+ */
 int VarCommand::execute(int index) {
     this->cleanData();
     this->indexCounter++;
@@ -42,66 +51,62 @@ int VarCommand::execute(int index) {
     return this->indexCounter;
 }
 
-//throw const char *
+/**
+ * handle a var creation/ update command, depending on the sequence of strings in vector.
+ *
+ * @param index in vector of tokens
+ * @throw const char * in case of invalid input
+ */
 void VarCommand::setVarCommand(int index) {
     const char * token_after_name;
 
     this -> var_name = tokens[index];
-    this -> indexCounter++;//one for the var name, second for next operator/ \n
+    this -> indexCounter+=2;
 
     token_after_name = tokens[++index].c_str();
 
     if (strcmp(token_after_name, "\n") == 0) {
-        this -> indexCounter++;
+        return;
     }
     else if (strcmp(token_after_name, "=") == 0) {
-        if (symbol_table.get(this -> var_name).updater == SIMULATOR) {
+        if (symbol_table[this -> var_name].updater == SIMULATOR) {
             throw "can't assign value to a var dependent on the simulator updates";
         }
 
-        setValue(index+1);//index on the beginning of expression
-        this -> indexCounter++;
+        setValue(index+1);//index in the beginning of expression
     }
     else if(this -> isArrow(index)) {
-        this -> indexCounter++;
         this -> setVarInfo(index);
     }
     else if (strcmp(token_after_name, "{") == 0) {
-        return;
+        this -> indexCounter--;//so the next parser will see "{"
     }
-    else if (strcmp(token_after_name, ")") == 0) {
-        const char *after_curved_bracket = tokens[index + 1].c_str();
-        this->indexCounter++;
-
-        if (strcmp(after_curved_bracket, "\n") == 0) {
-            this->indexCounter++;
-        } else if (strcmp(after_curved_bracket, "{") == 0) {
-            return;
-        } else {
-            throw "Invalid syntax after closing curved bracket";
-        }
+    else {
+        throw "Invalid input";
     }
 }//end of setVarCommand()
 
 /**
- * check if the string in the vector at the specific index is an arrow
+ * check if the string in the vector at the specific index is an arrow.
+ * arrow is "->" or "<-"
  *
  * @param position of token in vector
  * @return boolean - 1 true / 0 false
  */
 int VarCommand::isArrow(int index) {
-    if (strcmp(tokens[index].c_str(), "<-") == 0) {
-            return 1;
-    }
-    else if (strcmp(tokens[index].c_str(), "->") == 0) {
+    if ((strcmp(tokens[index].c_str(), "<-") == 0) || (strcmp(tokens[index].c_str(), "->") == 0)) {
             return 1;
     }
 
     return 0;
 }
 
+/**
+ * creating a Var - setting reference and updater by direction of arrow.
+ *
+ * @param index in vector
+ */
 void VarCommand::setVarInfo(int index) {
-    int t, idx = index;
 
     //check binding direction - first char is "-" or "<"
     (tokens[index][0] == '-') ? this->var_info.updater = CLIENT : this->var_info.updater = SIMULATOR;
@@ -112,32 +117,28 @@ void VarCommand::setVarInfo(int index) {
 
     this -> var_info.reference = tokens[index];
 
-    /*
-    while (tokens_array[idx++][0] != '"') {//iterate tokens and check first char is quote => start of string
-        this->indexCounter++;
-    }
-
-    while (tokens_array[idx++][0] != '"') {
-        this->indexCounter++;
-        t = 0;
-    }
-     */
-    //this -> var_info.reference = string_of_reference;
+    //skipping "\n"
+    indexCounter+=2;
 }
 
+/**
+ * calculate the value in the string that index points to.
+ * using Interpreter class.
+ *
+ * @param index in vector of tokens
+ */
 void VarCommand::setValue(int index) {
     Interpreter* interpreter = new Interpreter();
     Expression* expression = nullptr;
-    string expression_string;
 
     try {
 
         this -> setVariablesOfInterpreter(index, interpreter);
 
-        expression_string = this->concatAllStrings(index);
-        expression = interpreter->interpret(expression_string);
+        expression = interpreter->interpret(tokens[index]);
 
         this->var_info.value = expression->calculate();
+
         delete expression;
         delete interpreter;
     } catch (const char* e) {
@@ -148,8 +149,17 @@ void VarCommand::setValue(int index) {
             delete interpreter;
         }
     }
+
+    this->indexCounter+=2;//skipping expression and "\n"
 }
 
+/**
+ * set variables of in the given interpreter object.
+ * split string into tokens and set variables (if exists).
+ *
+ * @param index in vector of tokens, it should point to a string of an expression
+ * @param interpreter reference to a pointer to Interpreter.
+ */
 void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter) {
     string infix;
     VarData var_data;
@@ -162,11 +172,12 @@ void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter
     std::regex_iterator<std::string::iterator> rit (infix.begin(), infix.end(), rgx);
     std::regex_iterator<std::string::iterator> rend;
 
+    //iterating on tokens in the infix string
     while (rit!=rend) {
 
         if (this->isVar(rit->str())) {
 
-            if (symbol_table.find(tokens[index]) == symbol_table.end()) {
+            if (symbol_table.find(tokens[index]) == symbol_table.end()) {/////////////////////////////////
                 throw "call to an unknown Variable in arithmetic expression";
             }
 
@@ -183,10 +194,16 @@ void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter
     this -> indexCounter++;
 }//end of setVariablesOfInterpreter()
 
-//if it is not a number nor an operator it is a variable
-//strspn returns the number of chars in str1 that's made of chars in str2
+//
+/**
+ * check if given string is a variable, by elimination.
+ * if it is not a number nor an operator it is a variable.
+ *
+ * @param str token in an expression
+ * @return boolean - true or false
+ */
 int VarCommand::isVar(string str) {
-    if (strlen(str.c_str()) == strspn(str.c_str(), "0123456789")) {
+    if (strlen(str.c_str()) == strspn(str.c_str(), "0123456789.")) {
         return 0;
     }
     else if (strlen(str.c_str()) == strspn(str.c_str(), "*/-+()")) {
@@ -194,24 +211,4 @@ int VarCommand::isVar(string str) {
     }
 
     return 1;
-}
-
-string VarCommand::concatAllStrings(int index) {
-    char chars[256] = {0};
-    string string_of_expression;
-
-
-    while (strcmp(tokens_array[index], "\n") != 0) {
-
-        strcat(chars, tokens_array[index]);
-
-        this -> indexCounter++;
-        index++;
-    }
-
-    this -> indexCounter++;//for the \n
-
-    string_of_expression = chars;
-
-    return string_of_expression;
 }
