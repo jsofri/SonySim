@@ -10,6 +10,7 @@
 class SymbolTable {
 public:
     void newTable();
+    void newTable(unordered_map<string, VarData> &);
     void deleteTable();
     VarData get(string);
     void insert(string, VarData);

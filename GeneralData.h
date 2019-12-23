@@ -53,7 +53,7 @@ typedef struct VarData {
     string reference;
     float value;
     short updater;//0 = no one, 1 = client, 2 = simulator
-} VarNode;
+} VarData;
 
 
 // the lexer array of tokens
