@@ -28,6 +28,7 @@
 #include <fstream>
 
 #include "Command.h"
+#include "SymbolTable.h"
 
 using namespace std;
 
@@ -52,7 +53,7 @@ typedef struct VarData {
     string reference;
     float value;
     short updater;//0 = no one, 1 = client, 2 = simulator
-} VarNode;
+} VarData;
 
 
 // the lexer array of tokens
@@ -76,6 +77,6 @@ extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
                                                 {COM_CONNECT, new CommandConnect()}};
 
 //symbol table of the program parsing process
-extern unordered_map<string, VarData> symbol_table;
+extern SymbolTable symbol_table;
 
 #endif //GENERALDATA_H
