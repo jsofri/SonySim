@@ -8,9 +8,10 @@
 #include "GeneralData.h"
 #include "Expression/Interpreter.h"
 #include "Command.h"
+#include "FloatFromStringExpression.h"
 
 
-class VarCommand : public Command {
+class CommandVar : public Command {
 public:
     void setVarCommand(int);
     void setValue(int);
@@ -21,8 +22,8 @@ public:
     int isVar(string);
     void cleanData();
     void updateData();
-    VarCommand();
-    ~VarCommand() = default;
+    CommandVar();
+    ~CommandVar() = default;
 private:
     string      var_name;
     VarData     var_info;

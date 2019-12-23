@@ -3,18 +3,17 @@
  * @date 23.12.19
  */
 
-#include "VarCommand.h"
-#include "Expression/Interpreter.h"
+#include "CommandVar.h"
 
-VarCommand::VarCommand() {
+CommandVar::CommandVar() {
     this -> cleanData();
 }
 
 /**
  * reset all data of object
  */
-void VarCommand::cleanData() {
-    this -> var_info = {nullptr, 0, NO_ONE};
+void CommandVar::cleanData() {
+    this -> var_info = {"", 0, NO_ONE};
     this->indexCounter = 0;
 }
 
@@ -22,7 +21,7 @@ void VarCommand::cleanData() {
  * inserting the new value in the scope's map
  * if updater is client - updating the simulator
  */
-void VarCommand::updateData() {
+void CommandVar::updateData() {
 
     symbol_table.insert(this->var_name, this->var_info);
 
@@ -39,7 +38,7 @@ void VarCommand::updateData() {
  * @param index in vector of tokens
  * @return number of cells in tokens_array to go ahead
  */
-int VarCommand::execute(int index) {
+int CommandVar::execute(int index) {
     this->cleanData();
     this->indexCounter++;
 
@@ -61,7 +60,7 @@ int VarCommand::execute(int index) {
  * @param index in vector of tokens
  * @throw const char * in case of invalid input
  */
-void VarCommand::setVarCommand(int index) {
+void CommandVar::setVarCommand(int index) {
     const char * token_after_name;
 
     this -> var_name = tokens[index];
@@ -97,7 +96,7 @@ void VarCommand::setVarCommand(int index) {
  * @param position of token in vector
  * @return boolean - 1 true / 0 false
  */
-int VarCommand::isArrow(int index) {
+int CommandVar::isArrow(int index) {
     if ((strcmp(tokens[index].c_str(), "<-") == 0) || (strcmp(tokens[index].c_str(), "->") == 0)) {
             return 1;
     }
@@ -110,7 +109,7 @@ int VarCommand::isArrow(int index) {
  *
  * @param index in vector
  */
-void VarCommand::setVarInfo(int index) {
+void CommandVar::setVarInfo(int index) {
 
     //check binding direction - first char is "-" or "<"
     (tokens[index][0] == '-') ? this->var_info.updater = CLIENT : this->var_info.updater = SIMULATOR;
@@ -131,7 +130,10 @@ void VarCommand::setVarInfo(int index) {
  *
  * @param index in vector of tokens
  */
-void VarCommand::setValue(int index) {
+void CommandVar::setValue(int index) {
+    FloatFromStringExpression floatFromStringExpression;
+    this -> var_info.value = floatFromStringExpression.calculateExpression(tokens[index]);
+    /*
     Interpreter* interpreter = new Interpreter();
     Expression* expression = nullptr;
 
@@ -153,7 +155,7 @@ void VarCommand::setValue(int index) {
             delete interpreter;
         }
     }
-
+    */
     this->indexCounter+=2;//skipping expression and "\n"
 }
 
@@ -163,8 +165,8 @@ void VarCommand::setValue(int index) {
  *
  * @param index in vector of tokens, it should point to a string of an expression
  * @param interpreter reference to a pointer to Interpreter.
- */
-void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter) {
+
+void CommandVar::setVariablesOfInterpreter(int index, Interpreter *& interpreter) {
     string infix;
     VarData var_data;
     float value;
@@ -188,8 +190,6 @@ void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter
 
                 interpreter->setVariable(rit->str(), value);
 
-                cout <<rit->str()<<endl;////////////////////////////////
-
             } catch (const char * e) {
                 throw "call to an unknown Variable in arithmetic expression";
             }
@@ -200,8 +200,8 @@ void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter
 
     this -> indexCounter++;
 }//end of setVariablesOfInterpreter()
+*/
 
-//
 /**
  * check if given string is a variable, by elimination.
  * if it is not a number nor an operator it is a variable.
@@ -209,7 +209,7 @@ void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter
  * @param str token in an expression
  * @return boolean - true or false
  */
-int VarCommand::isVar(string str) {
+int CommandVar::isVar(string str) {
     if (strlen(str.c_str()) == strspn(str.c_str(), "0123456789.")) {
         return 0;
     }
