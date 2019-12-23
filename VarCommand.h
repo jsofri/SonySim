@@ -24,7 +24,7 @@ public:
     VarCommand();
     ~VarCommand() = default;
 private:
-    string var_name;
+    string      var_name;
     VarData     var_info;
 };
 

@@ -1,2 +1,5 @@
 /CMakeLists.txt
 ../cmake-build-debug
+/main.cpp
+/GeneralData.h
+/Command.h

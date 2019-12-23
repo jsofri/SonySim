@@ -6,6 +6,10 @@
 #include "VarCommand.h"
 #include "Expression/Interpreter.h"
 
+VarCommand::VarCommand() {
+    this -> cleanData();
+}
+
 /**
  * reset all data of object
  */
@@ -20,7 +24,7 @@ void VarCommand::cleanData() {
  */
 void VarCommand::updateData() {
 
-    symbol_table.insert(make_pair(this->var_name, this->var_info));
+    symbol_table.insert(this->var_name, this->var_info);
 
     if (this->var_info.updater == CLIENT) {
         cout <<"now i should update the simulator: ";
@@ -69,7 +73,7 @@ void VarCommand::setVarCommand(int index) {
         return;
     }
     else if (strcmp(token_after_name, "=") == 0) {
-        if (symbol_table[this -> var_name].updater == SIMULATOR) {
+        if (symbol_table.get(this -> var_name).updater == SIMULATOR) {
             throw "can't assign value to a var dependent on the simulator updates";
         }
 
@@ -177,15 +181,18 @@ void VarCommand::setVariablesOfInterpreter(int index, Interpreter *& interpreter
 
         if (this->isVar(rit->str())) {
 
-            if (symbol_table.find(tokens[index]) == symbol_table.end()) {/////////////////////////////////
+            try {
+                var_data = symbol_table.get(rit->str());
+
+                value = var_data.value;
+
+                interpreter->setVariable(rit->str(), value);
+
+                cout <<rit->str()<<endl;////////////////////////////////
+
+            } catch (const char * e) {
                 throw "call to an unknown Variable in arithmetic expression";
             }
-
-            var_data = symbol_table[rit->str()];
-
-            value = var_data.value;
-
-            interpreter->setVariable(rit->str(), value);
         }
 
         ++rit;
