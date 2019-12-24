@@ -20,9 +20,8 @@ class Command {
     /**
      * interpret and execute
      *
-     * @param vector<string> & the tokens from lexer
-     * @param int index - index in the vector
-     * @return int - index counter in the vector
+     * @param index index in the vector
+     * @return new index counter in the vector that will be passed to the next command
      */
     virtual int execute(int) = 0;
 };

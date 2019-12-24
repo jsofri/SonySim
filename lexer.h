@@ -75,6 +75,14 @@ class Lexer {
     bool isDigit(char c);
 
     /**
+     * get matches from string using regex
+     * @param str a single line
+     * @param pattern the pattern
+     * @return a vector of matches
+     */
+    vector<string> doRegex(string, string);
+
+    /**
     * destructor
     */
     ~Lexer() = default;

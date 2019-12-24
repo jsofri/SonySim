@@ -15,23 +15,22 @@
 void Parser :: parse(int start, int end, vector<string> &tokenArr) {
     vector<string> tokensRow;
 
-    while (start < tokenArr.size()) {
+    while (start < end) {
         if (tokenArr[start] == "\n") {
             string cmdType;
             // try to parse the row
             try {
                 cmdType = parseCommandType(tokensRow, start);
             } catch (char* exception) {
-                cerr << exception;
+                cerr << exception << endl;
             }
 
             // try to execute the command
             Command c = cmdMap[cmdType];
             try {
-                end = c.execute(index);
-                start = end;
+                start = c.execute(index);
             } catch (char* exception) {
-                cerr << exception;
+                cerr << exception << endl;
             }
 
         } else {
@@ -118,9 +117,7 @@ string Parser :: parseCommandType(vector<string> &row, int index) {
  * @return true if a while loop should run
  */
 bool Parser :: isWhile(vector<string> &row) {
-    auto it = row.begin();
-    string token = *it;
-    return token == "while";
+    return row[0] == "while";
 }
 
 /**
@@ -129,9 +126,7 @@ bool Parser :: isWhile(vector<string> &row) {
 * @return true if an IF condition should run
 */
 bool Parser :: isIF(vector<string> &row) {
-    auto it = row.begin();
-    string token = *it;
-    return token == "if";
+    return row[0] == "if";
 }
 
 /**
@@ -140,9 +135,7 @@ bool Parser :: isIF(vector<string> &row) {
 * @return true if a Print command should run
 */
 bool Parser :: isPrint(vector<string> &row) {
-    auto it = row.begin();
-    string token = *it;
-    return token == "Print";
+    return row[0] == "Print";
 }
 
 /**
@@ -151,9 +144,7 @@ bool Parser :: isPrint(vector<string> &row) {
 * @return true if a Sleep command should run
 */
 bool Parser :: isSleep(vector<string> &row) {
-    auto it = row.begin();
-    string token = *it;
-    return token == "Sleep";
+    return row[0] == "Sleep";
 }
 
 /**
@@ -162,9 +153,7 @@ bool Parser :: isSleep(vector<string> &row) {
 * @return true if an `Open Data Server` command should run
 */
 bool Parser :: isOpenServer(vector<string> &row) {
-    auto it = row.begin();
-    string token = *it;
-    return token == "openDataServer";
+    return row[0] == "openDataServer";
 }
 
 /**
@@ -173,9 +162,7 @@ bool Parser :: isOpenServer(vector<string> &row) {
 * @return true if a `Connect Control Client` command should run
 */
 bool Parser :: isConnect(vector<string> &row) {
-    auto it = row.begin();
-    string token = *it;
-    return token == "connectControlClient";
+    return row[0] == "connectControlClient";
 }
 
 /**
@@ -186,13 +173,13 @@ bool Parser :: isConnect(vector<string> &row) {
 bool Parser :: isVar(vector<string> &row) {
     Lexer lexer;
 
-    auto it = row.begin();
     // match e.g. `var heading = ...`
-    if (*it == "var" && lexer.isLegalVar(*(it+1)) && *(it+2) == "=") {
+    if (row[0] == "var" && lexer.isLegalVar(row[1]) && row[2] == "=") {
         return true;
     }
-        // match e.g. `heading = ...`
-    else if (lexer.isLegalVar(*it) && *(it+1) == "=") {
+    
+    // match e.g. `heading = ...`
+    if (lexer.isLegalVar(row[0]) && *(row[1]) == "=") {
         return true;
     }
 
@@ -205,9 +192,8 @@ bool Parser :: isVar(vector<string> &row) {
  * @return true if a function definition command should run
  */
 bool Parser :: isFuncDef(vector<string> &row, int index) {
-    string dummy;
-    Lexer lexer(dummy);
-    string func = *row.begin();
+    Lexer lexer;
+    string func = row[0];
     if (lexer.isLegalFunc(func) && *(row.end() - 1) == "{") {
         funcMap[func].first.first = index + 1;
         return true;
@@ -222,9 +208,8 @@ bool Parser :: isFuncDef(vector<string> &row, int index) {
  * @return true if a function call command should run
  */
 bool Parser :: isFuncCall(vector<string> &row) {
-    string dummy;
-    Lexer lexer(dummy);
-    string func = *row.begin();
+    Lexer lexer;
+    string func = row[0];
     // check if the function name is legal AND if it exists in the funcMap (i.e. if it was defined before)
     return lexer.isLegalFunc(func) && funcMap.count(func);
 }

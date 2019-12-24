@@ -6,6 +6,13 @@
 #include "lexer.h"
 #include "parser.h"
 
+
+/**
+ * Interpret and execute.
+ *
+ * @param index index in the vector
+ * @return new index counter in the vector that will be passed to the next command
+ */
 int CommandPrint :: execute(int index) {
     auto it = tokens.begin();
 
@@ -19,6 +26,12 @@ int CommandPrint :: execute(int index) {
 }
 
 
+/**
+ * Interpret and execute.
+ *
+ * @param index index in the vector
+ * @return new index counter in the vector that will be passed to the next command
+ */
 int CommandFuncDef :: execute(int index) {
     auto it = tokens.begin() + index;
 
@@ -52,7 +65,9 @@ int CommandFuncDef :: execute(int index) {
         // Note: if there's is another scope inside the function, this code won't work - we'll have to count `{` and `}`
         if (*it == "}") {
             funcMap[func].first.second = index;
-            return index;
+            // remove the innermost symbol table as the current scope is over 
+            symbol_table.deleteTable();
+            return index + 1;
         }
         index++;
     }
@@ -60,6 +75,15 @@ int CommandFuncDef :: execute(int index) {
     throw "Error: closing bracket not found for function";
 }
 
+
+/**
+ * Interpret and execute.
+ * Summary: It makes a subvector of the token vector and replaces all parameter names with the values which are passed
+ * to the function.
+ *
+ * @param index index in the vector
+ * @return new index counter in the vector that will be passed to the next command
+ */
 int CommandFuncCall :: execute(int index) {
     auto it = tokens.begin() + index;
 
@@ -71,9 +95,8 @@ int CommandFuncCall :: execute(int index) {
     string func = *it;
 
     // make a new subvector
-    auto it_start = tokens.begin() + funcMap[func].first.first;
-    auto it_end = tokens.begin() + funcMap[func].first.second;
-    vector<string> subTokens(it_start, it_end);
+    auto func_start_index = funcMap[func].first.first;
+    auto func_end_index = funcMap[func].first.second;
 
     // get the param values
     auto params = funcMap[func].second;
@@ -97,18 +120,12 @@ int CommandFuncCall :: execute(int index) {
         paramMap[*param] = *value;
     }
 
-
-    // replace param vars with param values in subvector
-    auto it_sub = subTokens.begin();
-    for (; it_sub != subTokens.end(); ++it) {
-        if (paramMap.count(*it_sub)) {
-            *it_sub = paramMap[*it_sub];
-        }
-    }
+    // make new inner symbol table
+    symbol_table.newTable(paramMap);
 
     // parse the function
     Parser parser;
-    parser.parse(subTokens);
+    parser.parse(func_start_index, func_end_index);
 
     return index;
 }

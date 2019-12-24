@@ -1,6 +1,10 @@
 //
 // Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
 //
+// var Print Sleep while
+// can print vars!!! @@@@@@@@@@@@@@@@@@@
+//
+//
 
 #include "GeneralData.h"
 #include "lexer.h"
@@ -21,50 +25,13 @@ Lexer :: Lexer(string &filename): filename(filename) {}
  */
 void Lexer :: makeTokens() {
     string line;
-    bool readingString = false;
     ifstream file(this -> filename);
+    string pattern = R"lit((\{)|(\})|(var)\s|(connectControlClient)\("([\S]*)",(\d{1,5})\)|(\w+)\s*(=)\s*(.+)|([Ww]hile|[Ii]f)\s*(.+)\s*(<=|>=|<|>|==|!=)\s*(.+)(\{)|(\w+)\s*(->|<-)\s*(sim)\((.+)\)|([\w\_]+)\s*\((var\s)?(.+)\))lit";
 
     while (getline(file, line)) {
-        string token;
-
-        for (char c : line) {
-            // check if finished reading a token
-            if (isSkippableChar(c) && !readingString && !isVarAssignment()) {
-
-                // only approve legal tokens
-                if (isLegalToken(token)) {
-                    tokens.push_back(token);
-                    token = "";
-                }
-
-                if (c == '\n') {
-                    tokens.emplace_back("\n");
-                    token = "";
-                }
-            }
-                // if the current line is a variable assignment that looks like `var = ...`, then we will treat the
-                // whole expression after the `=` as a single token that will be parsed afterwards
-            else if (isVarAssignment()) {
-                if (c == '\n') {
-                    tokens.push_back(token);
-                    tokens.emplace_back("\n");
-                    token = "";
-                } else {
-                    token += c;
-                }
-
-            } else {
-                if (c == '"'){
-                    if (readingString) {
-                        tokens.push_back(token);
-                        token = "";
-                    }
-                    readingString = !readingString;
-                } else {
-                    token += c;
-                }
-            }
-        }
+        auto matches = doRegex(line, pattern);
+        tokens.insert(tokens.end(), matches.begin(), matches.end());
+        tokens.emplace_back("\n");
     }
 }
 
@@ -144,4 +111,39 @@ bool Lexer :: isLetter(char c) {
  */
 bool Lexer :: isDigit(char c) {
     return c >= '0' && c <= '9';
+}
+
+/**
+ * get matches from string using regex
+ * @param str a single line
+ * @param pattern the pattern
+ * @return a vector of matches
+ */
+vector<string> Lexer :: doRegex(string str, string pattern) {
+    vector<string> matches;
+
+    auto reg = regex(pattern);
+    auto iter = sregex_iterator(str.begin(), str.end(), reg);
+    auto iterHelper = sregex_iterator();
+
+    // loop the matches
+    for (auto i = iter; i != iterHelper; ++i) {
+        int times = 0;
+        string lastMatch;
+        for (string match : *i) {
+            // skip empty matches
+            if (match.empty()) {
+                continue;
+            }
+
+            // retrieve only the unique matches in each match group
+            if (match != lastMatch) {
+                matches.push_back(match);
+                times++;
+            }
+            lastMatch = match;
+        }
+    }
+
+    return matches;
 }

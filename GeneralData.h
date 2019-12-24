@@ -26,6 +26,7 @@
 #include <pthread.h>
 
 #include <fstream>
+#include <regex>
 
 #include "Command.h"
 
@@ -76,6 +77,6 @@ extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
                                                 {COM_CONNECT, new CommandConnect()}};
 
 //symbol table of the program parsing process
-extern unordered_map<string, VarData> symbol_table;
+extern SymbolTable symbol_table;
 
 #endif //GENERALDATA_H
