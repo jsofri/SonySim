@@ -135,7 +135,7 @@ void CommandVar::setValue(int index) {
     this -> var_info.value = floatFromStringExpression.calculateExpression(tokens[index]);
     /*
     Interpreter* interpreter = new Interpreter();
-    Expression* expression = nullptr;
+    Expressions* expression = nullptr;
 
     try {
 
