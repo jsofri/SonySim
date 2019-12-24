@@ -6,6 +6,7 @@
  */
 
 #include "CommandWhile.h"
+#include "CommandVar.h"
 
 CommandWhile::CommandWhile() {
     this -> factory = new ConditionFactory();
@@ -15,26 +16,53 @@ int CommandWhile::execute(int index) {
     this -> cleanData();
     this -> setCondition(index);
 
-    //3 strings for condition, 4th for "{"
-    this -> start_of_scope = index += 4;
-    indexCounter = 4;
+    this -> start_of_scope = index += 4; //3 strings for condition, 4th for "{"/////////////////////////////////////
 
     symbol_table.newTable();
 
-    do {
-        indexCounter++;
-    } while (tokens[++index][0] != '}');
-
-    this -> end_of_scope = index;
-
+    this -> setCommands();              //incrementing indexCounter
     this -> executeLoop();
 
-    return indexCounter;
+    symbol_table.deleteTable();
+
+    return this -> indexCounter;
+}
+
+void CommandWhile::setCommands() {
+    int index = start_of_scope;
+
+    while (tokens[index][0] != '}') {
+        tokens[index];
+        //figure put first word
+        while (tokens[++index][0] != '\n') {}
+        ++index;
+    }
+
+    this -> indexCounter = (index - start_of_scope) + 4?5; //3 strings of condition, 4th for "{"////////////////////
+}
+
+void CommandWhile::setCommand(int index) {
+    string first_word = tokens[index];
+    string second_word = tokens[index+1];
+
+    if (first_word == "sleep") {
+        this -> commands.push_back(new CommandSleep());
+    } else if (first_word == "print") {
+        this -> commands.push_back(new CommandPrint());
+    } else if ((first_word == "var") ||(second_word == "=")) {
+        this ->commands.push_back(new CommandVar());
+    }
 }
 
 void CommandWhile::executeLoop() {
+    int index;
+
     while (this -> condition ->isTrue()) {
-        //lex?
+        index = start_of_scope;
+
+        for (Command * command : this -> commands) {
+            index = command -> execute(index);
+        }
     }
 }
 
@@ -49,6 +77,10 @@ void CommandWhile::setCondition(int index) {
 }
 
 CommandWhile::~CommandWhile() {
-    delete(this -> condition);
-    delete(this -> factory);
+    delete (this->condition);
+    delete (this->factory);
+
+    while (!(this->commands.empty())) {
+        this->commands.pop_front();
+    }
 }

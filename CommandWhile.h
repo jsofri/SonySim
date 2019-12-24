@@ -19,13 +19,15 @@ public:
     void executeLoop();
     void cleanData();
     void setCondition(int);
+    void setCommands();
+    void setCommand(int index);
     CommandWhile();
     ~CommandWhile();
 private:
+    list<Command*> commands;
     Condition * condition;
     ConditionFactory * factory;
     int start_of_scope;
-    int end_of_scope;
 };
 
 #endif //COMMANDWHILE_H

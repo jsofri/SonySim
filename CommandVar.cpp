@@ -38,7 +38,7 @@ int CommandVar::execute(int index) {
     this->cleanData();
     this->indexCounter++;
 
-    if(strcmp(tokens[index].c_str(), "var") == 0) {
+    if (tokens[index] == "var") {
         setVarCommand(++index);
     }
     else {
@@ -57,17 +57,17 @@ int CommandVar::execute(int index) {
  * @throw const char * in case of invalid input
  */
 void CommandVar::setVarCommand(int index) {
-    const char * token_after_name;
+    string token_after_name;
 
     this -> var_name = tokens[index];
     this -> indexCounter+=2;
 
-    token_after_name = tokens[++index].c_str();
+    token_after_name = tokens[++index];
 
-    if (strcmp(token_after_name, "\n") == 0) {
+    if (token_after_name == "\n") {
         return;
     }
-    else if (strcmp(token_after_name, "=") == 0) {
+    else if (token_after_name == "=") {
         if (symbol_table.get(this -> var_name).updater == SIMULATOR) {
             throw "can't assign value to a var dependent on the simulator updates";
         }
@@ -77,7 +77,7 @@ void CommandVar::setVarCommand(int index) {
     else if(this -> isArrow(index)) {
         this -> setVarInfo(index);
     }
-    else if (strcmp(token_after_name, "{") == 0) {
+    else if (token_after_name == "{") {
         this -> indexCounter--;//so the next parser will see "{"
     }
     else {
@@ -93,7 +93,7 @@ void CommandVar::setVarCommand(int index) {
  * @return boolean - 1 true / 0 false
  */
 int CommandVar::isArrow(int index) {
-    if ((strcmp(tokens[index].c_str(), "<-") == 0) || (strcmp(tokens[index].c_str(), "->") == 0)) {
+    if ((tokens[index] == "<-")  || (tokens[index] == "->")) {
             return 1;
     }
 
