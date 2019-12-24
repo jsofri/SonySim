@@ -11,7 +11,8 @@
 #include "Condition.h"
 
 class ConditionGE : public Condition {
-    int isTrue();
+public:
+    int isTrue() override;
     ConditionGE(string left, string right) : Condition(left, right){};
     ~ConditionGE() = default;
 };

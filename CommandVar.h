@@ -6,7 +6,7 @@
 #define VARCOMMAND_H
 
 #include "GeneralData.h"
-#include "Expression/Interpreter.h"
+#include "Expressions/Interpreter.h"
 #include "Command.h"
 #include "FloatFromStringExpression.h"
 
@@ -22,7 +22,7 @@ public:
     int isVar(string);
     void cleanData();
     void updateData();
-    CommandVar();
+    CommandVar() = default;
     ~CommandVar() = default;
 private:
     string      var_name;

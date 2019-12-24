@@ -7,7 +7,7 @@
 
 #include "GeneralData.h"
 #include <regex>
-#include "Expression/Interpreter.h"
+#include "Expressions/Interpreter.h"
 
 #define ABC "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwhyz_0123456789"
 

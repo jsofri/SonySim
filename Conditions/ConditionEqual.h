@@ -11,7 +11,8 @@
 #include "Condition.h"
 
 class ConditionEqual : public Condition {
-    int isTrue();
+public:
+    int isTrue() override;
     ConditionEqual(string left, string right) : Condition(left, right) {}
     ~ConditionEqual() = default;
 };

@@ -11,7 +11,8 @@
 #include "Condition.h"
 
 class ConditionGreater : public Condition {
-    int isTrue();
+public:
+    int isTrue() override;
     ConditionGreater(string left, string right) : Condition(left, right) {}
     ~ConditionGreater() = default;
 };

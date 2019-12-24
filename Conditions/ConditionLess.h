@@ -11,7 +11,8 @@
 #include "Condition.h"
 
 class ConditionLess : public Condition {
-    int isTrue();
+public:
+    int isTrue() override;
     ConditionLess(string left, string right) : Condition(left, right) {}
     ~ConditionLess() = default;
 };

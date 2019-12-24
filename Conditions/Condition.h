@@ -11,7 +11,7 @@
 #define CONDITION_H
 
 #include "GeneralData.h"
-#include <Expression/Interpreter.h>
+#include <Expressions/Interpreter.h>
 #include "FloatFromStringExpression.h"
 
 class Condition {

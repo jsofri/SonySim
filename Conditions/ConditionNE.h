@@ -11,7 +11,8 @@
 #include "Condition.h"
 
 class ConditionNE : public Condition {
-    int isTrue();
+public:
+    int isTrue() override;
     ConditionNE(string left, string right) : Condition(left, right) {}
     ~ConditionNE() = default;
 };

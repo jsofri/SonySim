@@ -5,10 +5,6 @@
 
 #include "CommandVar.h"
 
-CommandVar::CommandVar() {
-    this -> cleanData();
-}
-
 /**
  * reset all data of object
  */
@@ -133,74 +129,9 @@ void CommandVar::setVarInfo(int index) {
 void CommandVar::setValue(int index) {
     FloatFromStringExpression floatFromStringExpression;
     this -> var_info.value = floatFromStringExpression.calculateExpression(tokens[index]);
-    /*
-    Interpreter* interpreter = new Interpreter();
-    Expressions* expression = nullptr;
 
-    try {
-
-        this -> setVariablesOfInterpreter(index, interpreter);
-
-        expression = interpreter->interpret(tokens[index]);
-
-        this->var_info.value = expression->calculate();
-
-        delete expression;
-        delete interpreter;
-    } catch (const char* e) {
-        if (expression != nullptr) {
-            delete expression;
-        }
-        if (interpreter != nullptr) {
-            delete interpreter;
-        }
-    }
-    */
     this->indexCounter+=2;//skipping expression and "\n"
 }
-
-/**
- * set variables of in the given interpreter object.
- * split string into tokens and set variables (if exists).
- *
- * @param index in vector of tokens, it should point to a string of an expression
- * @param interpreter reference to a pointer to Interpreter.
-
-void CommandVar::setVariablesOfInterpreter(int index, Interpreter *& interpreter) {
-    string infix;
-    VarData var_data;
-    float value;
-    regex rgx;
-
-    infix = tokens[index];
-    rgx = interpreter -> getRegexOfTokens();
-
-    std::regex_iterator<std::string::iterator> rit (infix.begin(), infix.end(), rgx);
-    std::regex_iterator<std::string::iterator> rend;
-
-    //iterating on tokens in the infix string
-    while (rit!=rend) {
-
-        if (this->isVar(rit->str())) {
-
-            try {
-                var_data = symbol_table.get(rit->str());
-
-                value = var_data.value;
-
-                interpreter->setVariable(rit->str(), value);
-
-            } catch (const char * e) {
-                throw "call to an unknown Variable in arithmetic expression";
-            }
-        }
-
-        ++rit;
-    }
-
-    this -> indexCounter++;
-}//end of setVariablesOfInterpreter()
-*/
 
 /**
  * check if given string is a variable, by elimination.
