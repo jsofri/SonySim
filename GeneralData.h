@@ -81,5 +81,7 @@ extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
 
 //symbol table of the program parsing process
 extern SymbolTable symbol_table;
+extern pthread client;
+extern pthread server;
 
 #endif //GENERALDATA_H

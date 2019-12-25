@@ -19,12 +19,12 @@ public:
     virtual int isTrue() = 0;
     void calculateSides();
     float calculate(string &);
-    Condition(string left, string right) : left_string(left), right_string(right) {};
+    Condition(string left, string right) : _left_string(left), _right_string(right) {};
     ~Condition() = default;
 protected:
-    string left_string;
-    string right_string;
-    float left_value;
-    float right_value;
+    string _left_string;
+    string _right_string;
+    float _left_value;
+    float _right_value;
 };
 #endif //CONDITION_H

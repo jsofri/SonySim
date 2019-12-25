@@ -22,10 +22,10 @@ public:
     VarData get(string);
     void insert(string, VarData);
     SymbolTable();
-    ~SymbolTable() = default;
+    ~SymbolTable();
 private:
-    list<unordered_map<string, VarData>> symbol_tables;
-    pthread_mutex_t object_locker;
+    list<unordered_map<string, VarData>> _symbol_tables;
+    pthread_mutex_t _locker;
 };
 
 

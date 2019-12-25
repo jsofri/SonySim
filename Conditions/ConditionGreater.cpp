@@ -15,5 +15,5 @@
 int ConditionGreater::isTrue() {
     this -> calculateSides();
 
-    return (this -> left_value) > (this -> right_value);
+    return (this -> _left_value) > (this -> _right_value);
 }

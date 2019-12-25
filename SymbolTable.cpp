@@ -17,7 +17,8 @@
 SymbolTable::SymbolTable() {
     unordered_map<string, VarData> first_map;
 
-    (this -> symbol_tables).push_front(first_map);
+    (this -> _symbol_tables).push_front(first_map);
+    this ->_locker = PTHREAD_MUTEX_INITIALIZER;
 }
 
 /**
@@ -27,21 +28,24 @@ SymbolTable::SymbolTable() {
  * @param value - VarData
  */
 void SymbolTable::insert(string key, VarData value) {
-    pthread_mutex_lock(&(this->object_locker));
-    this->symbol_tables.front()[key] = value;
+    pthread_mutex_lock(&(this->_locker));
 
-    pthread_mutex_unlock(&(this->object_locker));
+    this->_symbol_tables.front()[key] = value;
+
+    pthread_mutex_unlock(&(this->_locker));
 }
 
 /**
  * adds new map to the list.
  */
 void SymbolTable::newTable() {
-    pthread_mutex_lock(&(this->object_locker));
+    pthread_mutex_lock(&(this->_locker));
+
     unordered_map<string, VarData> new_map;
 
-    this->newTable(new_map);
-    pthread_mutex_unlock(&(this->object_locker));
+    this -> _symbol_tables.push_front(new_map);
+
+    pthread_mutex_unlock(&(this->_locker));
 }
 
 /**
@@ -50,22 +54,22 @@ void SymbolTable::newTable() {
  * @param new_map to enter to beginning of list
  */
 void SymbolTable::newTable(unordered_map<string, VarData> & new_map) {
-    pthread_mutex_lock(&(this->object_locker));
+    pthread_mutex_lock(&(this->_locker));
 
-    this -> symbol_tables.push_front(new_map);
+    this -> _symbol_tables.push_front(new_map);
 
-    pthread_mutex_unlock(&(this->object_locker));
+    pthread_mutex_unlock(&(this->_locker));
 }
 
 /**
  * delete first map from the list.
  */
 void SymbolTable::deleteTable() {
-    pthread_mutex_lock(&(this->object_locker));
+    pthread_mutex_lock(&(this->_locker));
 
-    this -> symbol_tables.pop_front();
+    this -> _symbol_tables.pop_front();
 
-    pthread_mutex_unlock(&(this->object_locker));
+    pthread_mutex_unlock(&(this->_locker));
 }
 
 /**
@@ -76,18 +80,25 @@ void SymbolTable::deleteTable() {
  * @throw const char * if key not found
  */
 VarData SymbolTable::get(string str) {
-    lock_guard<pthread_mutex_t> lockGuard(this -> object_locker);
-    auto                        iter = this->symbol_tables.begin();
+    pthread_mutex_lock(&(this->_locker));
+    auto                        iter = this->_symbol_tables.begin();
     VarData                     var_data;
 
-    while (iter != this->symbol_tables.end()) {
+    while (iter != this->_symbol_tables.end()) {
 
         if ((*iter).find(str) != (*iter).end()) {
-            return (*iter)[str];
+            VarData var_data = (*iter)[str];
+            pthread_mutex_unlock(&(this->_locker));
+            return var_data;
         }
 
         iter++;
     }
 
+    pthread_mutex_unlock(&(this->_locker));
     throw "Variable not found";
+}
+
+SymbolTable::~SymbolTable() {
+    pthread_mutex_destroy(&(this-> _locker));
 }

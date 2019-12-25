@@ -10,14 +10,14 @@
  * Ctor.
  */
 CommandVar::CommandVar() {
-    this -> floatFromString = new FloatFromString();
+    this -> _floatFromString = new FloatFromString();
 }
 
 /**
  * reset all data of object
  */
 void CommandVar::cleanData() {
-    this -> var_info = {"", 0, NO_ONE};
+    this -> _var_info = {"", 0, NO_ONE};
     this->indexCounter = 0;
 }
 
@@ -27,12 +27,12 @@ void CommandVar::cleanData() {
  */
 void CommandVar::updateData() {
 
-    symbol_table.insert(this->var_name, this->var_info);
+    symbol_table.insert(this->_var_name, this->_var_info);
 
-    if (this->var_info.updater == CLIENT) {
+    if (this->_var_info.updater == CLIENT) {
         cout <<"now i should update the simulator: ";
-        cout << this ->var_name << this ->var_info.value<< endl;
-        //updateSimulator(this -> var_info.reference, this -> var_info.value);
+        cout << this ->_var_name << this ->_var_info.value << endl;
+        //updateSimulator(this -> _var_info.reference, this -> _var_info.value);
     }
 }
 
@@ -67,7 +67,7 @@ int CommandVar::execute(int index) {
 void CommandVar::setVarCommand(int index) {
     string token_after_name;
 
-    this -> var_name = tokens[index];
+    this -> _var_name = tokens[index];
     this -> indexCounter+=2;
 
     token_after_name = tokens[++index];
@@ -76,7 +76,7 @@ void CommandVar::setVarCommand(int index) {
         return;
     }
     else if (token_after_name == "=") {
-        if (symbol_table.get(this -> var_name).updater == SIMULATOR) {
+        if (symbol_table.get(this -> _var_name).updater == SIMULATOR) {
             throw "can't assign value to a var dependent on the simulator updates";
         }
 
@@ -117,13 +117,13 @@ int CommandVar::isArrow(int index) {
 void CommandVar::setVarInfo(int index) {
 
     //check binding direction - first char is "-" or "<"
-    (tokens[index][0] == '-') ? this->var_info.updater = CLIENT : this->var_info.updater = SIMULATOR;
+    (tokens[index][0] == '-') ? this->_var_info.updater = CLIENT : this->_var_info.updater = SIMULATOR;
 
     //skipping "sim" in the vector
     indexCounter+=2;
     index+=2;
 
-    this -> var_info.reference = this -> removeQuotesFromString(index);
+    this -> _var_info.reference = this -> removeQuotesFromString(index);
 
     //skipping "\n"
     indexCounter+=2;
@@ -153,7 +153,7 @@ string CommandVar::removeQuotesFromString(int index) {
  */
 void CommandVar::setValue(int index) {
     FloatFromString floatFromStringExpression;
-    this -> var_info.value = floatFromStringExpression.calculateString(tokens[index]);
+    this -> _var_info.value = floatFromStringExpression.calculateString(tokens[index]);
 
     this->indexCounter+=2;//skipping expression and "\n"
 }
@@ -162,5 +162,5 @@ void CommandVar::setValue(int index) {
  * Dtor.
  */
 CommandVar::~CommandVar() {
-    delete(this->floatFromString);
+    delete(this->_floatFromString);
 }

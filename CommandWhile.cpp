@@ -13,7 +13,7 @@
  * Constructor
  */
 CommandWhile::CommandWhile() {
-    this -> factory = new ConditionFactory();
+    this -> _factory = new ConditionFactory();
 }
 
 /**
@@ -26,11 +26,12 @@ int CommandWhile::execute(int index) {
     this -> cleanData();
     this -> setCondition(index);
 
-    this -> start_of_scope = index += 4; //3 strings for condition, 4th for "{"/////////////////////////////////////
+    this -> _start_of_scope = index += 5;
 
     symbol_table.newTable();
 
     this -> setCommands();              //incrementing indexCounter
+
     this -> executeLoop();
 
     symbol_table.deleteTable();
@@ -43,7 +44,7 @@ int CommandWhile::execute(int index) {
  * update indexCounter to end of block in tokens.
  */
 void CommandWhile::setCommands() {
-    int index = start_of_scope;
+    int index = _start_of_scope;
 
     while (tokens[index][0] != '}') {
         this->setCommand(index);
@@ -53,7 +54,7 @@ void CommandWhile::setCommands() {
         ++index;
     }
 
-    this -> indexCounter = (index - start_of_scope) + 4?5; //3 strings of condition, 4th for "{"////////////////////
+    this -> indexCounter = (index - _start_of_scope) + 4 ? 5; //3 strings of _condition, 4th for "{"////////////////////
 }
 
 /**
@@ -67,11 +68,11 @@ void CommandWhile::setCommand(int index) {
     string second_word = tokens[index+1];
 
     if (first_word == "sleep") {
-        this -> commands.push_back(new CommandSleep());
+        this -> _commands.push_back(new CommandSleep());
     } else if (first_word == "print") {
-        this -> commands.push_back(new CommandPrint());
+        this -> _commands.push_back(new CommandPrint());
     } else if ((first_word == "var") ||(second_word == "=")) {
-        this ->commands.push_back(new CommandVar());
+        this ->_commands.push_back(new CommandVar());
     } else {////////////////////////////////////////////referring to a CommandFunc
         throw "invalid command in while loop";
     }
@@ -83,10 +84,10 @@ void CommandWhile::setCommand(int index) {
 void CommandWhile::executeLoop() {
     int index;
 
-    while (this -> condition ->isTrue()) {
-        index = start_of_scope;
+    while (this -> _condition ->isTrue()) {
+        index = _start_of_scope;
 
-        for (Command * command : this -> commands) {
+        for (Command * command : this -> _commands) {
             index += command -> execute(index);
         }
     }
@@ -96,7 +97,7 @@ void CommandWhile::executeLoop() {
  * cleans data members.
  */
 void CommandWhile::cleanData() {
-    this ->condition = nullptr;
+    this ->_condition = nullptr;
     this -> indexCounter = 0;
 }
 
@@ -105,18 +106,18 @@ void CommandWhile::cleanData() {
  * @param index in the gloval variable tokens - vector of strings
  */
 void CommandWhile::setCondition(int index) {
-    this -> condition = this -> factory -> setCondition(tokens[index],
-                                                        tokens[++index], tokens[++index]);
+    this -> _condition = this -> _factory -> setCondition(tokens[index],
+                                                          tokens[++index], tokens[++index]);
 }
 
 /**
  * Destructor - deleting data members.
  */
 CommandWhile::~CommandWhile() {
-    delete (this->condition);
-    delete (this->factory);
+    delete (this->_condition);
+    delete (this->_factory);
 
-    while (!(this->commands.empty())) {
-        this->commands.pop_front();
+    while (!(this->_commands.empty())) {
+        this->_commands.pop_front();
     }
 }

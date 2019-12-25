@@ -2,8 +2,8 @@
 // Created by yehonatan on 23/12/2019.
 //
 
-#ifndef FLOATFROMSTRINGEXPRESSION_H
-#define FLOATFROMSTRINGEXPRESSION_H
+#ifndef FLOATFROMSTRING_H
+#define FLOATFROMSTRING_H
 
 #include "GeneralData.h"
 #include <regex>
@@ -18,12 +18,12 @@ public:
     FloatFromString() = default;
     ~FloatFromString() = default();
 private:
-    float floatFromExpression(string &);
-    void setVariables(Interpreter * &, string);
-    int isVar(string &);
-    int isNumber(string &);
-    int isExpression(string &);
+    float  floatFromExpression(string &);
+    void   setVariables(Interpreter * &, string);
+    string delSpaces(string &str);
+    bool   isVar(string &);
+    bool   isNumber(string &);
+    bool   isExpression(string &);
 };
 
-
-#endif //FLOATFROMSTRINGEXPRESSION_H
+#endif //FLOATFROMSTRING_H

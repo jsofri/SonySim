@@ -11,8 +11,8 @@
  * put value in the two sides of the conditions using calculate method.
  */
 void Condition::calculateSides() {
-    this -> left_value = this -> calculate(this -> left_string);
-    this -> right_value = this -> calculate(this -> right_string);
+    this -> _left_value = this -> calculate(this -> _left_string);
+    this -> _right_value = this -> calculate(this -> _right_string);
 }
 
 /**

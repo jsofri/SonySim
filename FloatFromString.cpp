@@ -13,6 +13,8 @@ using namespace std;
  * @return value in the string.
  */
 float FloatFromString::calculateString(string str) {
+    str = this -> delSpaces(str);
+
     if (this -> isNumber(str)) {
         return stof(str);
     } else if (this -> isVar(str)) {
@@ -22,6 +24,17 @@ float FloatFromString::calculateString(string str) {
     }
 
     throw "can't convert string to a float";
+}
+
+/**
+ * remove spaces from string.
+ *
+ * @param str reference to a string
+ * @return string withour spaces
+ */
+string FloatFromString::delSpaces(string & str) {
+    str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+    return str;
 }
 
 /**
@@ -97,7 +110,7 @@ void FloatFromString::setVariables(Interpreter * & interpreter, string str) {
  * @param str string of a token
  * @return boolean - true or false
  */
-int FloatFromString::isVar(string & str) {
+bool FloatFromString::isVar(string & str) {
     if (strlen(str.c_str()) == strspn(str.c_str(), ABC)) {
         return 1;
     }
@@ -111,7 +124,7 @@ int FloatFromString::isVar(string & str) {
  * @param str reference to a string.
  * @return bool - 1 if true, 0 if false
  */
-int FloatFromString::isNumber(string & str) {
+bool FloatFromString::isNumber(string & str) {
     if (strlen(str.c_str()) == strspn(str.c_str(), NUMBERS)) {
         return 1;
     }
@@ -123,7 +136,7 @@ int FloatFromString::isNumber(string & str) {
  * @param str reference to a string.
  * @return bool - 1 if true, 0 if false
  */
-int FloatFromString::isExpression(string & str) {
+bool FloatFromString::isExpression(string & str) {
     for (char & c : str) {
         switch (c) {
             case('*'):

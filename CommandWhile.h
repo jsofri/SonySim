@@ -24,10 +24,10 @@ public:
     CommandWhile();
     ~CommandWhile();
 private:
-    list<Command*> commands;
-    Condition * condition;
-    ConditionFactory * factory;
-    int start_of_scope;
+    list<Command*> _commands;
+    Condition * _condition;
+    ConditionFactory * _factory;
+    int _start_of_scope;
 };
 
 #endif //COMMANDWHILE_H

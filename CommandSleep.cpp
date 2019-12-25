@@ -10,7 +10,7 @@
  * Constructor
  */
 CommandSleep::CommandSleep() {
-    this -> floatFromString = new FloatFromString();
+    this -> _floatFromString = new FloatFromString();
 }
 
 /**
@@ -19,7 +19,7 @@ CommandSleep::CommandSleep() {
  * @return indexCounter value - in this command is const
  */
 int CommandSleep::execute(int index) {
-    float value = this ->floatFromString->calculateString(tokens[index]);
+    float value = this ->_floatFromString->calculateString(tokens[index]);
     chrono::milliseconds dura((int) value);
 
     this_thread::sleep_for(dura);
@@ -32,5 +32,5 @@ int CommandSleep::execute(int index) {
  * Destructor.
  */
 CommandSleep::~CommandSleep() {
-    delete(this -> floatFromString);
+    delete(this -> _floatFromString);
 }

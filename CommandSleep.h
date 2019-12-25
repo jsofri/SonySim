@@ -15,7 +15,7 @@ public:
     CommandSleep();
     ~CommandSleep();
 private:
-    FloatFromString * floatFromString;
+    FloatFromString * _floatFromString;
 };
 
 

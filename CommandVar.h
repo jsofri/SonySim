@@ -26,9 +26,9 @@ public:
     CommandVar();
     ~CommandVar();
 private:
-    string      var_name;
-    VarData     var_info;
-    FloatFromString * floatFromString;
+    string      _var_name;
+    VarData     _var_info;
+    FloatFromString * _floatFromString;
 };
 
 
