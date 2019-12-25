@@ -1,9 +1,17 @@
 /**
+ * Class for handling with variables definitions.
  * @author Yehonatan Sofri
  * @date 23.12.19
  */
 
 #include "CommandVar.h"
+
+/**
+ * Ctor.
+ */
+CommandVar::CommandVar() {
+    this -> floatFromString = new FloatFromString();
+}
 
 /**
  * reset all data of object
@@ -73,6 +81,7 @@ void CommandVar::setVarCommand(int index) {
         }
 
         setValue(index+1);//index in the beginning of expression
+        add to queue
     }
     else if(this -> isArrow(index)) {
         this -> setVarInfo(index);
@@ -114,10 +123,26 @@ void CommandVar::setVarInfo(int index) {
     indexCounter+=2;
     index+=2;
 
-    this -> var_info.reference = tokens[index];
+    this -> var_info.reference = this -> removeQuotesFromString(index);
 
     //skipping "\n"
     indexCounter+=2;
+}
+
+/**
+ * get a string and remove substring, without the first and last characters.
+ * used for removing quotes.
+ *
+ * @param index in the tokens vector
+ * @return string in tokens[index] without quotes
+ */
+string CommandVar::removeQuotesFromString(int index) {
+    string str = tokens[index];
+    int n = strlen(str.c_str());
+
+    str = str.substr(1, n - 2);
+
+    return str;
 }
 
 /**
@@ -127,26 +152,15 @@ void CommandVar::setVarInfo(int index) {
  * @param index in vector of tokens
  */
 void CommandVar::setValue(int index) {
-    FloatFromStringExpression floatFromStringExpression;
-    this -> var_info.value = floatFromStringExpression.calculateExpression(tokens[index]);
+    FloatFromString floatFromStringExpression;
+    this -> var_info.value = floatFromStringExpression.calculateString(tokens[index]);
 
     this->indexCounter+=2;//skipping expression and "\n"
 }
 
 /**
- * check if given string is a variable, by elimination.
- * if it is not a number nor an operator it is a variable.
- *
- * @param str token in an expression
- * @return boolean - true or false
+ * Dtor.
  */
-int CommandVar::isVar(string str) {
-    if (strlen(str.c_str()) == strspn(str.c_str(), "0123456789.")) {
-        return 0;
-    }
-    else if (strlen(str.c_str()) == strspn(str.c_str(), "*/-+()")) {
-        return 0;
-    }
-
-    return 1;
+CommandVar::~CommandVar() {
+    delete(this->floatFromString);
 }

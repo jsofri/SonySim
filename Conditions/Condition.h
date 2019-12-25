@@ -12,7 +12,7 @@
 
 #include "GeneralData.h"
 #include <Expressions/Interpreter.h>
-#include "FloatFromStringExpression.h"
+#include "FloatFromString.h"
 
 class Condition {
 public:

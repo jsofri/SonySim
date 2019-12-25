@@ -21,14 +21,17 @@
 
 #include <list>
 #include <vector>
+#include <queue>
 #include <unordered_map>
 
 #include <pthread.h>
-
+#include <thread>
+#include <chrono>
 #include <fstream>
-
+#include "mutex"
 #include "Command.h"
 #include "SymbolTable.h"
+#include "FloatFromString.h"
 
 using namespace std;
 

@@ -31,9 +31,9 @@ float Condition::calculate(string & str) {
         return var_data.value;
     }
     else { // is an expression
-        FloatFromStringExpression floatFromStringExpression;
+        FloatFromString floatFromStringExpression;
 
-        return floatFromStringExpression.calculateExpression(str);
+        return floatFromStringExpression.calculateString(str);
     }
 }
 

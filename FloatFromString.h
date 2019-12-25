@@ -9,13 +9,20 @@
 #include <regex>
 #include "Expressions/Interpreter.h"
 
+#define NUMBERS "1234567890."
 #define ABC "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwhyz_0123456789"
 
-class FloatFromStringExpression {
+class FloatFromString {
 public:
-    float calculateExpression(string);
+    float calculateString(string);
+    FloatFromString() = default;
+    ~FloatFromString() = default();
 private:
+    float floatFromExpression(string &);
     void setVariables(Interpreter * &, string);
+    int isVar(string &);
+    int isNumber(string &);
+    int isExpression(string &);
 };
 
 

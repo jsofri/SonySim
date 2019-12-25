@@ -1,6 +1,8 @@
-//
-// Created by yehonatan on 19/12/2019.
-//
+/**
+ * Class for handling with variables definitions.
+ * @author Yehonatan Sofri
+ * @date 23.12.19
+ */
 
 #ifndef VARCOMMAND_H
 #define VARCOMMAND_H
@@ -8,25 +10,25 @@
 #include "GeneralData.h"
 #include "Expressions/Interpreter.h"
 #include "Command.h"
-#include "FloatFromStringExpression.h"
+#include "FloatFromString.h"
 
 
 class CommandVar : public Command {
 public:
-    void setVarCommand(int);
-    void setValue(int);
-    int execute(int);
-    int isArrow(int);
-    void setVarInfo(int);
-    void setVariablesOfInterpreter(int, Interpreter*&);
-    int isVar(string);
-    void cleanData();
-    void updateData();
-    CommandVar() = default;
-    ~CommandVar() = default;
+    void   setVarCommand(int);
+    void   setValue(int);
+    int    execute(int);
+    int    isArrow(int);
+    void   setVarInfo(int);
+    void   cleanData();
+    void   updateData();
+    string removeQuotesFromString(int);
+    CommandVar();
+    ~CommandVar();
 private:
     string      var_name;
     VarData     var_info;
+    FloatFromString * floatFromString;
 };
 
 
