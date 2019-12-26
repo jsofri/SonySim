@@ -21,14 +21,19 @@
 
 #include <list>
 #include <vector>
+#include <queue>
 #include <unordered_map>
 
-#include <pthread.h>
-
+#include <thread>
+#include <chrono>
 #include <fstream>
-
+#include "mutex"
 #include "Command.h"
 #include "SymbolTable.h"
+#include "FloatFromString.h"
+#include "UpdateSimulatorQueue.h"
+#include "Lexer.h"
+
 
 using namespace std;
 
@@ -77,6 +82,10 @@ extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
                                                 {COM_CONNECT, new CommandConnect()}};
 
 //symbol table of the program parsing process
-extern SymbolTable symbol_table;
+extern SymbolTable          symbol_table;
+extern UpdateSimulatorQueue updateSimulatorQueue;
+extern thread               client;
+extern thread               server;
+extern bool                 mainIsParsing;
 
 #endif //GENERALDATA_H
