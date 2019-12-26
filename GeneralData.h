@@ -23,16 +23,35 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
-
+#include <regex>
 #include <thread>
 #include <chrono>
 #include <fstream>
 #include "mutex"
-#include "Command.h"
+#include "Expressions/Interpreter.h"
+#include "Commands/CommandClient.h"
+#include "Commands/CommandServer.h"
+#include "Commands/CommandSleep.h"
+#include "Commands/CommandWhile.h"
+#include "Commands/CommandVar.h"
+#include "Commands/CommandPrint.h"
+#include "Commands/CommandIF.h"
+#include "Commands/CommandFuncCall.h"
+#include "Commands/CommandFuncDef.h"
+#include "Commands/Command.h"
+#include "Conditions/ConditionNE.h"
+#include "Conditions/ConditionGE.h"
+#include "Conditions/ConditionGreater.h"
+#include "Conditions/ConditionEqual.h"
+#include "Conditions/ConditionLE.h"
+#include "Conditions/ConditionLess.h"
+#include "Conditions/ConditionFactory.h"
+#include "Conditions/Condition.h"
 #include "SymbolTable.h"
 #include "FloatFromString.h"
 #include "UpdateSimulatorQueue.h"
 #include "Lexer.h"
+#include "Parser.h"
 
 
 using namespace std;

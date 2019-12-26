@@ -8,7 +8,7 @@
 #ifndef COMMANDSLEEP_H
 #define COMMANDSLEEP_H
 
-#include "GeneralData.h"
+#include "../GeneralData.h"
 
 class CommandSleep : public Command {
 public:

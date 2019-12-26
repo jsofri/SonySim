@@ -8,7 +8,7 @@
 #ifndef COMMANDSERVER_H
 #define COMMANDSERVER_H
 
-#include "GeneralData.h"
+#include "../GeneralData.h"
 
 class CommandServer : public Command {
 public:
