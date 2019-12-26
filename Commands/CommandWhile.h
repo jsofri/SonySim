@@ -8,10 +8,7 @@
 #ifndef COMMANDWHILE_H
 #define COMMANDWHILE_H
 
-#include "GeneralData.h"
-#include "Command.h"
-#include "Conditions/Condition.h"
-#include "Conditions/ConditionFactory.h"
+#include "../GeneralData.h"
 
 class CommandWhile : public Command {
 public:

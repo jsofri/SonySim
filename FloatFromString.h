@@ -10,8 +10,6 @@
 #define FLOATFROMSTRING_H
 
 #include "GeneralData.h"
-#include <regex>
-#include "Expressions/Interpreter.h"
 
 #define NUMBERS "1234567890."
 #define ABC "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwhyz_0123456789"

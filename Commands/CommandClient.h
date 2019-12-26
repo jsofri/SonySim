@@ -8,7 +8,7 @@
 #ifndef COMMANDCLIENT_H
 #define COMMANDCLIENT_H
 
-#include "GeneralData.h"
+#include "../GeneralData.h"
 
 class CommandClient {
 public:
