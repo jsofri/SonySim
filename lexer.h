@@ -5,52 +5,42 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+#include "GeneralData.h"
+using namespace std;
+
 class Lexer {
-    string filename;
-
     public:
-
-    /**
-     * constrcuctor
-     */
-    Lexer();
-
-    /**
-     * constrcuctor
-     * @param filename file's name
-     */
-    explicit Lexer(string &filename);
 
     /**
      * split the code into tokens
      */
-    void makeTokens();
+    static void makeTokens(string);
 
     /**
      * Check if the token is legal
      * @param token the token
      */
-     bool isLegalToken(string token);
+    static bool isLegalToken(string token);
 
      /**
       * check if the char is skippable
       * @param c the char
       * @return true if skippable
       */
-     bool isSkippableChar(char c);
+     static bool isSkippableChar(char c);
 
      /**
       * Check if the current line is a variable assignment, i.e. if we detect `var = ...`
       * @return
       */
-     bool isVarAssignment();
+     static bool isVarAssignment();
 
      /**
       * Check if a string is a legal variable name
       * @param var the string to check
       * @return true if the string is a legal variable name
       */
-     bool isLegalVar(string &var);
+     static bool isLegalVar(string &var);
 
 
     /**
@@ -58,21 +48,21 @@ class Lexer {
      * @param var the string to check
      * @return true if the string is a legal function name
      */
-    bool isLegalFunc(string &func);
+    static bool isLegalFunc(string &func);
 
      /**
       * check if a char is a letter
       * @param c the char
       * @return true if the char is a letter
       */
-     bool isLetter(char c);
+     static bool isLetter(char c);
 
     /**
      * check if a char is a digit
      * @param c the char
      * @return true if the char is a digit
      */
-    bool isDigit(char c);
+    static bool isDigit(char c);
 
     /**
      * get matches from string using regex
@@ -80,12 +70,21 @@ class Lexer {
      * @param pattern the pattern
      * @return a vector of matches
      */
-    vector<string> doRegex(string, string);
+    static vector<string> doRegex(string, string);
 
     /**
-    * destructor
-    */
-    ~Lexer() = default;
+     * find the closing bracket of the scope
+     * @param start the index to start looking from
+     * @return the index of the closing bracket
+     */
+    static int findClosingBracketIndex(int);
+
+    /**
+     * removes wrapping quotes from string
+     * @param string
+     * @return the string without the wrapping quotes
+     */
+    static string removeQuotes(string);
 };
 
 #endif //LEXER_H

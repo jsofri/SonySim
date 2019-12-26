@@ -5,7 +5,7 @@
 #include "GeneralData.h"
 #include "parser.h"
 #include "lexer.h"
-#include "Command.h"
+#include "Commands/Command.h"
 
 /**
  * Parse the tokens and execute commands
@@ -26,12 +26,15 @@ void Parser :: parse(int start, int end, vector<string> &tokenArr) {
             }
 
             // try to execute the command
-            Command c = cmdMap[cmdType];
+            Command* c = cmdMap[cmdType];
             try {
-                start = c.execute(index);
+                start = c -> execute(start);
             } catch (char* exception) {
                 cerr << exception << endl;
             }
+
+            // clear row
+            tokensRow.clear();
 
         } else {
             tokensRow.push_back(tokens[start]);
@@ -171,15 +174,12 @@ bool Parser :: isConnect(vector<string> &row) {
  * @return true if a variable command should run
  */
 bool Parser :: isVar(vector<string> &row) {
-    Lexer lexer;
-
     // match e.g. `var heading = ...`
-    if (row[0] == "var" && lexer.isLegalVar(row[1]) && row[2] == "=") {
+    if (row[0] == "var" && Lexer::isLegalVar(row[1]) && row[2] == "=") {
         return true;
     }
-    
     // match e.g. `heading = ...`
-    if (lexer.isLegalVar(row[0]) && *(row[1]) == "=") {
+    else if (Lexer::isLegalVar(row[0]) && row[1] == "=") {
         return true;
     }
 
@@ -192,9 +192,8 @@ bool Parser :: isVar(vector<string> &row) {
  * @return true if a function definition command should run
  */
 bool Parser :: isFuncDef(vector<string> &row, int index) {
-    Lexer lexer;
     string func = row[0];
-    if (lexer.isLegalFunc(func) && *(row.end() - 1) == "{") {
+    if (Lexer::isLegalFunc(func) && *(row.end() - 1) == "{") {
         funcMap[func].first.first = index + 1;
         return true;
     }
@@ -208,10 +207,9 @@ bool Parser :: isFuncDef(vector<string> &row, int index) {
  * @return true if a function call command should run
  */
 bool Parser :: isFuncCall(vector<string> &row) {
-    Lexer lexer;
     string func = row[0];
     // check if the function name is legal AND if it exists in the funcMap (i.e. if it was defined before)
-    return lexer.isLegalFunc(func) && funcMap.count(func);
+    return Lexer::isLegalFunc(func) && funcMap.count(func);
 }
 
 /**

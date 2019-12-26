@@ -1,36 +1,49 @@
 //
 // Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
 //
-// var Print Sleep while
-// can print vars!!! @@@@@@@@@@@@@@@@@@@
-//
-//
 
 #include "GeneralData.h"
 #include "lexer.h"
 
-/**
- * constrcuctor
- */
-Lexer :: Lexer() {}
-
-/**
- * constrcuctor
- * @param filename file's name
- */
-Lexer :: Lexer(string &filename): filename(filename) {}
 
 /**
  * split the code into tokens
  */
-void Lexer :: makeTokens() {
+void Lexer :: makeTokens(string filename) {
     string line;
-    ifstream file(this -> filename);
-    string pattern = R"lit((\{)|(\})|(var)\s|(connectControlClient)\("([\S]*)",(\d{1,5})\)|(\w+)\s*(=)\s*(.+)|([Ww]hile|[Ii]f)\s*(.+)\s*(<=|>=|<|>|==|!=)\s*(.+)(\{)|(\w+)\s*(->|<-)\s*(sim)\((.+)\)|([\w\_]+)\s*\((var\s)?(.+)\))lit";
+    ifstream file(filename);
+
+    //pattern = "(\{)|(\})|(var)\s|(connectControlClient)\((.+)\s*,\s*(\d{1,5})\)|(\w+)\s*(=)\s*(.+)|([Ww]hile|[Ii]f)\s*(.+)\s*(<=|>=|<|>|==|!=)\s*(.+)(\{)|(\w+)\s*(->|<-)|([\w\_]+)\s*\((var\s)?(.+)\)";
+
+    string pattern;
+    // match opening and closing brackets
+    pattern = "({)|(})|";
+    // match the word var
+    pattern += "(var)\\s|";
+    // match connectControlClient function and its params
+    pattern += "(connectControlClient)\\((.+)\\s*,\\s*(\\d{1,5})\\)|";
+    // match var assignment of the pattern `X = Y`
+    pattern += "(\\w+)\\s*(=)\\s*(.+)|";
+    // match while and if
+    pattern += "([Ww]hile|[Ii]f)\\s*(.+)\\s*(<=|>=|<|>|==|!=)\\s*(.+)(\\{)|";
+    // match simulator variable binding
+    pattern += "(\\w+)\\s*(->|<-)|";
+    // match function name + function params
+    pattern += "([\\w\\_]+)\\s*\\((var\\s)?(.+)\\)";
 
     while (getline(file, line)) {
         auto matches = doRegex(line, pattern);
+
+        // check if the matches are legal tokens
+        for (string& match: matches) {
+            if (!isLegalToken(match)) {
+                cerr << "Error: illegal token:" << match << endl;
+            }
+        }
+
+        // append the new tokens to the general tokens vector
         tokens.insert(tokens.end(), matches.begin(), matches.end());
+        // add a `new line` token
         tokens.emplace_back("\n");
     }
 }
@@ -38,12 +51,25 @@ void Lexer :: makeTokens() {
 /**
  * Check if the token is legal
  * @param token the token
+ * @return true if legal token
  */
 bool Lexer :: isLegalToken(string token) {
+    int i = 0;
+    bool isString = false;
+    if (token[0] == '"') {
+        isString = true;
+    }
+
+
     for (char c : token) {
-        if (isSkippableChar(c)) {
+        // if it's a string and if the string is terminated with `"` or if the last char is not `"`
+        if (isString && ((c == '"' && i > 0 && i != token.size() - 1) || (i != token.size() -1 && c != '"'))) {
             return false;
         }
+        else if (isSkippableChar(c)) {
+            return false;
+        }
+        i++;
     }
     return true;
 }
@@ -54,7 +80,7 @@ bool Lexer :: isLegalToken(string token) {
  * @return true if skippable
  */
 bool Lexer :: isSkippableChar(char c) {
-    return c == ' ' || c == ',' || c == '\n' || c == '\r' || c == '\t' || c == '(' || c == ')';
+    return c == ' ' || c == ',' || c == '\r' || c == '\t' || c == '(' || c == ')';
 }
 
 /**
@@ -146,4 +172,40 @@ vector<string> Lexer :: doRegex(string str, string pattern) {
     }
 
     return matches;
+}
+
+/**
+ * find the closing bracket of the scope
+ * @param start the index to start looking from
+ * @return the index of the closing bracket
+ */
+int Lexer :: findClosingBracketIndex(int start) {
+    int countOpening = 0, countClosing = 0;
+    for (int i = start; i < tokens.size(); ++i) {
+        if (tokens[i] == "{") {
+            countOpening++;
+        } else if (tokens[i] == "}") {
+            countClosing++;
+        }
+
+        if (countOpening == countClosing) {
+            return start + i;
+        }
+    }
+
+    throw "Error: Cannot find brackets";
+};
+
+/**
+ * removes wrapping quotes from string
+ * @param string
+ * @return the string without the wrapping quotes
+ */
+string Lexer :: removeQuotes(string str) {
+    if (str[0] == '"' && str[str.size()] == '"') {
+        // remove first "
+        str = str.substr(1);
+        // remove last "
+        str.pop_back();
+    }
 }

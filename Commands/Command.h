@@ -8,6 +8,11 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include "CommandFuncCall.h"
+#include "CommandFuncDef.h"
+#include "CommandIF.h"
+#include "CommandPrint.h"
+
 /**
  * Base abstract class of Command object
  */
@@ -24,28 +29,7 @@ class Command {
      * @return new index counter in the vector that will be passed to the next command
      */
     virtual int execute(int) = 0;
-};
-
-/**
- * Print Command
- */
-class CommandPrint: Command {
-    int execute(int index);
-};
-
-
-/**
- * Function Definition Command
- */
-class CommandFuncDef: Command {
-    int execute(int index);
-};
-
-/**
- * Function Call Command
- */
-class CommandFuncCall: Command {
-    int execute(int index);
+    virtual int execute(int, int) = 0;
 };
 
 #endif //COMMAND_H

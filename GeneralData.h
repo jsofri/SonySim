@@ -28,7 +28,9 @@
 #include <fstream>
 #include <regex>
 
-#include "Command.h"
+#include "Commands/Command.h"
+#include "lexer.h"
+#include "parser.h"
 
 using namespace std;
 
@@ -53,7 +55,7 @@ typedef struct VarData {
     string reference;
     float value;
     short updater;//0 = no one, 1 = client, 2 = simulator
-} VarNode;
+} VarData;
 
 
 // the lexer array of tokens
@@ -65,18 +67,17 @@ extern vector<string> tokens;
 // (3) map parameters names and values
 extern unordered_map<string, pair<pair<int, int>, vector<string>>> funcMap;
 
-extern unordered_map<string, Command> cmdMap = {{COM_VAR, new CommandVar()},
-                                                {COM_WHILE, new CommandWhile()},
-                                                {COM_IF, new CommandIF()},
-                                                {COM_FUNC_DEF, new CommandFuncDef()},
-                                                {COM_FUNC_CALL, new CommandFuncCall()},
-                                                {COM_UPDATE, new CommandUpdate()},
-                                                {COM_PRINT, new CommandPrint()},
-                                                {COM_SLEEP, new CommandSleep()},
-                                                {COM_OPEN_SERVER, new CommandOpenServer()},
-                                                {COM_CONNECT, new CommandConnect()}};
+extern unordered_map<string, Command*> cmdMap;
 
 //symbol table of the program parsing process
 extern SymbolTable symbol_table;
+
+// key: index in XML, value: variable name in symbol table
+// Note: this map stores only var names that are SIMULATOR-wrapped (i.e. `<-` binding)
+extern unordered_map<int, vector<string>> xmlIndexToVarMap;
+
+// key: simulator reference, value: index in XML
+extern unordered_map<string, int> xmlRefToIndexMap;
+
 
 #endif //GENERALDATA_H
