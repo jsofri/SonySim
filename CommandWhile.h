@@ -16,12 +16,9 @@
 class CommandWhile : public Command {
 public:
     int execute(int);
-    void executeLoop();
     void cleanData();
     void setCondition(int);
-    void setCommands();
-    void setCommand(int index);
-    CommandWhile();
+    CommandWhile() = default;
     ~CommandWhile();
 private:
     list<Command*> _commands;

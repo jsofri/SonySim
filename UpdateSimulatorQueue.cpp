@@ -24,7 +24,7 @@ UpdateSimulatorQueue::UpdateSimulatorQueue() {
 void UpdateSimulatorQueue::enqueue(VarData var_data) {
     lock_guard<mutex> lock(_locker);
 
-    this ->_var_data_queue -> push(var_data);
+    this -> _var_data_queue -> push(var_data);
 }
 
 /**
@@ -63,7 +63,14 @@ bool UpdateSimulatorQueue::isEmpty() {
  * Dtor.
  */
 UpdateSimulatorQueue::~UpdateSimulatorQueue() {
-    lock_guard<mutex> lock(_locker);
+
+    //make sure no thread is on object
+    if (_locker.try_lock()) {
+        _locker.unlock();
+    } else {
+        _locker.lock();
+        _locker.unlock();
+    }
 
     delete(this->_var_data_queue);
 }

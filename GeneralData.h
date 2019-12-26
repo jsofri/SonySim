@@ -32,6 +32,8 @@
 #include "SymbolTable.h"
 #include "FloatFromString.h"
 #include "UpdateSimulatorQueue.h"
+#include "Lexer.h"
+
 
 using namespace std;
 
@@ -84,5 +86,6 @@ extern SymbolTable          symbol_table;
 extern UpdateSimulatorQueue updateSimulatorQueue;
 extern thread               client;
 extern thread               server;
+extern bool                 mainIsParsing;
 
 #endif //GENERALDATA_H

@@ -7,16 +7,15 @@
 int CommandServer::execute(int index) {
     this -> _port = stoi(tokens[index + 1]);
 
-    thread(foo);
+    server = thread(&CommandServer::runServer, this);
 
-    return 3;
+    return index + 3;
 }
 
-void CommandServer::setServer() {
+void CommandServer::runServer() {
 
     //create socket
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
-    int i;
     char buffer[1024];
     if (socketfd == -1) {
 
@@ -53,15 +52,31 @@ void CommandServer::setServer() {
         throw "Error accepting client";
     }
 
-    while(i++ < 10) {
+    int t = 0;
+    string str;
+    while(mainIsParsing) {
         int valread = read( client_socket , buffer, 1024);
+        string values;
+        int size_of_buffer = sizeof(buffer) / sizeof(char);
 
-        std::cout<<buffer<<std::endl;
-        std::cout << i << std::endl;
+        values = convertToString(buffer);
 
-        char *hello = "Hello, I can hear you! \n";
-        send(client_socket , hello , strlen(hello) , 0 );
+        this -> handleCSV(values);//regex
     }
 
     close(socketfd); //closing the listening socket
+}
+
+string CommandServer::convertToString(char* a)
+{
+    int i = 0;
+    string s = "";
+
+    while (a[i] != '\n') {
+        s = s + a[i];
+
+        i++;
+    }
+
+    return s;
 }

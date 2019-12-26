@@ -78,7 +78,7 @@ void CommandVar::setVarCommand(int index) {//x =...\ x <- ...
         return;
     }
     else if (token_after_name == "=") {
-        if (symbol_table.get(this -> _var_name).updater == SIMULATOR) {
+        if (symbol_table.get(this -> _var_name).updater != CLIENT) {
             throw "can't assign value to a var dependent on the simulator updates";
         }
 

@@ -9,11 +9,12 @@
 
 class CommandServer : public Command {
 public:
-    void setServer();
+    void runServer();
     int execute(int);
     void createSocket();
     void bindSocket();
     void listenAndAccept();
+    string convertToString(char*);
     CommandServer();
     ~CommandServer();
 private:
