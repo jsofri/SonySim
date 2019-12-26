@@ -20,12 +20,12 @@ public:
     void newTable(unordered_map<string, VarData> &);
     void deleteTable();
     VarData get(string);
-    void insert(string, VarData);
+    void insert(string &, VarData &);
     SymbolTable();
-    ~SymbolTable();
+    ~SymbolTable() = default;
 private:
     list<unordered_map<string, VarData>> _symbol_tables;
-    pthread_mutex_t _locker;
+    mutex _locker;
 };
 
 

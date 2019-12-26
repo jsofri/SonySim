@@ -19,13 +19,12 @@ CommandSleep::CommandSleep() {
  * @return indexCounter value - in this command is const
  */
 int CommandSleep::execute(int index) {
-    float value = this ->_floatFromString->calculateString(tokens[index]);
+    float value = this ->_floatFromString->calculateString(tokens[++index]);
     chrono::milliseconds dura((int) value);
 
     this_thread::sleep_for(dura);
 
-    return 2?3;////////////////
-    what number?
+    return index + 3;
 }
 
 /**

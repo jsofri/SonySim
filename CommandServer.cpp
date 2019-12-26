@@ -16,6 +16,8 @@ void CommandServer::setServer() {
 
     //create socket
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
+    int i;
+    char buffer[1024];
     if (socketfd == -1) {
 
         throw "Could not create a socket";
@@ -24,7 +26,7 @@ void CommandServer::setServer() {
 
     //bind socket to IP address
     // we first need to create the sockaddr obj.
-    sockaddr_in address; //in means IP4
+    sockaddr_in address; //in meanVarData                     var_data;s IP4
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY; //give me any IP allocated for my machine
     address.sin_port = htons(_port);
@@ -51,14 +53,15 @@ void CommandServer::setServer() {
         throw "Error accepting client";
     }
 
+    while(i++ < 10) {
+        int valread = read( client_socket , buffer, 1024);
+
+        std::cout<<buffer<<std::endl;
+        std::cout << i << std::endl;
+
+        char *hello = "Hello, I can hear you! \n";
+        send(client_socket , hello , strlen(hello) , 0 );
+    }
+
     close(socketfd); //closing the listening socket
-
-    //reading from client
-    char buffer[1024] = {0};
-    int valread = read(client_socket, buffer, 1024);
-    std::cout << buffer << std::endl;
-
-    //writing back to client
-    char *hello = "Hello, I can hear you! \n";
-    send(client_socket, hello, strlen(hello), 0);
 }

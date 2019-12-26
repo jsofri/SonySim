@@ -14,7 +14,6 @@
  */
 UpdateSimulatorQueue::UpdateSimulatorQueue() {
     this -> _var_data_queue = new queue<VarData>;
-    this -> _locker = PTHREAD_MUTEX_INITIALIZER;
 }
 
 /**
@@ -23,11 +22,9 @@ UpdateSimulatorQueue::UpdateSimulatorQueue() {
  * @param var_data the struct to be enqueued.
  */
 void UpdateSimulatorQueue::enqueue(VarData var_data) {
-    pthread_mutex_lock(&(this->_locker));
+    lock_guard<mutex> lock(_locker);
 
     this ->_var_data_queue -> push(var_data);
-
-    pthread_mutex_unlock(&(this->_locker));
 }
 
 /**
@@ -42,13 +39,11 @@ VarData UpdateSimulatorQueue::dequeue() {
         throw "queue is empty";
     }
 
-    pthread_mutex_lock(&(this->_locker));
+    lock_guard<mutex> lock(_locker);
 
     var_data = this ->_var_data_queue -> front();
 
     this ->_var_data_queue ->pop();
-
-    pthread_mutex_unlock(&(this->_locker));
 
     return var_data;
 }
@@ -59,25 +54,16 @@ VarData UpdateSimulatorQueue::dequeue() {
  * @return boolean
  */
 bool UpdateSimulatorQueue::isEmpty() {
-    pthread_mutex_lock(&(this->_locker));
-    bool boolean;
+    lock_guard<mutex> lock(_locker);
 
-    boolean = this -> _var_data_queue->empty();
-
-    pthread_mutex_unlock(&(this->_locker));
-
-    return boolean;
+    return this -> _var_data_queue -> empty();
 }
 
 /**
  * Dtor.
  */
 UpdateSimulatorQueue::~UpdateSimulatorQueue() {
-    pthread_mutex_lock(&(this->_locker));
+    lock_guard<mutex> lock(_locker);
 
     delete(this->_var_data_queue);
-
-    pthread_mutex_unlock(&(this->_locker));
-
-    pthread_mutex_destroy(&(this->_locker));
 }

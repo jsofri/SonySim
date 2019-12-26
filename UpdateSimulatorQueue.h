@@ -21,7 +21,7 @@ public:
     ~UpdateSimulatorQueue();
 private:
     queue<VarData> * _var_data_queue;
-    pthread_mutex_t _locker;
+    mutex _locker;
 };
 
 

@@ -44,9 +44,10 @@ void CommandVar::updateData() {
  */
 int CommandVar::execute(int index) {
     this->cleanData();
-    this->indexCounter++;
+    this->indexCounter = index;
 
     if (tokens[index] == "var") {
+        this -> indexCounter++;
         setVarCommand(++index);
     }
     else {
@@ -55,7 +56,7 @@ int CommandVar::execute(int index) {
 
     this -> updateData();
 
-    return this->indexCounter;
+    return this -> indexCounter;
 }
 
 /**
@@ -64,15 +65,16 @@ int CommandVar::execute(int index) {
  * @param index in vector of tokens
  * @throw const char * in case of invalid input
  */
-void CommandVar::setVarCommand(int index) {
+void CommandVar::setVarCommand(int index) {//x =...\ x <- ...
     string token_after_name;
 
-    this -> _var_name = tokens[index];
-    this -> indexCounter+=2;
+    this -> _var_name = tokens[index];//x
+    this -> indexCounter++;//= / -> / \n / {
 
-    token_after_name = tokens[++index];
+    token_after_name = tokens[++index]; //= / -> / \n / {
 
     if (token_after_name == "\n") {
+        this -> indexCounter++;
         return;
     }
     else if (token_after_name == "=") {
@@ -80,14 +82,15 @@ void CommandVar::setVarCommand(int index) {
             throw "can't assign value to a var dependent on the simulator updates";
         }
 
+        this -> indexCounter++;//expression / value
         setValue(index+1);//index in the beginning of expression
-        add to queue
+        updateSimulatorQueue.enqueue(this -> _var_info);
     }
     else if(this -> isArrow(index)) {
         this -> setVarInfo(index);
     }
     else if (token_after_name == "{") {
-        this -> indexCounter--;//so the next parser will see "{"
+        return;
     }
     else {
         throw "Invalid input";
@@ -98,6 +101,7 @@ void CommandVar::setVarCommand(int index) {
  * check if the string in the vector at the specific index is an arrow.
  * arrow is "->" or "<-"
  *
+ * @test 12.26.19 by YS
  * @param position of token in vector
  * @return boolean - 1 true / 0 false
  */
@@ -112,27 +116,25 @@ int CommandVar::isArrow(int index) {
 /**
  * creating a Var - setting reference and updater by direction of arrow.
  *
- * @param index in vector
+ * @test in 26.12.19 by YS
+ * @param index in vector, pointing to arrow
  */
 void CommandVar::setVarInfo(int index) {
 
     //check binding direction - first char is "-" or "<"
-    (tokens[index][0] == '-') ? this->_var_info.updater = CLIENT : this->_var_info.updater = SIMULATOR;
+    this->_var_info.updater = (tokens[index][0] == '-') ? CLIENT : SIMULATOR;
 
-    //skipping "sim" in the vector
-    indexCounter+=2;
-    index+=2;
+    this -> _var_info.reference = this -> removeQuotesFromString(index + 2);//skiping arrow, "sim"
 
-    this -> _var_info.reference = this -> removeQuotesFromString(index);
-
-    //skipping "\n"
-    indexCounter+=2;
+    //skipping arrow, "sim", reference, "\n"
+    this -> indexCounter += 4;
 }
 
 /**
  * get a string and remove substring, without the first and last characters.
  * used for removing quotes.
  *
+ * @test in 12.26.19 by YS
  * @param index in the tokens vector
  * @return string in tokens[index] without quotes
  */
