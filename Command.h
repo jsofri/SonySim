@@ -12,11 +12,8 @@
  * Base abstract class of Command object
  */
 class Command {
-    protected:
-    //count number of strings that were handled in the vector
-    int indexCounter = 0;
+public:
 
-    public:
     /**
      * interpret and execute
      *
@@ -25,28 +22,10 @@ class Command {
      * @return int - index counter in the vector
      */
     virtual int execute(int) = 0;
-};
+protected:
 
-/**
- * Print Command
- */
-class CommandPrint: Command {
-    int execute(int index);
-};
-
-
-/**
- * Function Definition Command
- */
-class CommandFuncDef: Command {
-    int execute(int index);
-};
-
-/**
- * Function Call Command
- */
-class CommandFuncCall: Command {
-    int execute(int index);
+    //count number of strings that were handled in the vector
+    int indexCounter = 0;
 };
 
 #endif //COMMAND_H

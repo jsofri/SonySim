@@ -1,6 +1,10 @@
-//
-// Created by yehonatan on 23/12/2019.
-//
+/**
+ * class is a generic object for all uses in program.
+ * get a string and return a float - the value that the string represent.
+ *
+ * @author Yehonatan Sofri
+ * @date 24.12.19
+ */
 
 #include "FloatFromString.h"
 
@@ -18,7 +22,11 @@ float FloatFromString::calculateString(string str) {
     if (this -> isNumber(str)) {
         return stof(str);
     } else if (this -> isVar(str)) {
-        return symbol_table.get(str).value;
+        if (symbol_table.exists(str)) {
+            return symbol_table.get(str).value;
+        } else {
+            return 0; //uninitialized variable
+        }
     } else if (this -> isExpression(str)) {
         return this -> floatFromExpression(str);
     }
@@ -121,6 +129,7 @@ bool FloatFromString::isVar(string & str) {
 /**
  * check if a given string is a float number.
  *
+ * @test 12.16.19 by YS
  * @param str reference to a string.
  * @return bool - 1 if true, 0 if false
  */
@@ -132,7 +141,10 @@ bool FloatFromString::isNumber(string & str) {
 }
 
 /**
+ * check if a given string is an expression by finding operators.
+ * not perfect - assuming you went through isNumber beforehand.
  *
+ * @test 12.16.19 by YS
  * @param str reference to a string.
  * @return bool - 1 if true, 0 if false
  */

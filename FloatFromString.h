@@ -1,6 +1,10 @@
-//
-// Created by yehonatan on 23/12/2019.
-//
+/**
+ * class is a generic object for all uses in program.
+ * get a string and return a float - the value that the string represent.
+ *
+ * @author Yehonatan Sofri
+ * @date 24.12.19
+ */
 
 #ifndef FLOATFROMSTRING_H
 #define FLOATFROMSTRING_H

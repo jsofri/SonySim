@@ -16,11 +16,12 @@
 
 class SymbolTable {
 public:
-    void newTable();
-    void newTable(unordered_map<string, VarData> &);
-    void deleteTable();
+    void    newTable();
+    void    newTable(unordered_map<string, VarData> &);
+    void    deleteTable();
+    bool    exists(string &);
     VarData get(string);
-    void insert(string &, VarData &);
+    void    insert(string &, VarData &);
     SymbolTable();
     ~SymbolTable() = default;
 private:

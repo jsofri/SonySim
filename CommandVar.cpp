@@ -82,9 +82,10 @@ void CommandVar::setVarCommand(int index) {//x =...\ x <- ...
             throw "can't assign value to a var dependent on the simulator updates";
         }
 
+        this ->_var_info.updater = CLIENT;
         this -> indexCounter++;//expression / value
         setValue(index+1);//index in the beginning of expression
-        updateSimulatorQueue.enqueue(this -> _var_info);
+        updateSimulatorQueue.enqueue(symbol_table[this -> _var_name]);
     }
     else if(this -> isArrow(index)) {
         this -> setVarInfo(index);
@@ -126,6 +127,12 @@ void CommandVar::setVarInfo(int index) {
 
     this -> _var_info.reference = this -> removeQuotesFromString(index + 2);//skiping arrow, "sim"
 
+    if (this -> _var_info.updater == SIMULATOR) {
+        int placeInCSV = xmlRefToIndexMap[this -> _var_info.reference];
+
+        xmlIndexToVarMap[placeInCSV] = this ->_var_name;
+    }
+
     //skipping arrow, "sim", reference, "\n"
     this -> indexCounter += 4;
 }
@@ -156,6 +163,7 @@ string CommandVar::removeQuotesFromString(int index) {
 void CommandVar::setValue(int index) {
     FloatFromString floatFromStringExpression;
     this -> _var_info.value = floatFromStringExpression.calculateString(tokens[index]);
+    this -> _var_info.reference = symbol_table.get(this -> _var_name).reference;
 
     this->indexCounter+=2;//skipping expression and "\n"
 }

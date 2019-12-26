@@ -1,9 +1,19 @@
-//
-// Created by yehonatan on 25/12/2019.
-//
+/**
+ * class for create and run client thread.
+ *
+ * @author Yehonatan Sofri
+ * @date 12.26.19
+ */
 
 #include "CommandServer.h"
 
+/**
+ * Command Abstract class method.
+ * executing a command of openDataServer.
+ *
+ * @param index in vector of token
+ * @return int - first string after this command line
+ */
 int CommandServer::execute(int index) {
     this -> _port = stoi(tokens[index + 1]);
 

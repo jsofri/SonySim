@@ -74,7 +74,7 @@ VarData SymbolTable::get(string str) {
     lock_guard<mutex> lock(_locker);
     auto                        iter = this->_symbol_tables.begin();
 
-    while (iter != this->_symbol_tables.end()) {
+    while (iter != this -> _symbol_tables.end()) {
 
         if ((*iter).find(str) != (*iter).end()) {
             return (*iter)[str];
@@ -84,4 +84,25 @@ VarData SymbolTable::get(string str) {
     }
 
     throw "Variable not found";
+}
+
+/**
+ * check if a key exist in the symbol table.
+ *
+ * @param str - key to look for in symbol table
+ * @return boolean
+ */
+bool SymbolTable::exists(string & str) {
+    lock_guard<mutex> lock(_locker);
+    auto                        iter = this->_symbol_tables.begin();
+
+    while (iter != this -> _symbol_tables.end()) {
+        if ((*iter).find(str) != (*iter).end()) {
+            return true;
+        }
+
+        iter++;
+    }
+
+    return false;
 }

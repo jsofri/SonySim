@@ -1,6 +1,9 @@
-//
-// Created by yehonatan on 25/12/2019.
-//
+/**
+ * class for create and run server thread.
+ *
+ * @author Yehonatan Sofri
+ * @date 12.26.19
+ */
 
 #ifndef COMMANDSERVER_H
 #define COMMANDSERVER_H

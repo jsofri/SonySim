@@ -1,5 +1,6 @@
 /**
  * Class for handling with sleep command.
+ *
  * @author Yehonatan Sofri
  * @date 12.25.19
  */

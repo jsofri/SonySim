@@ -1,9 +1,12 @@
-//
-// Created by yehonatan on 26/12/2019.
-//
+/**
+ * class for create and run client thread.
+ *
+ * @author Yehonatan Sofri
+ * @date 12.26.19
+ */
 
-#ifndef SONYSIM_COMMANDCLIENT_H
-#define SONYSIM_COMMANDCLIENT_H
+#ifndef COMMANDCLIENT_H
+#define COMMANDCLIENT_H
 
 #include "GeneralData.h"
 
@@ -11,6 +14,7 @@ class CommandClient {
 public:
     int execute(int);
     void runClient();
+    string setMessage();
     CommandClient() = default;
     ~CommandClient() = default;
 private:
@@ -19,4 +23,4 @@ private:
 };
 
 
-#endif //SONYSIM_COMMANDCLIENT_H
+#endif //COMMANDCLIENT_H
