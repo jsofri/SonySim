@@ -2,17 +2,17 @@
 // Created by rony on 12/26/19.
 //
 
-#ifndef CODE_COMMANDPRINT_H
-#define CODE_COMMANDPRINT_H
+#ifndef COMMANDPRINT_H
+#define COMMANDPRINT_H
 
-#include "../GeneralData.h"
+#include "Command.h"
 
 /**
  * Print Command
  */
-class CommandPrint: Command {
+class CommandPrint: public Command {
     int execute(int);
 };
 
 
-#endif //CODE_COMMANDPRINT_H
+#endif //COMMANDPRINT_H

@@ -4,6 +4,8 @@
  * @date 23.12.19
  */
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "CommandVar.h"
 
 /**
@@ -43,6 +45,11 @@ void CommandVar::updateData() {
  * @return number of cells in tokens_array to go ahead
  */
 int CommandVar::execute(int index) {
+    // if it's a new line string (maybe a leftover from the last command), then move on to the next token
+    if (tokens[index] == "\n") {
+        return execute(index + 1);
+    }
+
     this->cleanData();
     this->indexCounter = index;
 
@@ -85,7 +92,7 @@ void CommandVar::setVarCommand(int index) {//x =...\ x <- ...
         this ->_var_info.updater = CLIENT;
         this -> indexCounter++;//expression / value
         setValue(index+1);//index in the beginning of expression
-        updateSimulatorQueue.enqueue(symbol_table[this -> _var_name]);
+        updateSimulatorQueue.enqueue(symbol_table.get(this -> _var_name));
     }
     else if(this -> isArrow(index)) {
         this -> setVarInfo(index);
@@ -130,7 +137,7 @@ void CommandVar::setVarInfo(int index) {
     if (this -> _var_info.updater == SIMULATOR) {
         int placeInCSV = xmlRefToIndexMap[this -> _var_info.reference];
 
-        xmlIndexToVarMap[placeInCSV] = this ->_var_name;
+        xmlIndexToVarMap[placeInCSV].push_back(this ->_var_name);
     }
 
     //skipping arrow, "sim", reference, "\n"

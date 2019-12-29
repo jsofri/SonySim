@@ -2,7 +2,10 @@
 // Created by rony on 12/26/19.
 //
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "CommandPrint.h"
+#include "../Lexer.h"
 
 /**
  * Interpret and execute.
@@ -27,7 +30,7 @@ int CommandPrint :: execute(int index) {
         value = symbol_table.get(print).value;
     } else {
         // remove leading and trailing quotes
-        value = Lexer::removeQuotes(value);
+        value = Lexer::trim(value, '"');
     }
 
     // print the value

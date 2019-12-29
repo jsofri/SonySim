@@ -9,23 +9,25 @@
 #ifndef FLOATFROMSTRING_H
 #define FLOATFROMSTRING_H
 
-#include "GeneralData.h"
+#include "Expressions/Interpreter.h"
 
 #define NUMBERS "1234567890."
 #define ABC "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwhyz_0123456789"
 
+using namespace std;
+
 class FloatFromString {
 public:
-    float calculateString(string);
+    static float calculateString(string);
     FloatFromString() = default;
-    ~FloatFromString() = default();
+    ~FloatFromString() = default;
 private:
-    float  floatFromExpression(string &);
-    void   setVariables(Interpreter * &, string);
-    string delSpaces(string &str);
-    bool   isVar(string &);
-    bool   isNumber(string &);
-    bool   isExpression(string &);
+    static float  floatFromExpression(string &);
+    static void   setVariables(Interpreter * &, string);
+    static string delSpaces(string &str);
+    static bool   isVar(string &);
+    static bool   isNumber(string &);
+    static bool   isExpression(string &);
 };
 
 #endif //FLOATFROMSTRING_H

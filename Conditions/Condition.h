@@ -10,10 +10,6 @@
 #ifndef CONDITION_H
 #define CONDITION_H
 
-#include "GeneralData.h"
-#include <Expressions/Interpreter.h>
-#include "FloatFromString.h"
-
 class Condition {
 public:
     virtual int isTrue() = 0;

@@ -9,7 +9,8 @@
  * @date 23.12.19
  */
 
-#include "SymbolTable.h"
+#include "GeneralData.h"
+#include "GlobalVars.h"
 
 /**
  * Constructor
@@ -68,9 +69,9 @@ void SymbolTable::deleteTable() {
  *
  * @param str key to look for in maps
  * @return value attached to the key in the closest to the beginning
- * @throw const char * if key not found
+ * @throw char * if key not found
  */
-VarData SymbolTable::get(string str) {
+VarData& SymbolTable::get(string str) {
     lock_guard<mutex> lock(_locker);
     auto                        iter = this->_symbol_tables.begin();
 

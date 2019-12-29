@@ -10,7 +10,9 @@
 #ifndef UPDATESIMULATORQUEUE_H
 #define UPDATESIMULATORQUEUE_H
 
-#include "GeneralData.h"
+#include "VarData.h"
+#include <queue>
+#include <mutex>
 
 class UpdateSimulatorQueue {
 public:
@@ -25,4 +27,4 @@ private:
 };
 
 
-#endif //SONYSIM_UPDATESIMULATORQUEUE_H
+#endif //UPDATESIMULATORQUEUE_H

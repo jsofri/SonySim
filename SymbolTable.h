@@ -12,7 +12,7 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include "GeneralData.h"
+#include "VarData.h"
 
 class SymbolTable {
 public:
@@ -20,7 +20,7 @@ public:
     void    newTable(unordered_map<string, VarData> &);
     void    deleteTable();
     bool    exists(string &);
-    VarData get(string);
+    VarData& get(string);
     void    insert(string &, VarData &);
     SymbolTable();
     ~SymbolTable() = default;

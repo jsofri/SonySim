@@ -8,7 +8,8 @@
 #ifndef COMMANDWHILE_H
 #define COMMANDWHILE_H
 
-#include "../GeneralData.h"
+#include "Command.h"
+#include "../Conditions/Condition.h"
 
 class CommandWhile : public Command {
 public:
@@ -20,8 +21,6 @@ public:
 private:
     list<Command*> _commands;
     Condition * _condition;
-    ConditionFactory * _factory;
-    int _start_of_scope;
 };
 
 #endif //COMMANDWHILE_H

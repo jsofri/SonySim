@@ -5,7 +5,8 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include "GeneralData.h"
+#include <string>
+#include <vector>
 
 class Lexer {
     public:
@@ -79,11 +80,19 @@ class Lexer {
     static int findClosingBracketIndex(int);
 
     /**
-     * removes wrapping quotes from string
-     * @param string
-     * @return the string without the wrapping quotes
+     * removes wrapping char from string
+     * @param string the text
+     * @param char the char to trim
+     * @return the string without the wrapping char
      */
-    static string removeQuotes(string);
+    static string trim(string, char);
+
+    /**
+     * trim spaces
+     * @param str the text
+     * @return the text without leading and trailing spaces
+     */
+    static string trim(string);
 };
 
 #endif //LEXER_H

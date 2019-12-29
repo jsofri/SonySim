@@ -2,7 +2,12 @@
 // Created by rony on 12/26/19.
 //
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "CommandIF.h"
+#include "../Conditions/ConditionFactory.h"
+#include "../Lexer.h"
+#include "../Parser.h"
 
 /**
  * Interpret and execute.

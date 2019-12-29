@@ -8,7 +8,8 @@
 #ifndef COMMANDSLEEP_H
 #define COMMANDSLEEP_H
 
-#include "../GeneralData.h"
+#include "Command.h"
+#include "../FloatFromString.h"
 
 class CommandSleep : public Command {
 public:
