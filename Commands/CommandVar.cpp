@@ -34,8 +34,8 @@ void CommandVar::updateData(bool shouldEnqueue) {
 
     if (this->_var_info.updater == CLIENT && shouldEnqueue) {
         updateSimulatorQueue.enqueue(this -> _var_info);
-        cout << "enqueued: " << _var_name << " " << _var_info.value << "| ";
-        cout << "queue status: " << !updateSimulatorQueue.isEmpty() << endl;
+        //cout << "enqueued: " << _var_name << " " << _var_info.value << "| ";
+        //cout << "queue status: " << !updateSimulatorQueue.isEmpty() << endl;
     }
 }
 
@@ -98,7 +98,7 @@ bool CommandVar::setVarCommand(int index) {//x =...\ x <- ...
             this -> _var_info.value = floatFromStringExpression.calculateString(tokens[index+1]);
 
             symbol_table.insert(_var_name, this ->_var_info);
-            this -> indexCounter++;
+            this -> indexCounter += 3;
 
             boolean = false;
         } else {

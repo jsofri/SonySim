@@ -2,6 +2,8 @@
  *
  */
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "Interpreter.h"
 
 //get a const char * (input from user) and make Variable of it
@@ -346,13 +348,22 @@ Expression* Interpreter::SetExpressionFromQueue() {
         expression = new Value(number);
       }
       else {
+        /*
         if (this->variables_.find(str) == this->variables_.end()) {
           throw "variable does not exist error";
         }
         else {
           number = this->variables_[str];
           expression = new Variable(str, number);
+        }*/
+
+        if (symbol_table.exists(str)) {
+          number = symbol_table.get(str).value;
+          expression = new Variable(str, number);
+        } else {
+          throw "variable does not exist error";
         }
+
       }
     }
 

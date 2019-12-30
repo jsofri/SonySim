@@ -130,29 +130,13 @@ void CommandServer::handleCSV(string values) {
     for (string match : matches) {
         vector<string> vars = xmlIndexToVarMap[index];
         for (string var : vars) {
-
-            if (var == "rpm") {
-                float v = stof(match);
-                if (v > 400) {
-                    cout << "rpm: " << v;
-                }
-            }
-
             VarData vdata = symbol_table.get(var);
-
-
-            //cout << "###" << var << " " << match << endl;
 
             if (vdata.updater == SIMULATOR) {
                 float val = stof(match);
                 symbol_table.update(var, val);
-                if (var == "rpm") {
-                    cout << "rpm: " << val << endl;
-                }
-                //cout << "updated key: " << var << " " << match << endl;
             }
         }
-
         index++;
     }
 }

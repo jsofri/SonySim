@@ -31,8 +31,12 @@ int CommandPrint :: execute(int index) {
     } else {
         // remove leading and trailing quotes
         string value = Lexer::trim(print, '"');
-        // print the value
+        // print the valflue
         cout << value << endl;
+
+        if (value == "let's fly") {
+            cout << "reached: " << value << endl;
+        }
     }
 
 

@@ -61,7 +61,7 @@ void CommandClient::runClient() {
             string message = this -> setMessage();
             int is_sent = send(client_socket, message.c_str(), strlen(message.c_str()), 0);
 
-            cout <<  "msg sent: " << message << " | ";
+            //cout <<  "msg sent: " << message << " | ";
 
             if (is_sent == -1) {
                 cerr << "Error sending message" << std::endl;

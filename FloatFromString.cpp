@@ -73,6 +73,8 @@ float FloatFromString::floatFromExpression(string & str) {
         if (interpreter != nullptr) {
             delete (interpreter);
         }
+
+        cerr << e << endl;
     }
 
     return value;
