@@ -10,7 +10,7 @@ Variable::Variable(string name_1, double value_1) {
 
   if (!NameIsValid(name_1)){
 
-    cout<<"Invalid Variable name";
+    cerr<<"Invalid Variable name"<<endl;
   }
 
   this -> name_ = name_1;

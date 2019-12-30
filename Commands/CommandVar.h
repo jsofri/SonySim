@@ -14,13 +14,13 @@
 
 class CommandVar : public Command {
 public:
-    void   setVarCommand(int);
+    bool   setVarCommand(int);
     void   setValue(int);
     int    execute(int);
     int    isArrow(int);
     void   setVarInfo(int);
     void   cleanData();
-    void   updateData();
+    void   updateData(bool);
     string removeQuotesFromString(int);
     CommandVar();
     ~CommandVar();

@@ -23,6 +23,7 @@ EXTERN unordered_map<string, Command*> cmdMap;
 
 // key: index in XML, value: variable name in symbol table
 // Note: this map stores only var names that are SIMULATOR-wrapped (i.e. `<-` binding)
+// Why vector? because many vars can point to the same reference.
 EXTERN unordered_map<int, vector<string>> xmlIndexToVarMap;
 
 // key: simulator reference, value: index in XML (initialized in main.cpp)

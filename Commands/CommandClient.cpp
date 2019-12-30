@@ -18,11 +18,10 @@
  */
 int CommandClient::execute(int index) {
     string ip_address = tokens[++index];
-    string str;
 
     ip_address = ip_address.substr(1, strlen(ip_address.c_str()) - 2);
 
-    this -> _ip = str;
+    this -> _ip = ip_address;
     this -> _port = stoi(tokens[++index]);
 
     client = thread(&CommandClient::runClient, this);
@@ -52,15 +51,17 @@ void CommandClient::runClient() {
     int is_connect = connect(client_socket, (struct sockaddr *) &address, sizeof(address));
 
     while (is_connect == -1) {
-        connect(client_socket, (struct sockaddr *) &address, sizeof(address));
+        is_connect = connect(client_socket, (struct sockaddr *) &address, sizeof(address));
     }
 
-    cout << "We are connected to the simulator as client!" << endl;
+    cout << "We're connected to simulator!" << endl;
 
     while (mainIsParsing) {
-        if (updateSimulatorQueue.isEmpty()) {
+        if (!updateSimulatorQueue.isEmpty()) {
             string message = this -> setMessage();
             int is_sent = send(client_socket, message.c_str(), strlen(message.c_str()), 0);
+
+            cout <<  "msg sent: " << message << " | ";
 
             if (is_sent == -1) {
                 cerr << "Error sending message" << std::endl;
@@ -84,5 +85,6 @@ string CommandClient::setMessage() {
     reference = var_data.reference;
     value = to_string(var_data.value);
 
-    return "set " + reference + " " + value + "\r\n";
+    string message = "set " + reference + " " + value + "\r\n";
+    return message;
 }

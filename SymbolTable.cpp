@@ -65,6 +65,29 @@ void SymbolTable::deleteTable() {
 }
 
 /**
+ * update field "value" in the var data node that's represented by key.
+ * @param key string key in symbolTable
+ * @param value in varData of the specific key
+ */
+void SymbolTable::update(string &key, float value) {
+    if (exists(key)) {
+        lock_guard<mutex> lock(_locker);
+
+        auto iter = this->_symbol_tables.begin();
+
+        while (iter != this -> _symbol_tables.end()) {
+
+            if ((*iter).find(key) != (*iter).end()) {
+                ((*iter)[key]).value = value;
+                return;
+            }
+
+            iter++;
+        }
+    }
+}
+
+/**
  * return value in one of the maps.
  *
  * @param str key to look for in maps
@@ -73,7 +96,7 @@ void SymbolTable::deleteTable() {
  */
 VarData& SymbolTable::get(string str) {
     lock_guard<mutex> lock(_locker);
-    auto                        iter = this->_symbol_tables.begin();
+    auto iter = this->_symbol_tables.begin();
 
     while (iter != this -> _symbol_tables.end()) {
 
