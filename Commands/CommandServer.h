@@ -9,6 +9,7 @@
 #define COMMANDSERVER_H
 
 #include "Command.h"
+#define PATTERN "([\\-\\d\\.]+)[,\\n\\r]?"
 
 class CommandServer : public Command {
 public:
@@ -19,6 +20,7 @@ public:
     void listenAndAccept();*/
     string convertToString(char*);
     void handleCSV(string);
+    bool isCSVChar(char);
     CommandServer() = default;
     ~CommandServer() = default;
 private:

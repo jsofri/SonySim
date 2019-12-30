@@ -64,8 +64,6 @@ void CommandServer::runServer() {
     if (listen(socketfd, 5) == -1) { //can also set to SOMAXCON (max connections)
         cerr << "Error during listening command" << endl;
         exit(EXIT_FAILURE);
-    } else {
-        std::cout << "Server is now listening ..." << std::endl;
     }
 
     // accepting a client
@@ -77,7 +75,7 @@ void CommandServer::runServer() {
                                (socklen_t *) &address);
     }
 
-    std::cout << "Simulator accepted as client!" << std::endl;
+    cout << "Simulator connected as client!" << endl;
 
     int t = 0;
     string str;
@@ -89,7 +87,9 @@ void CommandServer::runServer() {
         values = convertToString(buffer);
 
         // regex
-        this -> handleCSV(values);
+        if (!values.empty()) {
+            this->handleCSV(values);
+        }
     }
 
     close(socketfd); //closing the listening socket
@@ -98,47 +98,72 @@ void CommandServer::runServer() {
 string CommandServer::convertToString(char* a)
 {
     int i = 0, countBr = 0;
-    string s = "";
-    string s2 = "";
+    string s;
 
-    while (a[i] != '\0') {
-        if (a[i] == '\n') {
-            countBr++;
-            i++;
-            continue;
-        }
-
-        if (countBr == 1) {
-            s2 += a[i];
-        }
-
+    while (a[i] != '\n' && this->isCSVChar(a[i])) {
         s += a[i];
-
         i++;
     }
 
-    if (countBr == 1) {
+    if(Lexer::doRegex(s, PATTERN).size() == xmlRefToIndexMap.size()) {
         return s;
-    } else {
-        return s2;
     }
+
+    s = "";
+
+    while (a[++i] != '\n' && this->isCSVChar(a[i])) {
+        s += a[i];
+    }
+
+    if(Lexer::doRegex(s, PATTERN).size() != xmlRefToIndexMap.size()) {
+        s = "";
+    }
+
+    return s;
 }
 
 void CommandServer::handleCSV(string values) {
-    string pattern = "([\\d\\.]+)[,\\n\\r]?";
+    string pattern = PATTERN;
     vector<string> matches = Lexer::doRegex(values, pattern);
 
-    int index = 0;
+    int index = 1;
     for (string match : matches) {
         vector<string> vars = xmlIndexToVarMap[index];
         for (string var : vars) {
+
+            if (var == "rpm") {
+                float v = stof(match);
+                if (v > 400) {
+                    cout << "rpm: " << v;
+                }
+            }
+
             VarData vdata = symbol_table.get(var);
 
+
+            //cout << "###" << var << " " << match << endl;
+
             if (vdata.updater == SIMULATOR) {
-                symbol_table.get(var).value = FloatFromString::calculateString(match);
+                float val = stof(match);
+                symbol_table.update(var, val);
+                if (var == "rpm") {
+                    cout << "rpm: " << val << endl;
+                }
+                //cout << "updated key: " << var << " " << match << endl;
             }
         }
 
         index++;
     }
+}
+
+
+bool CommandServer :: isCSVChar(char c) {
+    bool boolean = false;
+
+    if ((c >= '0' && c <= '9') || c == '.' || c == '-' || c == '\n' || c == ',') {
+        boolean = true;
+    }
+
+    return boolean;
 }

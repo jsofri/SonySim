@@ -2,6 +2,7 @@
 // Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
 //
 
+#include <climits>
 #include "GeneralData.h"
 #include "GlobalVars.h"
 #include "Lexer.h"
@@ -225,7 +226,7 @@ string Lexer :: trim(string str, char c) {
         str = str.substr(1);
     }
 
-    if (str[str.size() - 1] == c) {
+    if (str[str.length() - 1] == c) {
         // remove last char
         str.pop_back();
     }

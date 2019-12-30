@@ -26,15 +26,16 @@ void CommandVar::cleanData() {
 /**
  * inserting the new value in the scope's map
  * if updater is client - updating the simulator
+ * @param shouldEnqueue if the var should be enqueued to the simulator queue
  */
-void CommandVar::updateData() {
+void CommandVar::updateData(bool shouldEnqueue) {
 
     symbol_table.insert(this->_var_name, this->_var_info);
 
-    if (this->_var_info.updater == CLIENT) {
-        cout <<"now i should update the simulator: ";
-        cout << this ->_var_name << this ->_var_info.value << endl;
-        //updateSimulator(this -> _var_info.reference, this -> _var_info.value);
+    if (this->_var_info.updater == CLIENT && shouldEnqueue) {
+        updateSimulatorQueue.enqueue(this -> _var_info);
+        cout << "enqueued: " << _var_name << " " << _var_info.value << "| ";
+        cout << "queue status: " << !updateSimulatorQueue.isEmpty() << endl;
     }
 }
 
@@ -53,15 +54,17 @@ int CommandVar::execute(int index) {
     this->cleanData();
     this->indexCounter = index;
 
+    bool shouldEnqueue;
+
     if (tokens[index] == "var") {
         this -> indexCounter++;
-        setVarCommand(++index);
+        shouldEnqueue = setVarCommand(++index);
     }
     else {
-        setVarCommand(index);
+        shouldEnqueue = setVarCommand(index);
     }
 
-    this -> updateData();
+    this->updateData(shouldEnqueue);
 
     return this -> indexCounter;
 }
@@ -71,8 +74,9 @@ int CommandVar::execute(int index) {
  *
  * @param index in vector of tokens
  * @throw const char * in case of invalid input
+ * @return true if should enqueue the var to the simulator queue
  */
-void CommandVar::setVarCommand(int index) {//x =...\ x <- ...
+bool CommandVar::setVarCommand(int index) {//x =...\ x <- ...
     string token_after_name;
 
     this -> _var_name = tokens[index];//x
@@ -82,23 +86,39 @@ void CommandVar::setVarCommand(int index) {//x =...\ x <- ...
 
     if (token_after_name == "\n") {
         this -> indexCounter++;
-        return;
+        return false;
     }
     else if (token_after_name == "=") {
-        if (symbol_table.get(this -> _var_name).updater != CLIENT) {
-            throw "can't assign value to a var dependent on the simulator updates";
+        bool boolean;
+        if (!symbol_table.exists(_var_name)) {
+            FloatFromString floatFromStringExpression;
+
+            this->_var_info.updater = NO_ONE;
+
+            this -> _var_info.value = floatFromStringExpression.calculateString(tokens[index+1]);
+
+            symbol_table.insert(_var_name, this ->_var_info);
+            this -> indexCounter++;
+
+            boolean = false;
+        } else {
+
+            this -> indexCounter++;//expression / value
+
+            this->_var_info.updater = symbol_table.get(_var_name).updater;
+            setValue(index+1);//index in the beginning of expression
+
+            boolean = true;
         }
 
-        this ->_var_info.updater = CLIENT;
-        this -> indexCounter++;//expression / value
-        setValue(index+1);//index in the beginning of expression
-        updateSimulatorQueue.enqueue(symbol_table.get(this -> _var_name));
+        return boolean;
     }
     else if(this -> isArrow(index)) {
         this -> setVarInfo(index);
+        return false;
     }
     else if (token_after_name == "{") {
-        return;
+        return false;
     }
     else {
         throw "Invalid input";
@@ -169,6 +189,7 @@ string CommandVar::removeQuotesFromString(int index) {
  */
 void CommandVar::setValue(int index) {
     FloatFromString floatFromStringExpression;
+
     this -> _var_info.value = floatFromStringExpression.calculateString(tokens[index]);
     this -> _var_info.reference = symbol_table.get(this -> _var_name).reference;
 

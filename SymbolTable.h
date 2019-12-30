@@ -22,6 +22,7 @@ public:
     bool    exists(string &);
     VarData& get(string);
     void    insert(string &, VarData &);
+    void    update(string &, float);
     SymbolTable();
     ~SymbolTable() = default;
 private:

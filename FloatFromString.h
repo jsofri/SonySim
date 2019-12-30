@@ -11,7 +11,7 @@
 
 #include "Expressions/Interpreter.h"
 
-#define NUMBERS "1234567890."
+#define NUMBERS "1234567890.-"
 #define ABC "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwhyz_0123456789"
 
 using namespace std;

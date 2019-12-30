@@ -20,21 +20,22 @@ int CommandPrint :: execute(int index) {
     }
 
     string print = tokens[++index];
-    string value = print;
 
     // check if it's a variable
     if (Lexer::isLegalVar(print)) {
         if (!symbol_table.exists(print)) {
             throw "Error: unknown variable passed to Print";
         }
-        value = symbol_table.get(print).value;
+        float value = symbol_table.get(print).value;
+        cout << value << endl;
     } else {
         // remove leading and trailing quotes
-        value = Lexer::trim(value, '"');
+        string value = Lexer::trim(print, '"');
+        // print the value
+        cout << value << endl;
     }
 
-    // print the value
-    cout << value << endl;
+
 
     return index + 2;
 }
