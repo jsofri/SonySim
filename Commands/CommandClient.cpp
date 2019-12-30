@@ -5,6 +5,8 @@
  * @date 12.26.19
  */
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "CommandClient.h"
 
 /**
@@ -18,7 +20,7 @@ int CommandClient::execute(int index) {
     string ip_address = tokens[++index];
     string str;
 
-    str = str.substr(1, strlen(str.c_str()) - 2);
+    ip_address = ip_address.substr(1, strlen(ip_address.c_str()) - 2);
 
     this -> _ip = str;
     this -> _port = stoi(tokens[++index]);
@@ -48,9 +50,13 @@ void CommandClient::runClient() {
     address.sin_port = htons(this -> _port);
 
     int is_connect = connect(client_socket, (struct sockaddr *) &address, sizeof(address));
-    if (is_connect == -1) {
-        cerr << "Client could not connect to host server" << endl;
+
+    while (is_connect == -1) {
+        connect(client_socket, (struct sockaddr *) &address, sizeof(address));
     }
+
+    cout << "We are connected to the simulator as client!" << endl;
+
     while (mainIsParsing) {
         if (updateSimulatorQueue.isEmpty()) {
             string message = this -> setMessage();

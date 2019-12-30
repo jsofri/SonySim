@@ -6,6 +6,8 @@
  * @date 24.12.19
  */
 
+#include "GeneralData.h"
+#include "GlobalVars.h"
 #include "FloatFromString.h"
 
 using namespace std;
@@ -17,18 +19,18 @@ using namespace std;
  * @return value in the string.
  */
 float FloatFromString::calculateString(string str) {
-    str = this -> delSpaces(str);
+    str = delSpaces(str);
 
-    if (this -> isNumber(str)) {
+    if (isNumber(str)) {
         return stof(str);
-    } else if (this -> isVar(str)) {
+    } else if (isVar(str)) {
         if (symbol_table.exists(str)) {
             return symbol_table.get(str).value;
         } else {
             return 0; //uninitialized variable
         }
-    } else if (this -> isExpression(str)) {
-        return this -> floatFromExpression(str);
+    } else if (isExpression(str)) {
+        return floatFromExpression(str);
     }
 
     throw "can't convert string to a float";
@@ -55,7 +57,7 @@ float FloatFromString::floatFromExpression(string & str) {
     Expression *expression;
     float value;
 
-    this->setVariables(interpreter, str);
+    setVariables(interpreter, str);
 
     try {
         expression = interpreter->interpret(str);
@@ -64,7 +66,7 @@ float FloatFromString::floatFromExpression(string & str) {
 
         delete (expression);
         delete (interpreter);
-    } catch (const char *e) {
+    } catch (char *e) {
         if (expression != nullptr) {
             delete (expression);
         }
@@ -103,7 +105,7 @@ void FloatFromString::setVariables(Interpreter * & interpreter, string str) {
 
                 interpreter->setVariable(rit->str(), value);
 
-            } catch (const char * e) {
+            } catch (char * e) {
                 throw "call to an unknown Variable in arithmetic expression";
             }
         }

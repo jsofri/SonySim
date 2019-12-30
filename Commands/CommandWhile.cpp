@@ -5,7 +5,12 @@
  * @date 12.24.19
  */
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "CommandWhile.h"
+#include "../Conditions/ConditionFactory.h"
+#include "../Parser.h"
+#include "../Lexer.h"
 
 
 /**
@@ -15,6 +20,11 @@
  * @return int - number of string in vector associated with while block.
  */
 int CommandWhile::execute(int index) {
+    // if it's a new line string (maybe a leftover from the last command), then move on to the next token
+    if (tokens[index] == "\n") {
+        return execute(index + 1);
+    }
+
     Parser parser;
     int closing_bracket = Lexer::findClosingBracketIndex(index);
 
@@ -46,8 +56,7 @@ void CommandWhile::cleanData() {
  */
 void CommandWhile::setCondition(int index) {
     ConditionFactory factory;
-    this -> _condition = factory.setCondition(tokens[index],
-                                                          tokens[++index], tokens[++index]);
+    this -> _condition = factory.setCondition(tokens[index], tokens[index + 1], tokens[index + 2]);
 }
 
 /**

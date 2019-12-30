@@ -7,7 +7,10 @@
 #ifndef VARCOMMAND_H
 #define VARCOMMAND_H
 
-#include "../GeneralData.h"
+#include "../VarData.h"
+#include "../FloatFromString.h"
+#include "Command.h"
+
 
 class CommandVar : public Command {
 public:

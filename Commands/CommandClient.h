@@ -8,9 +8,9 @@
 #ifndef COMMANDCLIENT_H
 #define COMMANDCLIENT_H
 
-#include "../GeneralData.h"
+#include "Command.h"
 
-class CommandClient {
+class CommandClient : public Command {
 public:
     int execute(int);
     void runClient();

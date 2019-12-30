@@ -5,7 +5,10 @@
  * @date 12.23.19
  */
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "Condition.h"
+#include "../FloatFromString.h"
 
 /**
  * put value in the two sides of the conditions using calculate method.

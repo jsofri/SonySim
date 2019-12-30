@@ -2,7 +2,10 @@
 // Created by rony on 12/26/19.
 //
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "CommandFuncDef.h"
+#include "../Lexer.h"
 
 /**
  * Interpret and execute.
@@ -32,9 +35,10 @@ int CommandFuncDef :: execute(int index) {
             // push parameter
             params.push_back(param);
         }
+        index++;
     }
 
     // find the index of the end of the function's definition
-    int closingBracket = Lexer::findClosingBracketIndex(index);
+    int closingBracket = Lexer::findClosingBracketIndex(--index);
     return closingBracket;
 }

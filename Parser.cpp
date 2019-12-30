@@ -2,7 +2,11 @@
 // Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
 //
 
+#include "GeneralData.h"
+#include "GlobalVars.h"
+#include "Commands/Command.h"
 #include "Parser.h"
+#include "Lexer.h"
 
 /**
  * Parse the tokens and execute commands
@@ -12,8 +16,9 @@
 void Parser :: parse(int start, int end, vector<string> &tokenArr) {
     vector<string> tokensRow;
 
+    int startOfCommand = start;
     while (start < end) {
-        if (tokenArr[start] == "\n") {
+        if (tokenArr[start] == "\n" && tokensRow.size() > 0) {
             string cmdType;
             // try to parse the row
             try {
@@ -25,7 +30,8 @@ void Parser :: parse(int start, int end, vector<string> &tokenArr) {
             // try to execute the command
             Command* c = cmdMap[cmdType];
             try {
-                start = c -> execute(start);
+                start = c -> execute(startOfCommand);
+                startOfCommand = start;
             } catch (char* exception) {
                 cerr << exception << endl;
             }
@@ -88,27 +94,27 @@ string Parser :: parseCommandType(vector<string> &row, int index) {
         type = COM_WHILE;
     } else if (isIF(row)) {
         type = COM_IF;
-    } else if (isUpdate(row)) {
-        type = COM_UPDATE;
     } else if (isPrint(row)) {
         type = COM_PRINT;
     } else if (isSleep(row)) {
         type = COM_SLEEP;
     } else if (isOpenServer(row)) {
-        type = COM_OPEN_SERVER;
+        type = COM_SERVER;
     } else if (isConnect(row)) {
-        type = COM_CONNECT;
-    } else if (isVar(row)) {
+        type = COM_CLIENT;
+    } else if (isVar(row) || isUpdate(row)) {
         type = COM_VAR;
     } else if (isFuncDef(row, index)) {
         type = COM_FUNC_DEF;
     } else if (isFuncCall(row)) {
         type = COM_FUNC_CALL;
-    } else {
+    } else if (isComment(row)) {
+        type = COM_COMMENT;
+    }  else {
         throw "Error: unknown command.";
     }
 
-    return COM_WHILE;
+    return type;
 }
 
 /**
@@ -166,6 +172,15 @@ bool Parser :: isConnect(vector<string> &row) {
 }
 
 /**
+* Check if a the line is commented and should be ingored
+* @param row the token row
+* @return true if the line is a comment and should be ingored
+*/
+bool Parser :: isComment(vector<string> &row) {
+    return row[0][0] == '/' || row[0][0] == '#';
+}
+
+/**
  * Check if a variable command should run
  * @param row the token row
  * @return true if a variable command should run
@@ -191,7 +206,7 @@ bool Parser :: isVar(vector<string> &row) {
 bool Parser :: isFuncDef(vector<string> &row, int index) {
     string func = row[0];
     if (Lexer::isLegalFunc(func) && *(row.end() - 1) == "{") {
-        funcMap[func].first.first = index + 1;
+        funcMap[func].first = index + 1;
         return true;
     }
 

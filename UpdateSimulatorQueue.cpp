@@ -7,7 +7,8 @@
  * @date: 12.25.19
  */
 
-#include "UpdateSimulatorQueue.h"
+#include "GeneralData.h"
+#include "GlobalVars.h"
 
 /**
  * Ctor.

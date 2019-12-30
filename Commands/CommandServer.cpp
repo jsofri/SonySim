@@ -5,7 +5,13 @@
  * @date 12.26.19
  */
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "CommandServer.h"
+#include "../Lexer.h"
+#include "../FloatFromString.h"
+
+#define BUFFER 1024
 
 /**
  * Command Abstract class method.
@@ -15,6 +21,11 @@
  * @return int - first string after this command line
  */
 int CommandServer::execute(int index) {
+    // if it's a new line string (maybe a leftover from the last command), then move on to the next token
+    if (tokens[index] == "\n") {
+        return execute(index + 1);
+    }
+
     this -> _port = stoi(tokens[index + 1]);
 
     server = thread(&CommandServer::runServer, this);
@@ -26,10 +37,11 @@ void CommandServer::runServer() {
 
     //create socket
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
-    char buffer[1024];
+    char buffer[BUFFER];
     if (socketfd == -1) {
 
-        throw "Could not create a socket";
+        cerr << "Could not create a socket" << endl;
+        exit(EXIT_FAILURE);
 
     }
 
@@ -44,12 +56,14 @@ void CommandServer::runServer() {
 
     //the actual bind command
     if (bind(socketfd, (struct sockaddr *) &address, sizeof(address)) == -1) {
-        throw "Could not bind the socket to an IP";
+        cerr << "Could not bind the socket to an IP" << endl;
+        exit(EXIT_FAILURE);
     }
 
     //making socket listen to the port
     if (listen(socketfd, 5) == -1) { //can also set to SOMAXCON (max connections)
-        throw "Error during listening command";
+        cerr << "Error during listening command" << endl;
+        exit(EXIT_FAILURE);
     } else {
         std::cout << "Server is now listening ..." << std::endl;
     }
@@ -58,20 +72,24 @@ void CommandServer::runServer() {
     int client_socket = accept(socketfd, (struct sockaddr *) &address,
                                (socklen_t *) &address);
 
-    if (client_socket == -1) {
-        throw "Error accepting client";
+    while (client_socket == -1) {
+        client_socket = accept(socketfd, (struct sockaddr *) &address,
+                               (socklen_t *) &address);
     }
+
+    std::cout << "Simulator accepted as client!" << std::endl;
 
     int t = 0;
     string str;
     while(mainIsParsing) {
-        int valread = read( client_socket , buffer, 1024);
+        int valread = read( client_socket , buffer, BUFFER);
         string values;
         int size_of_buffer = sizeof(buffer) / sizeof(char);
 
         values = convertToString(buffer);
 
-        this -> handleCSV(values);//regex
+        // regex
+        this -> handleCSV(values);
     }
 
     close(socketfd); //closing the listening socket
@@ -79,14 +97,48 @@ void CommandServer::runServer() {
 
 string CommandServer::convertToString(char* a)
 {
-    int i = 0;
+    int i = 0, countBr = 0;
     string s = "";
+    string s2 = "";
 
-    while (a[i] != '\n') {
-        s = s + a[i];
+    while (a[i] != '\0') {
+        if (a[i] == '\n') {
+            countBr++;
+            i++;
+            continue;
+        }
+
+        if (countBr == 1) {
+            s2 += a[i];
+        }
+
+        s += a[i];
 
         i++;
     }
 
-    return s;
+    if (countBr == 1) {
+        return s;
+    } else {
+        return s2;
+    }
+}
+
+void CommandServer::handleCSV(string values) {
+    string pattern = "([\\d\\.]+)[,\\n\\r]?";
+    vector<string> matches = Lexer::doRegex(values, pattern);
+
+    int index = 0;
+    for (string match : matches) {
+        vector<string> vars = xmlIndexToVarMap[index];
+        for (string var : vars) {
+            VarData vdata = symbol_table.get(var);
+
+            if (vdata.updater == SIMULATOR) {
+                symbol_table.get(var).value = FloatFromString::calculateString(match);
+            }
+        }
+
+        index++;
+    }
 }

@@ -5,6 +5,8 @@
  * @date 12.24.19
  */
 
+#include "../GeneralData.h"
+#include "../GlobalVars.h"
 #include "ConditionLess.h"
 
 /**

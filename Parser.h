@@ -5,7 +5,10 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "GeneralData.h"
+#include <string>
+#include <vector>
+
+using namespace std;
 
 class Parser {
     public:
@@ -119,6 +122,13 @@ class Parser {
     * @return true if an Update command should run
     */
     bool isUpdate(vector<string> &);
+
+    /**
+    * Check if a the line is commented and should be ingored
+    * @param row the token row
+    * @return true if the line is a comment and should be ingored
+    */
+    bool isComment(vector<string> &);
 
 };
 

@@ -8,18 +8,19 @@
 #ifndef COMMANDSERVER_H
 #define COMMANDSERVER_H
 
-#include "../GeneralData.h"
+#include "Command.h"
 
 class CommandServer : public Command {
 public:
     void runServer();
     int execute(int);
-    void createSocket();
+    /*void createSocket();
     void bindSocket();
-    void listenAndAccept();
+    void listenAndAccept();*/
     string convertToString(char*);
-    CommandServer();
-    ~CommandServer();
+    void handleCSV(string);
+    CommandServer() = default;
+    ~CommandServer() = default;
 private:
     int _port;
 };

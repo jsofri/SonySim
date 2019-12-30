@@ -2,17 +2,17 @@
 // Created by rony on 12/26/19.
 //
 
-#ifndef CODE_COMMANDFUNCDEF_H
-#define CODE_COMMANDFUNCDEF_H
+#ifndef COMMANDFUNCDEF_H
+#define COMMANDFUNCDEF_H
 
-#include "../GeneralData.h"
+#include "Command.h"
 
 /**
  * Function Definition Command
  */
-class CommandFuncDef: Command {
+class CommandFuncDef: public Command {
     int execute(int);
 };
 
 
-#endif //CODE_COMMANDFUNCDEF_H
+#endif //COMMANDFUNCDEF_H

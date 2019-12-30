@@ -8,9 +8,9 @@
 #include "Condition.h"
 #include "ConditionLess.h"
 #include "ConditionLE.h"
-#include "ConditionEqual.h"
 #include "ConditionGreater.h"
 #include "ConditionGE.h"
+#include "ConditionEqual.h"
 #include "ConditionNE.h"
 
 #define LESS_OR_EQUAL "<="

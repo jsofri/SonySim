@@ -2,17 +2,17 @@
 // Created by rony on 12/26/19.
 //
 
-#ifndef CODE_COMMANDFUNCCALL_H
-#define CODE_COMMANDFUNCCALL_H
+#ifndef COMMANDFUNCCALL_H
+#define COMMANDFUNCCALL_H
 
-#include "../GeneralData.h"
+#include "Command.h"
 
 /**
  * Function Call Command
  */
-class CommandFuncCall: Command {
+class CommandFuncCall: public Command {
     int execute(int);
 };
 
 
-#endif //CODE_COMMANDFUNCCALL_H
+#endif //COMMANDFUNCCALL_H
