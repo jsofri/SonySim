@@ -1,6 +1,9 @@
-//
-// Created by rony on 12/28/19.
-//
+/**
+ * this class is a dummy command - just ignores the line.
+ *
+ * @authoer Rony
+ * @date 12/28/19
+ */
 
 #ifndef COMMANDCOMMENT_H
 #define COMMANDCOMMENT_H
