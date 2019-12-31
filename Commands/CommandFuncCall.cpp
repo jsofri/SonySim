@@ -20,10 +20,6 @@
  * @return new index counter in the vector that will be passed to the next command
  */
 int CommandFuncCall :: execute(int index) {
-    // if it's a new line string (maybe a leftover from the last command), then move on to the next token
-    if (tokens[index] == "\n") {
-        return execute(index + 1);
-    }
 
     string func = tokens[index];
 
