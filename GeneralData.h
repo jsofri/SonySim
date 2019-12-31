@@ -49,6 +49,8 @@
 #define COM_CLIENT "client"
 #define COM_COMMENT "comment"
 
+#define FILE_NAME "./fly_with_func.txt"
+
 using namespace std;
 
 #endif //GENERALDATA_H

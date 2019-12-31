@@ -26,14 +26,13 @@ int CommandFuncCall :: execute(int index) {
     // get the param values
     vector<string> values;
 
-    while (tokens[index] != "\n") {
+    while (tokens[++index] != "\n") {
         string value = tokens[index];
         values.push_back(value);
-        index++;
     }
 
     // make map of param names and values
-    auto params = funcMap[func].second;
+    auto & params = funcMap[func].second;
     unordered_map<string, VarData> paramMap;
 
     for (int i = 0; i < params.size(); ++i) {
@@ -47,7 +46,7 @@ int CommandFuncCall :: execute(int index) {
 
     // get start and end indexes of the function scope
     int func_start_index = funcMap[func].first;
-    int func_end_index = Lexer::findClosingBracketIndex(--index);
+    int func_end_index = Lexer::findClosingBracketIndex(func_start_index);
 
     // parse the function
     Parser parser;
@@ -56,5 +55,5 @@ int CommandFuncCall :: execute(int index) {
     // remove the innermost symbol table as the current scope is over
     symbol_table.deleteTable();
 
-    return index;
+    return index + 1;
 }

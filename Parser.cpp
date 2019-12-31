@@ -17,7 +17,7 @@ void Parser :: parse(int start, int end, vector<string> &tokenArr) {
     vector<string> tokensRow;
 
     int startOfCommand = start;
-    while (start < end) {
+    while (start <= end) {
         if (tokenArr[start] == "\n" && tokensRow.size() > 0) {
             string cmdType;
             // try to parse the row
@@ -51,7 +51,7 @@ void Parser :: parse(int start, int end, vector<string> &tokenArr) {
  */
 void Parser :: parse() {
     int start = 0;
-    int end = (int) tokens.size();
+    int end = (int) tokens.size() - 1;
     parse(start, end, tokens);
 }
 
@@ -61,7 +61,7 @@ void Parser :: parse() {
  */
 void Parser :: parse(vector<string> tokenArr) {
     int start = 0;
-    int end = (int) tokens.size();
+    int end = (int) tokens.size() - 1;
     parse(start, end, tokenArr);
 }
 
@@ -70,7 +70,7 @@ void Parser :: parse(vector<string> tokenArr) {
  * @param start the index to begin parsing
  */
 void Parser :: parse(int start) {
-    int end = (int) tokens.size();
+    int end = (int) tokens.size() - 1;
     parse(start, end, tokens);
 }
 
@@ -108,7 +108,7 @@ string Parser :: parseCommandType(vector<string> &row, int index) {
         type = COM_FUNC_DEF;
     } else if (isFuncCall(row)) {
         type = COM_FUNC_CALL;
-    } else if (isComment(row)) {
+    } else if (isComment(row) || row[0] == "}") {
         type = COM_COMMENT;
     }  else {
         throw "Error: unknown command.";

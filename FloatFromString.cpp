@@ -108,7 +108,13 @@ void FloatFromString::setVariables(Interpreter * & interpreter, string str) {
                 interpreter->setVariable(rit->str(), value);
 
             } catch (char * e) {
-                throw "call to an unknown Variable in arithmetic expression";
+                string s = rit->str();
+
+                if (isNumber(s)) {
+                    continue;
+                } else {
+                    throw "call to an unknown Variable in arithmetic expression";
+                }
             }
         }
 

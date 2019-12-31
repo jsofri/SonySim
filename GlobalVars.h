@@ -15,7 +15,7 @@ EXTERN vector<string> tokens;
 // map that stores:
 // (1) function name
 // (2) start index of definition in the lexer token array
-// (3) map parameters names and values
+// (3) vector of parameters names
 EXTERN unordered_map<string, pair<int, vector<string>>> funcMap;
 
 // map of all commands (initialized in main.cpp)

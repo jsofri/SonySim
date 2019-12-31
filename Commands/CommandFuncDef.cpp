@@ -20,11 +20,11 @@ int CommandFuncDef :: execute(int index) {
     }
 
     string func = tokens[index];
-    auto params = funcMap[func].second;
+    auto& params = funcMap[func].second;
 
     // look for param names
-    while (tokens[index] != "\n") {
-        if (tokens[index] != "var") {
+    while (tokens[++index] != "\n") {
+        if (tokens[index] != "var" && tokens[index] != "{") {
             string param = tokens[index];
 
             // check if iilegal var name
@@ -35,7 +35,6 @@ int CommandFuncDef :: execute(int index) {
             // push parameter
             params.push_back(param);
         }
-        index++;
     }
 
     // find the index of the end of the function's definition
