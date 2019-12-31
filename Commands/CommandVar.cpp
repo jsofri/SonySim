@@ -46,10 +46,6 @@ void CommandVar::updateData(bool shouldEnqueue) {
  * @return number of cells in tokens_array to go ahead
  */
 int CommandVar::execute(int index) {
-    // if it's a new line string (maybe a leftover from the last command), then move on to the next token
-    if (tokens[index] == "\n") {
-        return execute(index + 1);
-    }
 
     this->cleanData();
     this->indexCounter = index;
