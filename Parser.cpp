@@ -1,6 +1,9 @@
-//
-// Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
-//
+/**
+ * Parser class parses the tokens, it identifies the correct command that has to be executed and executes it. 
+ * 
+ * @date 12/21/19
+ * @author Rony Utevsky
+ **/
 
 #include "GeneralData.h"
 #include "GlobalVars.h"
@@ -30,6 +33,11 @@ void Parser :: parse(int start, int end, vector<string> &tokenArr) {
             // try to execute the command
             Command* c = cmdMap[cmdType];
             try {
+                // skip break lines
+                while (tokens[startOfCommand] == "\n") {
+                    startOfCommand++;
+                }
+                // execute the command
                 start = c -> execute(startOfCommand);
                 startOfCommand = start;
             } catch (char* exception) {
@@ -86,6 +94,7 @@ void Parser :: parse(int start, int end) {
 /**
  * parse the command type (var, update, func, while, if etc.)
  * @param tokensRow a row of tokens
+ * @param index the end index of the row (before the "\n")
  * @return the command type
  */
 string Parser :: parseCommandType(vector<string> &row, int index) {
@@ -201,6 +210,7 @@ bool Parser :: isVar(vector<string> &row) {
 /**
  * Check if a function definition command should run
  * @param row the token row
+ * @param index the start index of the Function Definition Command, i.e. the location of the opening bracket
  * @return true if a function definition command should run
  */
 bool Parser :: isFuncDef(vector<string> &row, int index) {
