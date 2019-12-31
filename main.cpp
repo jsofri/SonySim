@@ -8,6 +8,8 @@
 #include "Parser.h"
 #include "SetGlobalVars.h"
 
+#define FILE_NAME "./fly_with_func.txt"
+
 int main(int argc, char const *argv[]) {
     // check if a file name was given
     if (argc != 2) {

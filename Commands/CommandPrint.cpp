@@ -33,10 +33,6 @@ int CommandPrint :: execute(int index) {
         string value = Lexer::trim(print, '"');
         // print the valflue
         cout << value << endl;
-
-        if (value == "let's fly") {
-            cout << "reached: " << value << endl;
-        }
     }
 
 

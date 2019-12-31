@@ -17,8 +17,12 @@ void Lexer :: makeTokens(string filename) {
 
     // check if the file is open
     if(!file.is_open()) {
-        perror("Error open");
-        exit(EXIT_FAILURE);
+        file.open(FILE_NAME, std::fstream::in);
+
+        if(!file.is_open()) {
+            perror("Error open");
+            exit(EXIT_FAILURE);
+        }
     }
 
     string pattern;
@@ -32,7 +36,7 @@ void Lexer :: makeTokens(string filename) {
     pattern += "(connectControlClient)\\((.+)\\s*,\\s*(\\d{1,5})\\)|";
     // match var assignment of the pattern `X = Y`
     pattern += "(\\w+)\\s*(=)\\s*(.+)|";
-     // match while and if
+    // match while and if
     pattern += "([Ww]hile|[Ii]f)\\s*(.+)\\s*(<=|>=|<|>|==|!=)\\s*(.+)(\\{)|";
     // match simulator variable binding
     pattern += "(\\w+)\\s*(->|<-)|";
