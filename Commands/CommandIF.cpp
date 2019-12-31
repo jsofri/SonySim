@@ -1,6 +1,9 @@
-//
-// Created by rony on 12/26/19.
-//
+/**
+ * this class is for executing an if statement.
+ *
+ * @date 12/26/19
+ * @author Rony 
+ */
 
 #include "../GeneralData.h"
 #include "../GlobalVars.h"
