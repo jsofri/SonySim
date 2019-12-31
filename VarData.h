@@ -1,19 +1,25 @@
-//
-// Created by rony on 12/26/19.
-//
+/**
+ * VarData class is essentially a struct that hold 3 things:
+ * (1) reference to simulator (a path, e.g. `engines/engine/rpm`) 
+ * (2) the value (floating point number)
+ * (3) the updater of the variable: Simulator / Client / No one.
+ * 
+ * Structs like this are held in the Symbol Table.
+ * 
+ * @date 12/21/19
+ * @author Rony Utevsky
+ **/
 
 #ifndef VARDATA_H
 #define VARDATA_H
 
 #include <string>
-
 using namespace std;
 
-//data that refers to a specific variable - is used in symbol_table
 typedef struct VarData {
     string reference;
     float value;
-    int updater;//0 = no one, 1 = client, 2 = simulator
+    int updater; //0 = no one, 1 = client, 2 = simulator
 
     VarData() = default;
     VarData(float);
