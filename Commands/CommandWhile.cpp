@@ -20,10 +20,6 @@
  * @return int - number of string in vector associated with while block.
  */
 int CommandWhile::execute(int index) {
-    // if it's a new line string (maybe a leftover from the last command), then move on to the next token
-    if (tokens[index] == "\n") {
-        return execute(index + 1);
-    }
 
     Parser parser;
     int closing_bracket = Lexer::findClosingBracketIndex(index);
