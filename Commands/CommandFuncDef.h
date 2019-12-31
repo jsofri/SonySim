@@ -1,6 +1,10 @@
-//
-// Created by rony on 12/26/19.
-//
+/**
+ * this class is for setting a function. not for executing it.
+ *
+ *
+ * @date 12/26/19
+ * @author Rony 
+ */
 
 #ifndef COMMANDFUNCDEF_H
 #define COMMANDFUNCDEF_H
