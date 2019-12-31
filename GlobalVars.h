@@ -1,6 +1,9 @@
-//
-// Created by rony on 12/28/19.
-//
+/**
+ * this file contain global variables.
+ *
+ * @author Rony
+ * @date 12/28/19
+ */
 
 #ifdef A_H_
     #define EXTERN
