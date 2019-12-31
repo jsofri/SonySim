@@ -1,6 +1,10 @@
-//
-// Created by rony on 12/26/19.
-//
+/**
+ * this class is for executing a function.
+ * notice that there's CommandFuncDef for setting a function.
+ *
+ * @date 12/26/19
+ * @author Rony 
+ */
 
 #include "../GeneralData.h"
 #include "../GlobalVars.h"
