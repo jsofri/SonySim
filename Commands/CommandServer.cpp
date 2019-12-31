@@ -1,5 +1,5 @@
 /**
- * class for create and run client thread.
+ * class for create and run server thread - listen to simulator.
  *
  * @author Yehonatan Sofri
  * @date 12.26.19
@@ -21,11 +21,7 @@
  * @return int - first string after this command line
  */
 int CommandServer::execute(int index) {
-    // if it's a new line string (maybe a leftover from the last command), then move on to the next token
-    if (tokens[index] == "\n") {
-        return execute(index + 1);
-    }
-
+    
     this -> _port = stoi(tokens[index + 1]);
 
     server = thread(&CommandServer::runServer, this);
