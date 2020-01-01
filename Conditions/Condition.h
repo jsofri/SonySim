@@ -16,7 +16,7 @@ public:
     void calculateSides();
     float calculate(string &);
     Condition(string left, string right) : _left_string(left), _right_string(right) {};
-    ~Condition() = default;
+    virtual ~Condition() = default;
 protected:
     string _left_string;
     string _right_string;
