@@ -22,7 +22,7 @@ public:
      * @return int - index counter in the vector
      */
     virtual int execute(int) = 0;
-    virtual ~Command() = default;
+    virtual ~Command() {};
 protected:
 
     //count number of strings that were handled in the vector
