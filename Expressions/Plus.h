@@ -1,5 +1,5 @@
 /**
- * Class minus - a binary expression, make addition.
+ * a binary expression, make addition.
  *
  * @author Yehonatan Sofri
  * @date 09/11/2019
