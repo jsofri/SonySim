@@ -21,6 +21,7 @@ Div::Div(Expression *new_left, Expression *new_right) {
  * calculate expression - get result.
  *
  * @return value of expression (double)
+ */
 double Div::calculate() {
   double exp_left = this -> left_ -> calculate();
   double exp_right = this -> right_ -> calculate();
