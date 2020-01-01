@@ -1,6 +1,10 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ * Mul is a binary expression, make miltiplication between 2 expressions.
+ * methods are trivial.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
 #include "Mul.h"
 
