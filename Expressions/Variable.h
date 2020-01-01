@@ -30,4 +30,4 @@ class Variable : public Expression {
   double value_;
 };
 
-#endif //EX1__VARIABLE_H_
+#endif //VARIABLE_H_
