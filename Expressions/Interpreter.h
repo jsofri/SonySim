@@ -46,7 +46,7 @@ class Interpreter {
   void         HandleOperator(char);
   int          GetPrecedence(string);
   void         MoveOneFromStackToQueue();
-  ~Interpreter() = default;
+  ~Interpreter();
  private:
   map<string, double> variables_;
   stack<string>       string_stack_;
