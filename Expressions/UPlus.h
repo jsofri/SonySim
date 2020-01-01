@@ -1,9 +1,12 @@
-//
-// Created by jhonny on 03/11/2019.
-//
+/**
+ * an unary expression, negation of value.
+ *
+ * @author Yehonatan Sofri
+ * @date 03/11/2019
+ */
 
-#ifndef EX1__UPLUS_H_
-#define EX1__UPLUS_H_
+#ifndef UPLUS_H_
+#define UPLUS_H_
 
 #include "UnaryOperator.h"
 
@@ -16,4 +19,4 @@ class UPlus : public UnaryOperator {
     ~UPlus() override;
 };
 
-#endif //EX1__UPLUS_H_
+#endif //UPLUS_H_
