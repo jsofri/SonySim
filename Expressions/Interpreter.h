@@ -1,6 +1,10 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ * Interpreter is an object that can understand a string of arithmetic operation.
+ * string may include variables - they should be declared before interpretering.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
 #ifndef EX1__INTERPRETER_H_
 #define EX1__INTERPRETER_H_
