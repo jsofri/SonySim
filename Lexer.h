@@ -1,6 +1,11 @@
-//
-// Created by Rony Utevsky and Yehonatan Sofri on 12/19/19.
-//
+/**
+ * This class is responsible for reading the input file and extracting all the tokens into the tokens vector.
+ * In addition, this class can do various checks on strings that many classes might find useful.
+ * Note: all methods in this class are static!
+ *
+ * @author Rony Utevsky
+ * @date 24.12.19
+ */
 
 #ifndef LEXER_H
 #define LEXER_H
@@ -19,6 +24,7 @@ class Lexer {
     /**
      * Check if the token is legal
      * @param token the token
+     * @return true if the token is legal
      */
     static bool isLegalToken(string token);
 
@@ -31,7 +37,7 @@ class Lexer {
 
      /**
       * Check if the current line is a variable assignment, i.e. if we detect `var = ...`
-      * @return
+      * @return true if this is a variable assignment
       */
      static bool isVarAssignment();
 
@@ -88,7 +94,7 @@ class Lexer {
     static string trim(string, char);
 
     /**
-     * trim spaces
+     * trim spaces (default)
      * @param str the text
      * @return the text without leading and trailing spaces
      */
