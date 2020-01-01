@@ -1,5 +1,5 @@
 /**
- * Class minus - a binary expression, make substraction.
+ * a binary expression, make substraction.
  *
  * @author Yehonatan Sofri
  * @date 09/11/2019
