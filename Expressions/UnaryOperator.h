@@ -1,9 +1,12 @@
+/**
+ * an unary expression is an arithmetic operation that consist of one inner expression.
+ * therefore implements from Expression.
+ * @author Yehonatan Sofri
+ * @date 03/11/2019
+ */
 
-// Created by jhonny on 03/11/2019.//
-//
-
-#ifndef EX1__UNARYOPERATOR_H_
-#define EX1__UNARYOPERATOR_H_
+#ifndef UNARYOPERATOR_H_
+#define UNARYOPERATOR_H_
 
 #include "Expression.h"
 #include "Value.h"
@@ -13,4 +16,4 @@ class UnaryOperator : public Expression  {
   Expression* expression_;
 };
 
-#endif //EX1__UNARYOPERATOR_H_
+#endif //UNARYOPERATOR_H_
