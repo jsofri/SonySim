@@ -1,6 +1,11 @@
-//
-// Created by Rony Utevsky and Yehonatan Sofri on 12/21/19.
-//
+/**
+ * This class is responsible for reading the input file and extracting all the tokens into the tokens vector.
+ * In addition, this class can do various checks on strings that many classes might find useful.
+ * Note: all methods in this class are static!
+ *
+ * @author Rony Utevsky
+ * @date 24.12.19
+ */
 
 #include <climits>
 #include "GeneralData.h"
@@ -109,7 +114,7 @@ bool Lexer :: isSkippableChar(char c) {
 
 /**
  * Check if the current line is a variable assignment, i.e. if we detect `var = ...`
- * @return
+ * @return true if this is a variable assignment
  */
 bool Lexer :: isVarAssignment() {
     auto it = tokens.end() - 1;
@@ -239,7 +244,7 @@ string Lexer :: trim(string str, char c) {
 }
 
 /**
- * trim spaces
+ * trim spaces (default trim)
  * @param str the text
  * @return the text without leading and trailing spaces
  */
