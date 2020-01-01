@@ -408,3 +408,7 @@ int Interpreter::GetPrecedence(string oprtor) {
     default: throw "unrecognized operator";
   }
 }
+
+//for compilation reasons
+Interpreter::~Interpreter() {
+}
