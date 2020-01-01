@@ -1,5 +1,5 @@
 /**
- * this header files contains general data for the whole program.
+ * This header file contains general `include`s and `define`s for the whole program
  *
  * @author Yehonatan Sofri
  * @date 19.12.19
@@ -32,7 +32,7 @@
 #include "UpdateSimulatorQueue.h"
 #include "Commands/Command.h"
 
-//defines for the VarData struct
+// defines for the VarData struct
 #define NO_ONE 0
 #define CLIENT 1
 #define SIMULATOR 2
@@ -49,6 +49,7 @@
 #define COM_CLIENT "client"
 #define COM_COMMENT "comment"
 
+// default input file name
 #define FILE_NAME "./fly_with_func.txt"
 
 using namespace std;
