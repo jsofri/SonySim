@@ -1,6 +1,11 @@
-//
-// Created by jhonny on 03/11/2019.
-//
+  
+/**
+ * an unary expression, do nothing to the value.
+ * methods are trivial.
+ *
+ * @author Yehonatan Sofri
+ * @date 03/11/2019
+ */
 
 #include "UPlus.h"
 
