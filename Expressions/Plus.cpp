@@ -1,5 +1,5 @@
 /**
- * Class minus - a binary operation, make addition.
+ * a binary operation, make addition.
  * methods are trivial.
  *
  * @author Yehonatan Sofri
