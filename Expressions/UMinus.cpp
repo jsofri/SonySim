@@ -1,6 +1,10 @@
-//
-// Created by jhonny on 06/11/2019.
-//
+/**
+ * an unary expression, negation of value.
+ * methods are trivial.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
 #include "UMinus.h"
 
