@@ -2,8 +2,8 @@
 // Created by jhonny on 06/11/2019.
 //
 
-#ifndef EX1__VARIABLE_H_
-#define EX1__VARIABLE_H_
+#ifndef VARIABLE_H_
+#define VARIABLE_H_
 
 #include "Expression.h"
 #include "stdio.h"
