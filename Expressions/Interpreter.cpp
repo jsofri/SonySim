@@ -1,5 +1,10 @@
 /**
+ * Interpreter is an object that can understand a string of arithmetic operation.
+ * string may include variables - they should be declared before interpretering.
  *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ * @updated by Rony in last week of dec 19
  */
 
 #include "../GeneralData.h"
@@ -56,6 +61,7 @@ void Interpreter::SetVariable(string str) {
   }
 }
 
+//get a variable name (string) and value and stores it in variables_
 void Interpreter::setVariable(string name, double value) {
     pair<string, double> key_value_pair;
 
@@ -78,6 +84,7 @@ Expression* Interpreter::interpret(string raw_string) {
   return this -> SetExpressionFromQueue();
 }
 
+//check there's no 2 operation one right after the other
 void Interpreter::CheckString(string raw_string) {
 
     this -> CountBrackets(raw_string);
@@ -92,6 +99,7 @@ void Interpreter::CheckString(string raw_string) {
 
 }
 
+//turn unary minus to '!' and unary plus to '#'
 char* Interpreter::Simplify(string input) {
   char *copy = new char[input.length() + 1];
 
@@ -114,6 +122,7 @@ char* Interpreter::Simplify(string input) {
   return copy;
 }
 
+//make sure all chars in string are valid
 void Interpreter::CheckExpressionInput(string input) {
   int tmp, len = input.length();
 
@@ -128,6 +137,7 @@ void Interpreter::CheckExpressionInput(string input) {
   }
 }
 
+//check variable name is valid
 bool Interpreter::CheckVariableNameInput(string input) {
   string rest_chars = input.substr(1);
 
@@ -148,6 +158,7 @@ bool Interpreter::CheckVariableNameInput(string input) {
   return true;
 }
 
+//check that the string holds a double
 bool Interpreter::CheckVariableValueInput(string input) {
   try {
     stod(input);
