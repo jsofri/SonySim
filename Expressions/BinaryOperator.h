@@ -1,5 +1,6 @@
 /**
  * Abstract class of binary arithmetic expression.
+ * a binary expression is an expression, therefore implements Expression interface.
  *
  * @author Yehonatan Sofri
  * @date 09/11/2019
