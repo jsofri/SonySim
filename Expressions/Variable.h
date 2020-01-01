@@ -1,6 +1,9 @@
-//
-// Created by jhonny on 06/11/2019.
-//
+/**
+ * a variable is a representation of number using a name
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
 #ifndef VARIABLE_H_
 #define VARIABLE_H_
