@@ -1,5 +1,5 @@
 /**
- * an unary expression, negation of value.
+ * an unary expression, doesn't do anything to value.
  *
  * @author Yehonatan Sofri
  * @date 03/11/2019
