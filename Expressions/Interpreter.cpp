@@ -409,6 +409,3 @@ int Interpreter::GetPrecedence(string oprtor) {
   }
 }
 
-//for compilation reasons
-Interpreter::~Interpreter() {
-}
