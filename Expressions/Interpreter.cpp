@@ -1,6 +1,7 @@
 /**
  * Interpreter is an object that can understand a string of arithmetic operation.
  * string may include variables - they should be declared before interpretering.
+ * interpreting is made by convert infix to postfix (using a stack and a queue).
  *
  * @author Yehonatan Sofri
  * @date 09/11/2019
@@ -197,6 +198,7 @@ regex Interpreter::getRegexOfTokens() {
     return rgx;
 }
 
+//handle token and put it in the proper place in string queue
 void Interpreter::HandleToken(string str) {
   if (this -> IsOperator(str)) {
     if(string_stack_.empty()) {
@@ -211,6 +213,7 @@ void Interpreter::HandleToken(string str) {
   }
 }
 
+//return true if char is an operator (before simplifying)
 bool Interpreter::CheckOperator(char c) {
   switch (c) {
     case ('*'):
@@ -222,6 +225,7 @@ bool Interpreter::CheckOperator(char c) {
   return false;
 }
 
+//throws exception if there's uneven number of brackets in string
 void Interpreter::CountBrackets(string raw_string) {
   int left = 0, right = 0;
 
@@ -239,6 +243,7 @@ void Interpreter::CountBrackets(string raw_string) {
   }
 }
 
+//return true if string is an operator
 bool Interpreter::IsOperator(string str) {
 
   if (str.length() == 1) {
@@ -257,6 +262,8 @@ bool Interpreter::IsOperator(string str) {
   }
   return false;
 }
+
+//push operator to stack
  void Interpreter::HandleOperator(char oprtor) {
   string s;
 
@@ -298,12 +305,14 @@ bool Interpreter::IsOperator(string str) {
   }
 }
 
+//move one string from the stack to the top
 void Interpreter::MoveOneFromStackToQueue() {
   string tmp = this->string_stack_.top();
   this->string_stack_.pop();
   this -> string_queue_.push(tmp);
 }
 
+//set an expression from the string queue
 Expression* Interpreter::SetExpressionFromQueue() {
   stack<Expression*> expression_stack;
   Expression*        expression;
@@ -384,6 +393,7 @@ Expression* Interpreter::SetExpressionFromQueue() {
   return expression_stack.top();
 }
 
+//return precedence of operator by the algorithm definition
 int Interpreter::GetPrecedence(string oprtor) {
 
   switch (oprtor[0]) {
@@ -397,7 +407,4 @@ int Interpreter::GetPrecedence(string oprtor) {
     case (')'): return 0;
     default: throw "unrecognized operator";
   }
-}
-
-Interpreter::~Interpreter() {
 }
