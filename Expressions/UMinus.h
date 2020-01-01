@@ -1,9 +1,13 @@
-//
-// Created by jhonny on 06/11/2019.
-//
+/**
+ * an unary expression, negation of value.
+ * methods are trivial.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
-#ifndef EX1__UMINUS_H_
-#define EX1__UMINUS_H_
+#ifndef UMINUS_H_
+#define UMINUS_H_
 
 #include "UnaryOperator.h"
 
@@ -14,4 +18,4 @@ class UMinus : public UnaryOperator {
   ~UMinus() override;
 };
 
-#endif //EX1__UMINUS_H_
+#endif //UMINUS_H_
