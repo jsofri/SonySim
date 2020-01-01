@@ -1,6 +1,9 @@
-//
-// Created by Rony Utevsky and Yehonatan Sofri on 12/19/19.
-//
+/**
+ * Parser class parses the tokens, it identifies the correct command that has to be executed and executes it. 
+ * 
+ * @date 12/21/19
+ * @author Rony Utevsky
+ **/
 
 #ifndef PARSER_H
 #define PARSER_H
