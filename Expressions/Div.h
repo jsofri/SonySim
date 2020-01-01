@@ -1,9 +1,12 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ * Header of class Div - represent division between expressions.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */ 
 
-#ifndef EX1__DIV_H_
-#define EX1__DIV_H_
+#ifndef DIV_H_
+#define DIV_H_
 
 #include "BinaryOperator.h"
 
@@ -14,4 +17,4 @@ class Div : public BinaryOperator {
   ~Div() override;
 };
 
-#endif //EX1__DIV_H_
+#endif //DIV_H_
