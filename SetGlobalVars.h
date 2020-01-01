@@ -1,6 +1,9 @@
-//
-// Created by rony on 12/28/19.
-//
+/**
+ * This header file initializes all the global variables.
+ * 
+ * @date 12/21/19
+ * @author Rony Utevsky
+ **/
 
 #ifndef SETGLOBALVARS_H
 #define SETGLOBALVARS_H
