@@ -1,6 +1,9 @@
-//
-// Created by jhonny on 06/11/2019.
-//
+/**
+ * a variable is a representation of number using a name
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
 #include "Variable.h"
 
@@ -65,7 +68,6 @@ bool Variable::NameIsValid(string str) {
     for (int i = 1, c = str[i]; c != 0; c = str[++i]) {
 
       // 0-9 = [48, 57], A-Z = [65, 90], a-z = [97,122], _ = 95
-      //if (!((c <= 57) && (c >= 48)) || ((c >= 65) && (c <= 90)) || ((c >= 97) || (c<=122)) || (c==95))
       if (!(((c <= 57) && (c >= 48)) || ((c >= 65) && (c <= 90)) || ((c >= 97) || (c<=122)) || (c==95))) {
         return false;
       }
