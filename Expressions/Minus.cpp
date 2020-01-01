@@ -1,6 +1,10 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ * Class minus - a binary expression, make substraction.
+ * methods are trivial.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
 #include "Minus.h"
 
