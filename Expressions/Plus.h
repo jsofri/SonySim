@@ -1,9 +1,12 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ * Class minus - a binary expression, make addition.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
-#ifndef EX1__PLUS_H_
-#define EX1__PLUS_H_
+#ifndef PLUS_H_
+#define PLUS_H_
 #include "BinaryOperator.h"
 
 class Plus : public BinaryOperator{
@@ -13,4 +16,4 @@ class Plus : public BinaryOperator{
   ~Plus() override;
 };
 
-#endif //EX1__PLUS_H_
+#endif //PLUS_H_
