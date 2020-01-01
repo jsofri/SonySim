@@ -6,8 +6,8 @@
  * @date 09/11/2019
  */
 
-#ifndef EX1__INTERPRETER_H_
-#define EX1__INTERPRETER_H_
+#ifndef INTERPRETER_H_
+#define INTERPRETER_H_
 
 
 #include "Expression.h"
@@ -53,4 +53,4 @@ class Interpreter {
   queue<string>       string_queue_;
 };
 
-#endif //EX1__INTERPRETER_H_
+#endif //INTERPRETER_H_
