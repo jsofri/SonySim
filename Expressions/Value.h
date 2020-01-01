@@ -1,9 +1,12 @@
-//
-// Created by jhonny on 06/11/2019.
-//
+/**
+ * an unary expression, hold a value.
+ *
+ * @author Yehonatan Sofri
+ * @date 06/11/2019
+ */
 
-#ifndef EX1__VALUE_H_
-#define EX1__VALUE_H_
+#ifndef VALUE_H_
+#define VALUE_H_
 
 #include "Expression.h"
 
@@ -16,4 +19,4 @@ class Value: public Expression {
   double value_;
 };
 
-#endif //EX1__VALUE_H_
+#endif //VALUE_H_
