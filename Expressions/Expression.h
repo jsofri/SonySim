@@ -1,6 +1,11 @@
-
-#ifndef PROJECT_EXPRESSION_H
-#define PROJECT_EXPRESSION_H
+/**
+ * Interface for arithmetic expression.
+ * each expression can be evaluated (do that by calculate()).
+ *
+ * @author Yehonatan Sofri
+ */
+#ifndef EXPRESSION_H
+#define EXPRESSION_H
 
 using namespace std;
 /**
@@ -13,4 +18,4 @@ public:
     virtual ~Expression() {}
 };
 
-#endif //PROJECT_EXPRESSION_H
+#endif //EXPRESSION_H
