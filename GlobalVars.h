@@ -1,5 +1,5 @@
 /**
- * this file contain global variables.
+ * This header file contain global variables declaration.
  *
  * @author Rony
  * @date 12/28/19
@@ -10,7 +10,6 @@
 #else
     #define EXTERN extern
 #endif
-
 
 // the lexer array of tokens
 EXTERN vector<string> tokens;
