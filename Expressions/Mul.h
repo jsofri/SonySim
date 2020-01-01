@@ -1,9 +1,12 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ * Class minus - a binary expression, make substraction.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
-#ifndef EX1__MUL_H_
-#define EX1__MUL_H_
+#ifndef MUL_H_
+#define MUL_H_
 
 #include "BinaryOperator.h"
 
@@ -14,4 +17,4 @@ class Mul : public BinaryOperator {
   ~Mul() override;
 };
 
-#endif //EX1__MUL_H_
+#endif //MUL_H_
