@@ -1,9 +1,12 @@
-//
-// Created by jhonny on 09/11/2019.
-//
+/**
+ * Abstract class of binary arithmetic expression.
+ *
+ * @author Yehonatan Sofri
+ * @date 09/11/2019
+ */
 
-#ifndef EX1__BINARYOPERATOR_H_
-#define EX1__BINARYOPERATOR_H_
+#ifndef BINARYOPERATOR_H_
+#define BINARYOPERATOR_H_
 
 #include "Expression.h"
 #include "Value.h"
@@ -15,4 +18,4 @@ class BinaryOperator : public Expression {
   Expression* right_;
 };
 
-#endif //EX1__BINARYOPERATOR_H_
+#endif //BINARYOPERATOR_H_
