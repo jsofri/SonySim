@@ -179,7 +179,6 @@ string CommandVar::removeQuotesFromString(int index) {
 
 /**
  * calculate the value in the string that index points to.
- * using Interpreter class.
  *
  * @param index in vector of tokens
  */
