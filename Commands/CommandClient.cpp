@@ -54,7 +54,8 @@ void CommandClient::runClient() {
         is_connect = connect(client_socket, (struct sockaddr *) &address, sizeof(address));
     }
 
-    cout << "We're connected to simulator!" << endl;
+    //for testing
+    //cout << "We're connected to simulator!" << endl;
 
     while (mainIsParsing) {
         if (!updateSimulatorQueue.isEmpty()) {
