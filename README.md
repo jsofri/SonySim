@@ -43,26 +43,64 @@ Program get a txt file name as input. add .txt in end of file name, example
 The `txt` file contains commands that are sent to the simulator and control the aircraft.  
   
 **Supported commands:**  
-1. [Run a server](#run-a-server)
-2. Connect to simulator
-3. Variable assignment
-4. `if` condition
-5. `while` loop
-6. Print
-7. Sleep
-8. Functions
+1. [Run a server](#run-a-server)  
+2. [Connect to simulator](#connect-to-simulator)  
+3. [Variable Declaration](#variable-declaration)  
+4. [Variable assignment](#variable-assignment)  
+5. `if` condition
+6. `while` loop
+7. Print
+8. [Sleep](#sleep)
+9. Functions
 
 * Comments
 ---
 ### Run a Server
-`openDataServer(int port)` command set a new server in a new thred.  
-IP is set to localhost `127.0.0.1` on given port. the server can listen to one client only, where client should send data as described in generic_small.xml
+`openDataServer(int port)` set and run a server in a new thred.  
+IP is set to localhost `127.0.0.1` on given `port`. The server can accept and listen to one client only.  
+The server expects to get data as defined in generic_small.xml file. It runs a loop that get data in CSV format, convert it to values of flight data. `value` of variables in symbol table that are defined as modified by simulator will be changed. Thread continues to run as long as `mainIsParsing = true`
+e.g.
+```
+...
+openDataServer(1009) //when line is executed - a new thread runs a server on local host in port 1009
+```
 
 ### Connect to Simulator
-`openDataServer(int port)` command set a new server 
+`connectControlClient(string ip,int port)` set and run a thread that acts as a client of the flight simulator.  
+This function set a new socket in given `ip` and `port`, and connect with the server. Once connected, it runs a loop that dequeue data thats needs to be sent to simulator, and send it as a `set` command to the simulator via Telnet protocol. Thread continues to run as long as `mainIsParsing = true`.  
+e.g.  
+```
+...
+connectControlClient("127.0.0.1", 1009) //when line is executed - a new thread runs a client on ip 127.0.0.1 in port 1009
+```
+
+### Variable Declaration
+`var var_name -> sim("/reference/to/parameter")`  (1)  
+`var var_name <- sim("/reference/to/parameter")`  (2)  
+`var var_name = double`  (3)  
+
+1. creating a new variable named `var_name`, in current scope, which is binded in a way that when var_name value is changed, the flight parameter in simulator which is located in `"/reference/to/parameter"` is also changed to same value. Once executed, `var_name` is inserted in the program symbol table with key `var_name` and appropriate VarData (with default `value = 0`). When scope ends then `var_name` key no longer exists in symbol table. Calling to `var_name` after the scope ended will cause undefined behaviour.  
+e.g.
+```
+var flaps -> sim("/controls/switchs/flaps") // flaps is now in symbol table with updater = CLIENT
+                                            //reference = "/controls/switchs/flaps", value = 0
+```
+
+2. creating a new variable named `var_name`, in current scope, which is binded in a way that when the flight parameter in reference `"/reference/to/parameter"` in simulator is changed, then the value of `var_name` in the symbol table will be changed to same value. `var_name` is inserted in the program symbol table with key `var_name` and appropriate VarData (with default `value = 0`). When scope ends then variable no longer exist. Refferring to `var_name` after the scope ended will cause undefined behaviour.  
+e.g.
+```
+var offsetting <- sim("/controls/switchs/offsetting") // offsetting is now in symbol table with updater = SIMULATOR
+                                                      //reference = "/controls/switchs/offsetting", value = 0
+```
+
+3. creating a new variable named `var_name`, in current scope, with the `double` followed by `=` operator. This variable holds a `VarData` struct with empty reference and updater `NO_ONE`. When scope ends then variable no longer exist. Refferring to `var_name` after the scope ended will cause undefined behaviour.  
+e.g.
+```
+var x = 4.5 // x is now in symbol table with updater = NO_ONE, reference = "", value = 4.5
+```
 
 ### Variable Assignment
-`openDataServer(int port)` command set a new server 
+`var_name = double` command set value `double` to variable `nar_name`. The value in the symbol table will be changed accordingly. If `updater = CLIENT` then an updated `VarData` will be enqueued in `updateSimulatorQueue`. Assigning a variable to a variable that it's `updater = SIMULATOR` as well as assigning an unintialized variable will cause undefined behaviour.
 
 ### if condition
 `openDataServer(int port)` command set a new server 
@@ -74,25 +112,30 @@ IP is set to localhost `127.0.0.1` on given port. the server can listen to one c
 `openDataServer(int port)` command set a new server 
 
 ### Sleep
-`openDataServer(int port)` command set a new server 
+`Sleep(int)` will make the main thread to sleep for the number of milliseconds in `int`.  
+e.g.
+```
+Sleep(10000) //now main will sleep for 10 seconds
+```
 
 ### Functions
 `openDataServer(int port)` command set a new server 
 
-### Comments
-`openDataServer(int port)` command set a new server 
+### Comments  
+`openDataServer(int port)` command set a new server  
 
+---
 ## Code Architecture:  
 ![Flow Chart](https://github.com/yehonatansofri/SonySim/blob/master/flowchart.PNG)
 ### Threads  
-1. Main Thread
+#### Main Thread
  * Interpretation of code in text file - Lexical analysis, parsing and executing  
  * Set new values in the Program Symbol Table and enqueue them in queue
  * Create Client and Server Threads
-2. Client Thread  
+#### Client Thread  
  * Client of the FlightGear simulator
  * Dequeue and set new values of flight parameters in the simulator
-3. Server Thread  
+#### Server Thread  
  * Once Connected, listen to the FlightGear Simulator only
  * Get flight parameters in CSV format and update Symbol Table respectively  
  ### Data structures  
@@ -106,20 +149,19 @@ IP is set to localhost `127.0.0.1` on given port. the server can listen to one c
  }
  ```
  #### Symbol Table  
- An object that stores all scopes data. encapsulate a `list<unordered_map<string, VarData>>`. each map represents a scope.
+ A global object that stores all scopes data. encapsulate a `list<unordered_map<string, VarData>>`. each map represents a scope.
  the innermost scope will be in the start of list and outermost scope will be in the end.  
  Use mutex due to multi-threading on object.  
- #### New Values
+ #### Update Simulator Queue  
+ A global queue used by main thread and client thread. main thread enqueue VarData structs of variables whose value has been modified, and client thread dequeue these values and send `set` commands to the simulator  
 
-1. a flowchart of: client, server, simulator
-2. multithreading
-3. how the data is stored (global vars) - link to flowchart
-
-
+---
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+---  
 
 ## License
 Free License (unless you're a BIU student...)
