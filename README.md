@@ -87,8 +87,8 @@ IP is set to localhost `127.0.0.1` on given port. the server can listen to one c
 ### Threads  
 1. Main Thread
  * Interpretation of code in text file - Lexical analysis, parsing and executing  
- * Set new values in the Program Symbol Table
- * Enqueue new values in the queue
+ * Set new values in the Program Symbol Table and enqueue them in queue
+ * Create Client and Server Threads
 2. Client Thread  
  * Client of the FlightGear simulator
  * Dequeue and set new values of flight parameters in the simulator
@@ -105,6 +105,11 @@ IP is set to localhost `127.0.0.1` on given port. the server can listen to one c
     int    updater; //0 = no one, 1 = client, 2 = simulator
  }
  ```
+ #### Symbol Table  
+ An object that stores all scopes data. encapsulate a `list<unordered_map<string, VarData>>`. each map represents a scope.
+ the innermost scope will be in the start of list and outermost scope will be in the end.  
+ Use mutex due to multi-threading on object.  
+ #### New Values
 
 1. a flowchart of: client, server, simulator
 2. multithreading
