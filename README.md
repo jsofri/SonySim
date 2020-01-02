@@ -126,7 +126,7 @@ Sleep(10000) //now main will sleep for 10 seconds
 
 ---
 ## Code Architecture:  
-![Flow Chart](https://github.com/yehonatansofri/SonySim/blob/master/flowchart.PNG)
+![Flow Chart](https://github.com/yehonatansofri/Hello-World/blob/master/flowchart.PNG)
 ### Threads  
 #### Main Thread
  * Interpretation of code in text file - Lexical analysis, parsing and executing  
