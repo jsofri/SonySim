@@ -43,7 +43,7 @@ Program get a txt file name as input. add .txt in end of file name, example
 The `txt` file contains commands that are sent to the simulator and control the aircraft.  
   
 **Supported commands:**  
-1. Run a server
+1. [Run a server](#run-a-server)
 2. Connect to simulator
 3. Variable assignment
 4. `if` condition
@@ -53,33 +53,33 @@ The `txt` file contains commands that are sent to the simulator and control the 
 8. Functions
 
 * Comments
-
-## Run a Server
+---
+### Run a Server
 `openDataServer(int port)` command set a new server in a new thred.  
 IP is set to localhost `127.0.0.1` on given port. the server can listen to one client only, where client should send data as described in generic_small.xml
 
-## Connect to Simulator
+### Connect to Simulator
 `openDataServer(int port)` command set a new server 
 
-## Variable Assignment
+### Variable Assignment
 `openDataServer(int port)` command set a new server 
 
-## if condition
+### if condition
 `openDataServer(int port)` command set a new server 
 
-## While loop
+### While loop
 `openDataServer(int port)` command set a new server 
 
-## Print
+### Print
 `openDataServer(int port)` command set a new server 
 
-## Sleep
+### Sleep
 `openDataServer(int port)` command set a new server 
 
-## Functions
+### Functions
 `openDataServer(int port)` command set a new server 
 
-## Comments
+### Comments
 `openDataServer(int port)` command set a new server 
 
 ## explain what the program does:  
