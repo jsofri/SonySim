@@ -82,7 +82,30 @@ IP is set to localhost `127.0.0.1` on given port. the server can listen to one c
 ### Comments
 `openDataServer(int port)` command set a new server 
 
-## explain what the program does:  
+## Code Architecture:  
+![Flow Chart](https://github.com/yehonatansofri/SonySim/blob/master/flowchart.PNG)
+### Threads  
+1. Main Thread
+ * Interpretation of code in text file - Lexical analysis, parsing and executing  
+ * Set new values in the Program Symbol Table
+ * Enqueue new values in the queue
+2. Client Thread  
+ * Client of the FlightGear simulator
+ * Dequeue and set new values of flight parameters in the simulator
+3. Server Thread  
+ * Once Connected, listen to the FlightGear Simulator only
+ * Get flight parameters in CSV format and update Symbol Table respectively  
+ ### Data structures  
+ #### Struct VarData  
+ Contains data about a specific variable - reference of variable in the flight simulator (e.g. "/dir/to/parameter"), value itself and updater - a flag that marks the updating factor of this variable.
+ ```
+ struct VarData {
+    string reference;
+    float  value;
+    int    updater; //0 = no one, 1 = client, 2 = simulator
+ }
+ ```
+
 1. a flowchart of: client, server, simulator
 2. multithreading
 3. how the data is stored (global vars) - link to flowchart
