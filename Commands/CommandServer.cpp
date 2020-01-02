@@ -71,7 +71,8 @@ void CommandServer::runServer() {
                                (socklen_t *) &address);
     }
 
-    cout << "Simulator connected as client!" << endl;
+    //for testing
+    //cout << "Simulator connected as client!" << endl;
 
     int t = 0;
     string str;
