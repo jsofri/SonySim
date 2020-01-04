@@ -16,11 +16,37 @@
 
 class UpdateSimulatorQueue {
 public:
+    /**
+     * enqueue.
+     *
+     * @param var_data the struct to be enqueued.
+     */
     void enqueue(VarData);
+    
+    /**
+     * dequeue.
+     *
+     * @return the struct to be dequeued.
+     */
     VarData dequeue();
+    
+    /**
+     * check if queue is empty.
+     *
+     * @return boolean
+     */
     bool isEmpty();
+    
+    /**
+     * Constructor.
+     */
     UpdateSimulatorQueue();
+    
+    /**
+     * Destructor.
+     */
     ~UpdateSimulatorQueue();
+    
 private:
     queue<VarData> * _var_data_queue;
     mutex _locker;
