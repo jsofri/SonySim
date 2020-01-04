@@ -183,7 +183,7 @@ You can comment out a single line by prepending `//` or `#`, for example:
 
 ---
 ## Code Architecture:  
-![Flow Chart](https://github.com/yehonatansofri/Hello-World/blob/master/flowchart.PNG)
+![Flow Chart](flowchart.PNG)
 ### Threads  
 #### Main Thread
  * Interpretation of code in text file - Lexical analysis, parsing and executing  
