@@ -35,7 +35,7 @@ int CommandFuncCall :: execute(int index) {
     auto & params = funcMap[func].second;
     unordered_map<string, VarData> paramMap;
 
-    for (int i = 0; i < params.size(); ++i) {
+    for (unsigned int i = 0; i < params.size(); ++i) {
         auto param = params[i];
         auto value = values[i];
         paramMap[param] = VarData(FloatFromString::calculateString(value));

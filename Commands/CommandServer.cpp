@@ -77,14 +77,10 @@ void CommandServer::runServer() {
     //uncomment if testing
     //cout << "Simulator connected as client!" << endl;
 
-    int t = 0;
     string str;
     while(mainIsParsing) {
-        int valread = read( client_socket , buffer, BUFFER);
-        string values;
-        int size_of_buffer = sizeof(buffer) / sizeof(char);
-
-        values = convertToString(buffer);
+        read(client_socket, buffer, BUFFER);
+        string values = convertToString(buffer);
 
         // regex
         if (!values.empty()) {
@@ -103,7 +99,7 @@ void CommandServer::runServer() {
  */
 string CommandServer::convertToString(char* a)
 {
-    int i = 0, countBr = 0;
+    int i = 0;
     string s;
     
     // read until first \n and check that every char is legal

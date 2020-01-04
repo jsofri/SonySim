@@ -83,7 +83,7 @@ void Lexer :: makeTokens(string filename) {
  * @return true if legal token
  */
 bool Lexer :: isLegalToken(string token) {
-    int i = 0;
+    unsigned int i = 0;
     bool isString = false;
     if (token[0] == '"') {
         isString = true;
@@ -208,7 +208,7 @@ vector<string> Lexer :: doRegex(string str, string pattern) {
  */
 int Lexer :: findClosingBracketIndex(int start) {
     int countOpening = 0, countClosing = 0;
-    for (int i = start; i < tokens.size(); ++i) {
+    for (unsigned int i = start; i < tokens.size(); ++i) {
         if (tokens[i] == "{") {
             countOpening++;
         } else if (tokens[i] == "}") {
@@ -221,7 +221,7 @@ int Lexer :: findClosingBracketIndex(int start) {
     }
 
     throw "Error: Cannot find brackets";
-};
+}
 
 /**
  * removes wrapping char from string

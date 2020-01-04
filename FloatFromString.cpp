@@ -9,6 +9,7 @@
 #include "GeneralData.h"
 #include "GlobalVars.h"
 #include "FloatFromString.h"
+#include "Lexer.h"
 
 using namespace std;
 
@@ -98,32 +99,26 @@ void FloatFromString::setVariables(Interpreter * & interpreter, string str) {
     VarData var_data;
     float value;
 
-    regex rgx("[a-zA-z_][a-zA-z_\\d]*|[\\d]+[.]?[\\d]+|[\\d]+|[!-_+#/*()]");
-
-    std::regex_iterator<std::string::iterator> r_it (str.begin(), str.end(), rgx);
-    std::regex_iterator<std::string::iterator> r_end;
+    auto matches = Lexer::doRegex(str, "([a-zA-z_][a-zA-z_\\d]*)|([\\d]+[.]?[\\d]+)|([\\d]+)|([!-_+#/*()])");
 
     // iterating on tokens in the infix string
-    while (r_it!=r_end) {
+    for (string match: matches) {
 
-        if (strlen(str.c_str()) == strspn(str.c_str(), ABC)) {
+        if (Lexer::isLegalVar(match)) {
 
             try {
-                var_data = symbol_table.get(r_it->str());
+                var_data = symbol_table.get(match);
                 value = var_data.value;
-                interpreter->setVariable(r_it->str(), value);
-            } catch (char * e) {
-                string s = r_it->str();
+                interpreter->setVariable(match, value);
 
-                if (isNumber(s)) {
+            } catch (char * e) {
+                if (isNumber(match)) {
                     continue;
                 } else {
                     throw "call to an unknown Variable in arithmetic expression";
                 }
             }
         }
-
-        ++r_it;
     }
 }
 

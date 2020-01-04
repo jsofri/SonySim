@@ -20,11 +20,11 @@
  * @param value the value
  * @param updater the updater
  **/
-VarData :: VarData(string reference, float value, int updater): reference(reference), value(value), updater(updater) {}
+VarData :: VarData(string ref, float val, int updater_id): reference(ref), value(val), updater(updater_id) {}
 
 /**
  * Constructor
  *
  * @param value the value
  **/
-VarData :: VarData(float value): value(value) {}
+VarData :: VarData(float val): value(val) {}
