@@ -1,6 +1,9 @@
-//
-// Created by Rony Utevsky and Yehonatan Sofri on 12/19/19.
-//
+/**
+ * This file runs the program.
+ * 
+ * @date 12/21/19
+ * @author Rony Utevsky and Yehonatan Sofri
+ **/
 
 #include "GeneralData.h"
 #include "GlobalVars.h"
@@ -20,6 +23,7 @@ int main(int argc, char const *argv[]) {
     string filename = argv[1];
     Lexer::makeTokens(filename);
 
+    // parse the code and execute the commands
     Parser parser;
     parser.parse();
 
@@ -32,7 +36,7 @@ int main(int argc, char const *argv[]) {
     server.join();
 
     // delete allocated commands in map
-//  deleteAllData();
+    // deleteAllData();
 
     return 0;
 }
