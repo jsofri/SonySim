@@ -110,8 +110,8 @@ if altitude > 1000 {
 ...
 }
 ```
-
-However, this is not yet supported:
+  
+![Not supported](https://img.shields.io/badge/Not%20supported-red) However, this is not yet supported:
 ```
 if altitude > 1000 && heading == 0 {
 ...
@@ -128,8 +128,8 @@ while altitude < 1000 {
 ...
 }
 ```
-
-However, this is not yet supported:  
+  
+![Not supported](https://img.shields.io/badge/Not%20supported-red) However, this is not yet supported:  
 ```
 while altitude < 1000 && heading != 0 {
 ...
@@ -221,4 +221,4 @@ Please make sure to update tests as appropriate.
 ---  
 
 ## License
-Free License (unless you're a BIU student...)
+Open source, free license (unless you're a BIU student...)
