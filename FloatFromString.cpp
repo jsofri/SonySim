@@ -1,6 +1,6 @@
 /**
- * class is a generic object for all uses in program.
- * get a string and return a float - the value that the string represent.
+ * This class is responsible for getting a string and returning a float - the value that the string represent.
+ * The string can be either a number, a veriable or an expression.
  *
  * @author Yehonatan Sofri
  * @date 24.12.19
@@ -21,15 +21,21 @@ using namespace std;
 float FloatFromString::calculateString(string str) {
     str = delSpaces(str);
 
+    // if number
     if (isNumber(str)) {
         return stof(str);
-    } else if (isVar(str)) {
+    }
+    // if variable
+    else if (isVar(str)) {
+        // if exists in symbol table
         if (symbol_table.exists(str)) {
             return symbol_table.get(str).value;
         } else {
             return 0; //uninitialized variable
         }
-    } else if (isExpression(str)) {
+    }
+    // if expression
+    else if (isExpression(str)) {
         return floatFromExpression(str);
     }
 
@@ -49,21 +55,23 @@ string FloatFromString::delSpaces(string & str) {
 
 /**
  * get a string of arithmetic Expression and returns it's value.
- * @param str
- * @return
+ * @param str expression string
+ * @return the float value of the expression
  */
 float FloatFromString::floatFromExpression(string & str) {
     Interpreter *interpreter = new Interpreter();
     Expression *expression;
     float value;
-
+    
+    // update the local map of vars of the interpreter
     setVariables(interpreter, str);
 
+    // check that the variables were set correctly
     try {
         expression = interpreter->interpret(str);
-
         value = expression->calculate();
-
+        
+        // delete allocated memory
         delete (expression);
         delete (interpreter);
     } catch (char *e) {
@@ -81,7 +89,7 @@ float FloatFromString::floatFromExpression(string & str) {
 }
 
 /**
- * set Variables in the given Interpreter.
+ * Extracts the variables names from the string and assigns to each the relevant value from symbol_table.
  *
  * @param interpreter Interpreter reference
  * @param str string that represents an arithmetic expression
@@ -92,23 +100,20 @@ void FloatFromString::setVariables(Interpreter * & interpreter, string str) {
 
     regex rgx("[a-zA-z_][a-zA-z_\\d]*|[\\d]+[.]?[\\d]+|[\\d]+|[!-_+#/*()]");
 
-    std::regex_iterator<std::string::iterator> rit (str.begin(), str.end(), rgx);
-    std::regex_iterator<std::string::iterator> rend;
+    std::regex_iterator<std::string::iterator> r_it (str.begin(), str.end(), rgx);
+    std::regex_iterator<std::string::iterator> r_end;
 
-    //iterating on tokens in the infix string
-    while (rit!=rend) {
+    // iterating on tokens in the infix string
+    while (r_it!=r_end) {
 
         if (strlen(str.c_str()) == strspn(str.c_str(), ABC)) {
 
             try {
-                var_data = symbol_table.get(rit->str());
-
+                var_data = symbol_table.get(r_it->str());
                 value = var_data.value;
-
-                interpreter->setVariable(rit->str(), value);
-
+                interpreter->setVariable(r_it->str(), value);
             } catch (char * e) {
-                string s = rit->str();
+                string s = r_it->str();
 
                 if (isNumber(s)) {
                     continue;
@@ -118,7 +123,7 @@ void FloatFromString::setVariables(Interpreter * & interpreter, string str) {
             }
         }
 
-        ++rit;
+        ++r_it;
     }
 }
 
