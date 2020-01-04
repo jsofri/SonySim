@@ -103,13 +103,48 @@ var x = 4.5 // x is now in symbol table with updater = NO_ONE, reference = "", v
 `var_name = double` command set value `double` to variable `nar_name`. The value in the symbol table will be changed accordingly. If `updater = CLIENT` then an updated `VarData` will be enqueued in `updateSimulatorQueue`. Assigning a variable to a variable that it's `updater = SIMULATOR` as well as assigning an unintialized variable will cause undefined behaviour.
 
 ### if condition
-`openDataServer(int port)` command set a new server 
+You can use `if` conditions that take a single boolean expression, without parentheses.  
+For example, this is supported:  
+```
+if  altitude > 1000 {
+...
+}
+```
+
+However, this is not yet supported:
+```
+if  altitude > 1000 && heading == 0 {
+...
+}
+```
+
+**Please note:** the opening parenthesis must be on the same line with the condition, while the closing one must be on a seperate line.
 
 ### While loop
-`openDataServer(int port)` command set a new server 
+You can use `while` loops that take a single boolean expression, without parentheses.  
+For example, this is supported:  
+```
+while altitude < 1000 {
+...
+}
+```
+
+However, this is not yet supported:  
+```
+while  altitude < 1000 && heading != 0 {
+...
+}
+```
+
+**Please note:** the opening parenthesis must be on the same line with the `while` keyword's line, while the closing one must be on a seperate line.
 
 ### Print
-`openDataServer(int port)` command set a new server 
+`Print(string)` or `Print(variable name)`  
+Using this function, you can print strings and variable, for example:
+```
+Print("Altitude is:")
+Print(alt);
+```
 
 ### Sleep
 `Sleep(int)` will make the main thread to sleep for the number of milliseconds in `int`.  
@@ -119,10 +154,32 @@ Sleep(10000) //now main will sleep for 10 seconds
 ```
 
 ### Functions
-`openDataServer(int port)` command set a new server 
+You can define and use functions to do various things.
+For example:
+```
+// function definition
+takeoff (var x) {
+  while (alt < x) {
+    rudder = (h0 - heading)/80
+    aileron = -roll / 70
+    elevator = pitch / 50
+    Sleep(250)
+  }
+}
+
+// function usage
+takeoff(1000)
+```
+
+**Please note:**  
+1. The opening parenthesis must be on the same line with the function's declaration line, while the closing one must be on a seperate line.  
+2. The function must be defined before usage.
+3. Each variable argument in the function's declaration must be preceded with `var` keyword.
+4. If there are multiple variable arguments in the function's declaration, they should be seperated with a comma `,`:  `takeoff (var x, var y) {`
 
 ### Comments  
-`openDataServer(int port)` command set a new server  
+You can comment out a single line by prepending `//` or `#`, for example:  
+`# heading = 1`  
 
 ---
 ## Code Architecture:  
