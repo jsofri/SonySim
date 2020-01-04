@@ -53,7 +53,7 @@ The `txt` file contains commands that are sent to the simulator and control the 
 8. [Sleep](#sleep)
 9. [Functions](#functions)
 
-* Comments
+* [Comments](#comments)
 ---
 ### Run a Server
 `openDataServer(int port)` set and run a server in a new thred.  
@@ -198,7 +198,7 @@ You can comment out a single line by prepending `//` or `#`, for example:
  ### Data structures  
  #### Struct VarData  
  Contains data about a specific variable - reference of variable in the flight simulator (e.g. "/dir/to/parameter"), value itself and updater - a flag that marks the updating factor of this variable.
- ```
+ ```cpp
  struct VarData {
     string reference;
     float  value;
