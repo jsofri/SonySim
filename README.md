@@ -47,11 +47,11 @@ The `txt` file contains commands that are sent to the simulator and control the 
 2. [Connect to simulator](#connect-to-simulator)  
 3. [Variable Declaration](#variable-declaration)  
 4. [Variable assignment](#variable-assignment)  
-5. `if` condition
-6. `while` loop
-7. Print
+5. [`if` condition](#if-condition)
+6. [`while` loop](#while-loop)
+7. [Print](#print)
 8. [Sleep](#sleep)
-9. Functions
+9. [Functions](#functions)
 
 * Comments
 ---
@@ -75,9 +75,9 @@ connectControlClient("127.0.0.1", 1009) //when line is executed - a new thread r
 ```
 
 ### Variable Declaration
-`var var_name -> sim("/reference/to/parameter")`  (1)  
-`var var_name <- sim("/reference/to/parameter")`  (2)  
-`var var_name = double`  (3)  
+1. `var var_name -> sim("/reference/to/parameter")`
+2. `var var_name <- sim("/reference/to/parameter")`
+3. `var var_name = double`
 
 1. creating a new variable named `var_name`, in current scope, which is binded in a way that when var_name value is changed, the flight parameter in simulator which is located in `"/reference/to/parameter"` is also changed to same value. Once executed, `var_name` is inserted in the program symbol table with key `var_name` and appropriate VarData (with default `value = 0`). When scope ends then `var_name` key no longer exists in symbol table. Calling to `var_name` after the scope ended will cause undefined behaviour.  
 e.g.
@@ -106,14 +106,14 @@ var x = 4.5 // x is now in symbol table with updater = NO_ONE, reference = "", v
 You can use `if` conditions that take a single boolean expression, without parentheses.  
 For example, this is supported:  
 ```
-if  altitude > 1000 {
+if altitude > 1000 {
 ...
 }
 ```
 
 However, this is not yet supported:
 ```
-if  altitude > 1000 && heading == 0 {
+if altitude > 1000 && heading == 0 {
 ...
 }
 ```
@@ -131,7 +131,7 @@ while altitude < 1000 {
 
 However, this is not yet supported:  
 ```
-while  altitude < 1000 && heading != 0 {
+while altitude < 1000 && heading != 0 {
 ...
 }
 ```
