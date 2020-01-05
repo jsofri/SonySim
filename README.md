@@ -183,7 +183,7 @@ You can comment out a single line by prepending `//` or `#`, for example:
 
 ---
 ## Code Architecture:  
-![Flow Chart](flowchart.PNG)
+![Flow Chart](https://github.com/yehonatansofri/SonySim/blob/master/flowchart.PNG?raw=true)
 ### Threads  
 #### Main Thread
  * Interpretation of code in text file - Lexical analysis, parsing and executing  
