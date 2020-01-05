@@ -20,8 +20,8 @@
  * @return int - first string after this command line
  */
 int CommandServer::execute(int index) {
-    
-    this -> _port = stoi(tokens[index + 1]);
+
+    this -> _port = (int) FloatFromString::calculateString(tokens[index + 1]);
 
     server = thread(&CommandServer::runServer, this);
 

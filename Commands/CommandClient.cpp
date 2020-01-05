@@ -8,6 +8,7 @@
 #include "../GeneralData.h"
 #include "../GlobalVars.h"
 #include "CommandClient.h"
+#include "../FloatFromString.h"
 
 /**
  * Command Abstract class method.
@@ -22,7 +23,7 @@ int CommandClient::execute(int index) {
     ip_address = ip_address.substr(1, strlen(ip_address.c_str()) - 2);
 
     this -> _ip = ip_address;
-    this -> _port = stoi(tokens[++index]);
+    this -> _port = (int) FloatFromString::calculateString(tokens[++index]);
 
     client = thread(&CommandClient::runClient, this);
 
