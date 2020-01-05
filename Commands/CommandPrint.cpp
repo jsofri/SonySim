@@ -9,6 +9,7 @@
 #include "../DataManagement/GlobalVars.h"
 #include "CommandPrint.h"
 #include "../DataManagement/Lexer.h"
+#include "../DataManagement/FloatFromString.h"
 
 /**
  * Interpret and execute.
@@ -20,19 +21,13 @@ int CommandPrint :: execute(int index) {
 
     string print = tokens[++index];
 
-    // check if it's a variable
-    if (Lexer::isLegalVar(print)) {
-        if (!symbol_table.exists(print)) {
-            throw "Error: unknown variable passed to Print";
-        }
-        float value = symbol_table.get(print).value;
+    // check if not string
+    if (Lexer::trim(print, '"') == print) {
+        float value = FloatFromString::calculateString(print);
         cout << value << endl;
     } else {
-        // remove leading and trailing quotes
-        string value = Lexer::trim(print, '"');
-        // print the valflue
-        cout << value << endl;
+        cout << Lexer::trim(print, '"') << endl;
     }
-    
+
     return index + 2;
 }

@@ -21,7 +21,7 @@
 int CommandIF :: execute(int index) {
 
     ConditionFactory factory;
-    Condition* cond = factory.setCondition(tokens[index+1], tokens[index+1], tokens[index+1]);
+    Condition* cond = factory.setCondition(tokens[index+1], tokens[index+2], tokens[index+3]);
     index += 3;
 
     int closingBracket = Lexer::findClosingBracketIndex(index);
