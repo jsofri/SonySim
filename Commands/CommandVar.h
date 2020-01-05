@@ -7,8 +7,8 @@
 #ifndef VARCOMMAND_H
 #define VARCOMMAND_H
 
-#include "../VarData.h"
-#include "../FloatFromString.h"
+#include "../DataManagement/VarData.h"
+#include "../DataManagement/FloatFromString.h"
 #include "Command.h"
 
 

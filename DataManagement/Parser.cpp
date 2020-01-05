@@ -7,7 +7,7 @@
 
 #include "GeneralData.h"
 #include "GlobalVars.h"
-#include "Commands/Command.h"
+#include "../Commands/Command.h"
 #include "Parser.h"
 #include "Lexer.h"
 

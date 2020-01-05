@@ -5,11 +5,11 @@
  * @date 12.26.19
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "CommandServer.h"
-#include "../Lexer.h"
-#include "../FloatFromString.h"
+#include "../DataManagement/Lexer.h"
+#include "../DataManagement/FloatFromString.h"
 
 #define BUFFER 1024
 

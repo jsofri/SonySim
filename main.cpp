@@ -5,11 +5,11 @@
  * @author Rony Utevsky and Yehonatan Sofri
  **/
 
-#include "GeneralData.h"
-#include "GlobalVars.h"
-#include "Lexer.h"
-#include "Parser.h"
-#include "SetGlobalVars.h"
+#include "DataManagement/GeneralData.h"
+#include "DataManagement/GlobalVars.h"
+#include "DataManagement/Lexer.h"
+#include "DataManagement/Parser.h"
+#include "DataManagement/SetGlobalVars.h"
 
 
 int main(int argc, char const *argv[]) {

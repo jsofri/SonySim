@@ -8,8 +8,8 @@
  * @updated by Rony in last week of dec 19
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "Interpreter.h"
 
 //get a const char * (input from user) and make Variable of it

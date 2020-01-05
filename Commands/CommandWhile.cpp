@@ -5,12 +5,12 @@
  * @date 12.24.19
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "CommandWhile.h"
 #include "../Conditions/ConditionFactory.h"
-#include "../Parser.h"
-#include "../Lexer.h"
+#include "../DataManagement/Parser.h"
+#include "../DataManagement/Lexer.h"
 
 
 /**

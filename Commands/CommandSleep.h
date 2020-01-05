@@ -9,7 +9,7 @@
 #define COMMANDSLEEP_H
 
 #include "Command.h"
-#include "../FloatFromString.h"
+#include "../DataManagement/FloatFromString.h"
 
 class CommandSleep : public Command {
 public:

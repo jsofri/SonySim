@@ -30,7 +30,7 @@
 
 #include "SymbolTable.h"
 #include "UpdateSimulatorQueue.h"
-#include "Commands/Command.h"
+#include "../Commands/Command.h"
 
 // defines for the VarData struct
 #define NO_ONE 0

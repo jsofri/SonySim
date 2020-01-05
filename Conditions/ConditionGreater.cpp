@@ -5,8 +5,8 @@
  * @date 12.24.19
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "ConditionGreater.h"
 
 /**

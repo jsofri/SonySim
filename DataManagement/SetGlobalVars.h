@@ -8,17 +8,17 @@
 #ifndef SETGLOBALVARS_H
 #define SETGLOBALVARS_H
 
-#include "Commands/Command.h"
-#include "Commands/CommandWhile.h"
-#include "Commands/CommandVar.h"
-#include "Commands/CommandIF.h"
-#include "Commands/CommandFuncDef.h"
-#include "Commands/CommandFuncCall.h"
-#include "Commands/CommandPrint.h"
-#include "Commands/CommandSleep.h"
-#include "Commands/CommandServer.h"
-#include "Commands/CommandClient.h"
-#include "Commands/CommandComment.h"
+#include "../Commands/Command.h"
+#include "../Commands/CommandWhile.h"
+#include "../Commands/CommandVar.h"
+#include "../Commands/CommandIF.h"
+#include "../Commands/CommandFuncDef.h"
+#include "../Commands/CommandFuncCall.h"
+#include "../Commands/CommandPrint.h"
+#include "../Commands/CommandSleep.h"
+#include "../Commands/CommandServer.h"
+#include "../Commands/CommandClient.h"
+#include "../Commands/CommandComment.h"
 
 unordered_map<int, vector<string>> xmlIndexToVarMap;
 unordered_map<string, pair<int, vector<string>>> funcMap;

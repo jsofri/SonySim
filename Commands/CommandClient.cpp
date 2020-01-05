@@ -5,10 +5,10 @@
  * @date 12.26.19
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "CommandClient.h"
-#include "../FloatFromString.h"
+#include "../DataManagement/FloatFromString.h"
 
 /**
  * Command Abstract class method.

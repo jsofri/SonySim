@@ -4,8 +4,8 @@
  * @date 23.12.19
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "CommandVar.h"
 
 /**

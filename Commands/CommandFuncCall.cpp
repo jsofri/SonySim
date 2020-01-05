@@ -6,12 +6,12 @@
  * @author Rony 
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "CommandFuncCall.h"
-#include "../FloatFromString.h"
-#include "../Lexer.h"
-#include "../Parser.h"
+#include "../DataManagement/FloatFromString.h"
+#include "../DataManagement/Lexer.h"
+#include "../DataManagement/Parser.h"
 
 /**
  * Interpret and execute.

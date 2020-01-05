@@ -5,10 +5,10 @@
  * @author Rony 
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "CommandPrint.h"
-#include "../Lexer.h"
+#include "../DataManagement/Lexer.h"
 
 /**
  * Interpret and execute.

@@ -2,8 +2,8 @@
  * Factory for making Condition Object.
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "ConditionFactory.h"
 
 /**

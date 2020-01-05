@@ -5,8 +5,8 @@
  * @date 12.25.19
  */
 
-#include "../GeneralData.h"
-#include "../GlobalVars.h"
+#include "../DataManagement/GeneralData.h"
+#include "../DataManagement/GlobalVars.h"
 #include "CommandSleep.h"
 
 /**
