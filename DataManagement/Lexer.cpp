@@ -38,7 +38,7 @@ void Lexer :: makeTokens(string filename) {
     // match the word var
     pattern += "(var)\\s|";
     // match connectControlClient function and its params
-    pattern += "(connectControlClient)\\((.+)\\s*,\\s*(\\d{1,5})\\)|";
+    pattern += "(connectControlClient)\\((.+)\\s*,\\s*(.+)\\)|";
     // match var assignment of the pattern `X = Y`
     pattern += "(\\w+)\\s*(=)\\s*(.+)|";
     // match while and if
